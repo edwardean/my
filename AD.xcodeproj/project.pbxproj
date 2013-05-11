@@ -74,6 +74,8 @@
 		CABB865F173D1C2D0068DE76 /* horse_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CABB8654173D1C2D0068DE76 /* horse_icon.png */; };
 		CABB8660173D1C2D0068DE76 /* 高尔夫_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CABB8655173D1C2D0068DE76 /* 高尔夫_icon.png */; };
 		CABB8662173D1C780068DE76 /* 电影院_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CABB8661173D1C780068DE76 /* 电影院_icon.png */; };
+		CAD118F2173E49390013CAD7 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD118F1173E49390013CAD7 /* ImageIO.framework */; };
+		CAD118F4173E493F0013CAD7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD118F3173E493F0013CAD7 /* MapKit.framework */; };
 		CAE19284173DDCF2003FB844 /* Search_Store.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE19280173DDCF2003FB844 /* Search_Store.xml */; };
 		CAE19285173DDCF2003FB844 /* Store_Comment.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE19281173DDCF2003FB844 /* Store_Comment.xml */; };
 		CAE19286173DDCF2003FB844 /* Store_Detail.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE19282173DDCF2003FB844 /* Store_Detail.xml */; };
@@ -88,7 +90,25 @@
 		CAE192A3173DE9BF003FB844 /* ABMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE1929C173DE9BF003FB844 /* ABMutableURLRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CAE192A4173DE9BF003FB844 /* AibangApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE1929F173DE9BF003FB844 /* AibangApi.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CAE192A7173E1C06003FB844 /* user_wde.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE192A6173E1C06003FB844 /* user_wde.png */; };
+		CAE192AA173E2636003FB844 /* StoreSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE192A9173E2636003FB844 /* StoreSearchViewController.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CAD4A04E173E5F4700741FC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CAD4A049173E5F4700741FC5 /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 53922D6F148C55820056699D;
+			remoteInfo = SDWebImage;
+		};
+		CAD4A050173E5F4700741FC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CAD4A049173E5F4700741FC5 /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 53761325155AD0D5005750A4;
+			remoteInfo = "SDWebImage ARC";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0913E213166CCB020096A686 /* AD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AD.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,6 +191,9 @@
 		CABB8654173D1C2D0068DE76 /* horse_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horse_icon.png; sourceTree = "<group>"; };
 		CABB8655173D1C2D0068DE76 /* 高尔夫_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "高尔夫_icon.png"; sourceTree = "<group>"; };
 		CABB8661173D1C780068DE76 /* 电影院_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "电影院_icon.png"; sourceTree = "<group>"; };
+		CAD118F1173E49390013CAD7 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		CAD118F3173E493F0013CAD7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		CAD4A049173E5F4700741FC5 /* SDWebImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDWebImage.xcodeproj; sourceTree = "<group>"; };
 		CAE1927E173DCD72003FB844 /* Help.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Help.h; sourceTree = "<group>"; };
 		CAE19280173DDCF2003FB844 /* Search_Store.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Search_Store.xml; sourceTree = "<group>"; };
 		CAE19281173DDCF2003FB844 /* Store_Comment.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Store_Comment.xml; sourceTree = "<group>"; };
@@ -195,6 +218,8 @@
 		CAE1929E173DE9BF003FB844 /* AibangApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AibangApi.h; sourceTree = "<group>"; };
 		CAE1929F173DE9BF003FB844 /* AibangApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AibangApi.m; sourceTree = "<group>"; };
 		CAE192A6173E1C06003FB844 /* user_wde.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_wde.png; sourceTree = "<group>"; };
+		CAE192A8173E2635003FB844 /* StoreSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreSearchViewController.h; sourceTree = "<group>"; };
+		CAE192A9173E2636003FB844 /* StoreSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreSearchViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +227,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAD118F4173E493F0013CAD7 /* MapKit.framework in Frameworks */,
+				CAD118F2173E49390013CAD7 /* ImageIO.framework in Frameworks */,
 				CAE1928C173DE788003FB844 /* libz.dylib in Frameworks */,
 				CAABC1B4173D4C0E001EAF00 /* QuartzCore.framework in Frameworks */,
 				0913E218166CCB020096A686 /* UIKit.framework in Frameworks */,
@@ -233,6 +260,9 @@
 		0913E216166CCB020096A686 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CAD4A049173E5F4700741FC5 /* SDWebImage.xcodeproj */,
+				CAD118F3173E493F0013CAD7 /* MapKit.framework */,
+				CAD118F1173E49390013CAD7 /* ImageIO.framework */,
 				CAE1928B173DE788003FB844 /* libz.dylib */,
 				CAABC1B3173D4C0E001EAF00 /* QuartzCore.framework */,
 				0913E217166CCB020096A686 /* UIKit.framework */,
@@ -256,6 +286,8 @@
 				0913E22F166CCB030096A686 /* ViewController.h */,
 				0913E230166CCB030096A686 /* ViewController.m */,
 				0913E232166CCB030096A686 /* ViewController.xib */,
+				CAE192A8173E2635003FB844 /* StoreSearchViewController.h */,
+				CAE192A9173E2636003FB844 /* StoreSearchViewController.m */,
 				CAE19288173DE76D003FB844 /* ParseData.h */,
 				CAE19289173DE76D003FB844 /* ParseData.m */,
 				CAE1927E173DCD72003FB844 /* Help.h */,
@@ -387,6 +419,15 @@
 			path = icons;
 			sourceTree = "<group>";
 		};
+		CAD4A04A173E5F4700741FC5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CAD4A04F173E5F4700741FC5 /* libSDWebImage.a */,
+				CAD4A051173E5F4700741FC5 /* libSDWebImageARC.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		CAE1927F173DDCF2003FB844 /* xml */ = {
 			isa = PBXGroup;
 			children = (
@@ -475,12 +516,35 @@
 			mainGroup = 0913E208166CCB020096A686;
 			productRefGroup = 0913E214166CCB020096A686 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = CAD4A04A173E5F4700741FC5 /* Products */;
+					ProjectRef = CAD4A049173E5F4700741FC5 /* SDWebImage.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				0913E212166CCB020096A686 /* AD */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		CAD4A04F173E5F4700741FC5 /* libSDWebImage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDWebImage.a;
+			remoteRef = CAD4A04E173E5F4700741FC5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CAD4A051173E5F4700741FC5 /* libSDWebImageARC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDWebImageARC.a;
+			remoteRef = CAD4A050173E5F4700741FC5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0913E211166CCB020096A686 /* Resources */ = {
@@ -573,6 +637,7 @@
 				CAE192A2173DE9BF003FB844 /* ABConnection.m in Sources */,
 				CAE192A3173DE9BF003FB844 /* ABMutableURLRequest.m in Sources */,
 				CAE192A4173DE9BF003FB844 /* AibangApi.m in Sources */,
+				CAE192AA173E2636003FB844 /* StoreSearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,6 +719,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AD/AD-Prefix.pch";
 				INFOPLIST_FILE = "AD/AD-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"${BUILT_PRODUCTS_DIR}/libSDWebImageARC.a",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -665,6 +738,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AD/AD-Prefix.pch";
 				INFOPLIST_FILE = "AD/AD-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"${BUILT_PRODUCTS_DIR}/libSDWebImageARC.a",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

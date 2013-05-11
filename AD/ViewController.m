@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "CHDraggableView+Avatar.h"
+#import "StoreSearchViewController.h"
 @interface ViewController ()
 @property (nonatomic, retain) NSArray *array;
 
@@ -74,11 +75,12 @@
         [lable setTextAlignment:NSTextAlignmentCenter];
         [self.view addSubview:lable];
     }];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    
     
 //    [api searchBizWithCity:@"北京"
 //                     Query:@"餐馆"
@@ -90,8 +92,7 @@
 //                  Rankcode:@"0"
 //                      From:@"1"
 //                        To:@"10"];
-   ParseData *parse =  [[ParseData alloc] init];
-   NSLog(@"%@",[parse ParseStoreImageData:nil]);
+   
 }
 - (void)didReceiveMemoryWarning
 {
@@ -102,6 +103,14 @@
 - (void)btnTapped:(id)sender {
 
     NSLog(@"%@",[_arr objectAtIndex:(int)((UIButton *)sender).tag]);
+    ParseData *parse =  [[ParseData alloc] init];
+    //NSLog(@"%@",[parse ParseSearchStoreData:nil]);
+    StoreSearchViewController *storeSearchVC = [[StoreSearchViewController alloc]initWithNibName:nil bundle:nil];
+    storeSearchVC.array = [parse ParseSearchStoreData:nil];
+//    UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:storeSearchVC];
+//    [self.navigationController pushViewController:navigation animated:YES];
+    [self presentViewController:storeSearchVC animated:YES completion:NULL];
+    
 }
 
 #pragma mark - 5秒换图片
@@ -167,10 +176,15 @@
     }
 }
 
+#pragma mark AibangApi Delegate
 - (void)requestDidFinishWithData:(NSData *)data aibangApi:(id)aibangApi {
    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     [str stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     //NSLog(@"%@",str);
+}
+
+- (void)requestDidFailedWithError:(NSError *)error aibangApi:(id)aibangApi {
+
 }
 @end

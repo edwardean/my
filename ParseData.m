@@ -198,6 +198,7 @@
                                              @"uid"         :   [TBXML textForElement:uid],
                                              @"uname"       :   [TBXML textForElement:uname],
                                              @"avatar_url"  :   [TBXML textForElement:avatar_url],
+                                             @"space_url"   :   [TBXML textForElement:space_url],
                                              @"pubtime"     :   [TBXML textForElement:pubtime],
                                              @"title"       :   [TBXML textForElement:title],
                                              @"url"         :   [TBXML textForElement:url],
