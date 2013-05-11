@@ -45,6 +45,18 @@ viewControllerFour  = viewControllerFour_;
 	
 }
 - (void)setup {
+    
+    
+    
+
+    NSString *str = Search_Store(@"南阳", @"网吧");
+    NSLog(@"%@",str);
+    NSString *str1 = Store_Detail(@"2029602847-421506714");
+    NSLog(@"%@",str1);
+    
+    
+    
+    
     self.viewFrame = (CGRect){CGPointZero, {kKYViewWidth, kKYViewHeight}};
     
     viewControllerOne_   = [[UIViewController alloc] init];
@@ -98,6 +110,7 @@ viewControllerFour  = viewControllerFour_;
 }
 - (void)didReceiveMemoryWarning
 {
+    
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

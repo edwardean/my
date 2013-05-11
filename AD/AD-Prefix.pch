@@ -13,3 +13,4 @@
     #import <Foundation/Foundation.h>
 #endif
 #import "KYConfig.h"
+#import "Help.h"

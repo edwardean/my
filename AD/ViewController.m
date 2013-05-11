@@ -12,6 +12,8 @@
 @property (nonatomic, retain) NSArray *array;
 
 @property (nonatomic, retain) NSArray *iconArray;
+
+@property (nonatomic, retain) NSArray *arr;
 @end
 
 @implementation ViewController
@@ -45,13 +47,13 @@
         [self.view addSubview:icon];
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setFrame:icon.frame];
-        [btn setTag:idx+1];
+        [btn setTag:idx];
         [btn addTarget:self action:@selector(btnTapped:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btn];
         
     }];
-    NSArray *arr = @[@"电影院",@"KTV",@"SPA",@"健身",@"Coffie",@"按摩",@"游泳",@"网吧",@"茶艺",@"象棋",@"马术",@"高尔夫"];
-    [arr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    self.arr = @[@"电影院",@"KTV",@"SPA",@"健身",@"Coffie",@"按摩",@"游泳",@"网吧",@"茶艺",@"象棋",@"马术",@"高尔夫"];
+    [_arr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         int i=idx%3+1;
         int j=idx%4+1;
         float x_point = j*width-40;
@@ -61,7 +63,7 @@
         float width = 60.0f;
         float height = 30.0f;
         UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, height)];
-        [lable setText:[arr objectAtIndex:idx]];
+        [lable setText:[_arr objectAtIndex:idx]];
         [lable setCenter:CGPointMake(x_point, y_point)];
         [lable setFont:[UIFont boldSystemFontOfSize:14.0f]];
         [lable setBackgroundColor:[UIColor clearColor]];
@@ -82,7 +84,7 @@
 
 - (void)btnTapped:(id)sender {
 
-    NSLog(@"%d",(int)((UIButton *)sender).tag);
+    NSLog(@"%@",[_arr objectAtIndex:(int)((UIButton *)sender).tag]);
 }
 
 #pragma mark - 5秒换图片
