@@ -91,7 +91,7 @@
 //                      From:@"1"
 //                        To:@"10"];
    ParseData *parse =  [[ParseData alloc] init];
-   NSLog(@"%@",[parse ParseStoreCommentData:nil]);
+   NSLog(@"%@",[parse ParseStoreImageData:nil]);
 }
 - (void)didReceiveMemoryWarning
 {

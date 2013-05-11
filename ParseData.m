@@ -174,7 +174,38 @@
     TBXML *xmlParse = [[TBXML alloc] initWithXMLFile:@"Store_Image.xml"];
     TBXMLElement *root = xmlParse.rootXMLElement;
     if (root) {
-        
+        TBXMLElement *total = [TBXML childElementNamed:@"total" parentElement:root];
+        TBXMLElement *result_num = [TBXML childElementNamed:@"result_num" parentElement:root];
+        TBXMLElement *web_url = [TBXML childElementNamed:@"web_url" parentElement:root];
+        TBXMLElement *wap_url = [TBXML childElementNamed:@"wap_url" parentElement:root];
+        TBXMLElement *pics = [TBXML childElementNamed:@"pics" parentElement:root];
+        if (pics) {
+            TBXMLElement *pic = [TBXML childElementNamed:@"pic" parentElement:pics];
+            while (pic != nil) {
+                TBXMLElement *uid = [TBXML childElementNamed:@"uid" parentElement:pic];
+                TBXMLElement *uname = [TBXML childElementNamed:@"uname" parentElement:pic];
+                TBXMLElement *avatar_url = [TBXML childElementNamed:@"avatar_url" parentElement:pic];
+                TBXMLElement *space_url = [TBXML childElementNamed:@"space_url" parentElement:pic];
+                TBXMLElement *pubtime = [TBXML childElementNamed:@"pubtime" parentElement:pic];
+                TBXMLElement *title = [TBXML childElementNamed:@"title" parentElement:pic];
+                TBXMLElement *url = [TBXML childElementNamed:@"url" parentElement:pic];
+                TBXMLElement *thumbnail_url  =[TBXML childElementNamed:@"thumbnail_url" parentElement:pic];
+                
+                NSDictionary *dictionary = @{@"total"       :   [TBXML textForElement:total],
+                                             @"result_num"  :   [TBXML textForElement:result_num],
+                                             @"web_url"     :   [TBXML textForElement:web_url],
+                                             @"wap_url"     :   [TBXML textForElement:wap_url],
+                                             @"uid"         :   [TBXML textForElement:uid],
+                                             @"uname"       :   [TBXML textForElement:uname],
+                                             @"avatar_url"  :   [TBXML textForElement:avatar_url],
+                                             @"pubtime"     :   [TBXML textForElement:pubtime],
+                                             @"title"       :   [TBXML textForElement:title],
+                                             @"url"         :   [TBXML textForElement:url],
+                                             @"thumbnail_url":  [TBXML textForElement:thumbnail_url]};
+                [array addObject:dictionary];
+                pic = [TBXML nextSiblingNamed:@"pic" searchFromElement:pic];
+            }
+        }
     }
     
     [xmlParse release];
