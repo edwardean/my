@@ -14,3 +14,6 @@
 #endif
 #import "KYConfig.h"
 #import "Help.h"
+#import "TBXML.h"
+#import "AibangApi.h"
+#import "ParseData.h"

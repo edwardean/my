@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController{
+@interface ViewController : UIViewController <AibangApiDelegate>{
 
     IBOutlet UIScrollView *sv;
     
     IBOutlet UIPageControl *page;
     int TimeNum;
     BOOL Tend;
+    AibangApi *api;
 }
 
 @end

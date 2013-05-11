@@ -74,6 +74,20 @@
 		CABB865F173D1C2D0068DE76 /* horse_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CABB8654173D1C2D0068DE76 /* horse_icon.png */; };
 		CABB8660173D1C2D0068DE76 /* 高尔夫_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CABB8655173D1C2D0068DE76 /* 高尔夫_icon.png */; };
 		CABB8662173D1C780068DE76 /* 电影院_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CABB8661173D1C780068DE76 /* 电影院_icon.png */; };
+		CAE19284173DDCF2003FB844 /* Search_Store.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE19280173DDCF2003FB844 /* Search_Store.xml */; };
+		CAE19285173DDCF2003FB844 /* Store_Comment.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE19281173DDCF2003FB844 /* Store_Comment.xml */; };
+		CAE19286173DDCF2003FB844 /* Store_Detail.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE19282173DDCF2003FB844 /* Store_Detail.xml */; };
+		CAE19287173DDCF2003FB844 /* Store_Image.xml in Resources */ = {isa = PBXBuildFile; fileRef = CAE19283173DDCF2003FB844 /* Store_Image.xml */; };
+		CAE1928A173DE76D003FB844 /* ParseData.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE19289173DE76D003FB844 /* ParseData.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CAE1928C173DE788003FB844 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE1928B173DE788003FB844 /* libz.dylib */; };
+		CAE19292173DE7B3003FB844 /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE1928F173DE7B3003FB844 /* NSDataAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CAE19293173DE7B3003FB844 /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE19291173DE7B3003FB844 /* TBXML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CAE192A0173DE9BF003FB844 /* ABasyncApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE19296173DE9BF003FB844 /* ABasyncApi.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CAE192A1173DE9BF003FB844 /* ABAsyncHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE19298173DE9BF003FB844 /* ABAsyncHttp.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CAE192A2173DE9BF003FB844 /* ABConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE1929A173DE9BF003FB844 /* ABConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CAE192A3173DE9BF003FB844 /* ABMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE1929C173DE9BF003FB844 /* ABMutableURLRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CAE192A4173DE9BF003FB844 /* AibangApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE1929F173DE9BF003FB844 /* AibangApi.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CAE192A7173E1C06003FB844 /* user_wde.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE192A6173E1C06003FB844 /* user_wde.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -158,6 +172,29 @@
 		CABB8655173D1C2D0068DE76 /* 高尔夫_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "高尔夫_icon.png"; sourceTree = "<group>"; };
 		CABB8661173D1C780068DE76 /* 电影院_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "电影院_icon.png"; sourceTree = "<group>"; };
 		CAE1927E173DCD72003FB844 /* Help.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Help.h; sourceTree = "<group>"; };
+		CAE19280173DDCF2003FB844 /* Search_Store.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Search_Store.xml; sourceTree = "<group>"; };
+		CAE19281173DDCF2003FB844 /* Store_Comment.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Store_Comment.xml; sourceTree = "<group>"; };
+		CAE19282173DDCF2003FB844 /* Store_Detail.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Store_Detail.xml; sourceTree = "<group>"; };
+		CAE19283173DDCF2003FB844 /* Store_Image.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Store_Image.xml; sourceTree = "<group>"; };
+		CAE19288173DE76D003FB844 /* ParseData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParseData.h; path = ../ParseData.h; sourceTree = "<group>"; };
+		CAE19289173DE76D003FB844 /* ParseData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParseData.m; path = ../ParseData.m; sourceTree = "<group>"; };
+		CAE1928B173DE788003FB844 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		CAE1928E173DE7B3003FB844 /* NSDataAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDataAdditions.h; sourceTree = "<group>"; };
+		CAE1928F173DE7B3003FB844 /* NSDataAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataAdditions.m; sourceTree = "<group>"; };
+		CAE19290173DE7B3003FB844 /* TBXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBXML.h; sourceTree = "<group>"; };
+		CAE19291173DE7B3003FB844 /* TBXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXML.m; sourceTree = "<group>"; };
+		CAE19295173DE9BF003FB844 /* ABasyncApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABasyncApi.h; sourceTree = "<group>"; };
+		CAE19296173DE9BF003FB844 /* ABasyncApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABasyncApi.m; sourceTree = "<group>"; };
+		CAE19297173DE9BF003FB844 /* ABAsyncHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABAsyncHttp.h; sourceTree = "<group>"; };
+		CAE19298173DE9BF003FB844 /* ABAsyncHttp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABAsyncHttp.m; sourceTree = "<group>"; };
+		CAE19299173DE9BF003FB844 /* ABConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABConnection.h; sourceTree = "<group>"; };
+		CAE1929A173DE9BF003FB844 /* ABConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABConnection.m; sourceTree = "<group>"; };
+		CAE1929B173DE9BF003FB844 /* ABMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABMutableURLRequest.h; sourceTree = "<group>"; };
+		CAE1929C173DE9BF003FB844 /* ABMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABMutableURLRequest.m; sourceTree = "<group>"; };
+		CAE1929D173DE9BF003FB844 /* AibangApi-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AibangApi-Prefix.pch"; sourceTree = "<group>"; };
+		CAE1929E173DE9BF003FB844 /* AibangApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AibangApi.h; sourceTree = "<group>"; };
+		CAE1929F173DE9BF003FB844 /* AibangApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AibangApi.m; sourceTree = "<group>"; };
+		CAE192A6173E1C06003FB844 /* user_wde.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_wde.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +202,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAE1928C173DE788003FB844 /* libz.dylib in Frameworks */,
 				CAABC1B4173D4C0E001EAF00 /* QuartzCore.framework in Frameworks */,
 				0913E218166CCB020096A686 /* UIKit.framework in Frameworks */,
 				0913E21A166CCB020096A686 /* Foundation.framework in Frameworks */,
@@ -195,6 +233,7 @@
 		0913E216166CCB020096A686 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CAE1928B173DE788003FB844 /* libz.dylib */,
 				CAABC1B3173D4C0E001EAF00 /* QuartzCore.framework */,
 				0913E217166CCB020096A686 /* UIKit.framework */,
 				0913E219166CCB020096A686 /* Foundation.framework */,
@@ -206,6 +245,8 @@
 		0913E21D166CCB020096A686 /* AD */ = {
 			isa = PBXGroup;
 			children = (
+				CAE19294173DE9BF003FB844 /* Api */,
+				CAE1928D173DE7A3003FB844 /* TBXML */,
 				CAABC1AC173D4BB4001EAF00 /* KYArcTab */,
 				CABB861E173CDE320068DE76 /* CH */,
 				0913E226166CCB030096A686 /* AppDelegate.h */,
@@ -215,8 +256,10 @@
 				0913E22F166CCB030096A686 /* ViewController.h */,
 				0913E230166CCB030096A686 /* ViewController.m */,
 				0913E232166CCB030096A686 /* ViewController.xib */,
-				0913E21E166CCB020096A686 /* Supporting Files */,
+				CAE19288173DE76D003FB844 /* ParseData.h */,
+				CAE19289173DE76D003FB844 /* ParseData.m */,
 				CAE1927E173DCD72003FB844 /* Help.h */,
+				0913E21E166CCB020096A686 /* Supporting Files */,
 			);
 			path = AD;
 			sourceTree = "<group>";
@@ -224,6 +267,8 @@
 		0913E21E166CCB020096A686 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CAE192A5173E1BE9003FB844 /* avatar */,
+				CAE1927F173DDCF2003FB844 /* xml */,
 				CAABC1D6173D5EFC001EAF00 /* tabbaricons */,
 				CAABC1B9173D53AD001EAF00 /* Images */,
 				CABB864A173D1C2D0068DE76 /* icons */,
@@ -342,6 +387,55 @@
 			path = icons;
 			sourceTree = "<group>";
 		};
+		CAE1927F173DDCF2003FB844 /* xml */ = {
+			isa = PBXGroup;
+			children = (
+				CAE19280173DDCF2003FB844 /* Search_Store.xml */,
+				CAE19281173DDCF2003FB844 /* Store_Comment.xml */,
+				CAE19282173DDCF2003FB844 /* Store_Detail.xml */,
+				CAE19283173DDCF2003FB844 /* Store_Image.xml */,
+			);
+			path = xml;
+			sourceTree = "<group>";
+		};
+		CAE1928D173DE7A3003FB844 /* TBXML */ = {
+			isa = PBXGroup;
+			children = (
+				CAE1928E173DE7B3003FB844 /* NSDataAdditions.h */,
+				CAE1928F173DE7B3003FB844 /* NSDataAdditions.m */,
+				CAE19290173DE7B3003FB844 /* TBXML.h */,
+				CAE19291173DE7B3003FB844 /* TBXML.m */,
+			);
+			name = TBXML;
+			sourceTree = "<group>";
+		};
+		CAE19294173DE9BF003FB844 /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				CAE19295173DE9BF003FB844 /* ABasyncApi.h */,
+				CAE19296173DE9BF003FB844 /* ABasyncApi.m */,
+				CAE19297173DE9BF003FB844 /* ABAsyncHttp.h */,
+				CAE19298173DE9BF003FB844 /* ABAsyncHttp.m */,
+				CAE19299173DE9BF003FB844 /* ABConnection.h */,
+				CAE1929A173DE9BF003FB844 /* ABConnection.m */,
+				CAE1929B173DE9BF003FB844 /* ABMutableURLRequest.h */,
+				CAE1929C173DE9BF003FB844 /* ABMutableURLRequest.m */,
+				CAE1929D173DE9BF003FB844 /* AibangApi-Prefix.pch */,
+				CAE1929E173DE9BF003FB844 /* AibangApi.h */,
+				CAE1929F173DE9BF003FB844 /* AibangApi.m */,
+			);
+			name = Api;
+			path = AibangApi;
+			sourceTree = "<group>";
+		};
+		CAE192A5173E1BE9003FB844 /* avatar */ = {
+			isa = PBXGroup;
+			children = (
+				CAE192A6173E1C06003FB844 /* user_wde.png */,
+			);
+			name = avatar;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -446,6 +540,11 @@
 				CAABC214173D6227001EAF00 /* KYTabBarItem03@2x.png in Resources */,
 				CAABC215173D6227001EAF00 /* KYTabBarItem04.png in Resources */,
 				CAABC216173D6227001EAF00 /* KYTabBarItem04@2x.png in Resources */,
+				CAE19284173DDCF2003FB844 /* Search_Store.xml in Resources */,
+				CAE19285173DDCF2003FB844 /* Store_Comment.xml in Resources */,
+				CAE19286173DDCF2003FB844 /* Store_Detail.xml in Resources */,
+				CAE19287173DDCF2003FB844 /* Store_Image.xml in Resources */,
+				CAE192A7173E1C06003FB844 /* user_wde.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +565,14 @@
 				CAABC1B1173D4BB4001EAF00 /* KYArcTab.m in Sources */,
 				CAABC1B2173D4BB4001EAF00 /* KYArcTabViewController.m in Sources */,
 				CAABC1B8173D4D00001EAF00 /* ViewControllers.m in Sources */,
+				CAE1928A173DE76D003FB844 /* ParseData.m in Sources */,
+				CAE19292173DE7B3003FB844 /* NSDataAdditions.m in Sources */,
+				CAE19293173DE7B3003FB844 /* TBXML.m in Sources */,
+				CAE192A0173DE9BF003FB844 /* ABasyncApi.m in Sources */,
+				CAE192A1173DE9BF003FB844 /* ABAsyncHttp.m in Sources */,
+				CAE192A2173DE9BF003FB844 /* ABConnection.m in Sources */,
+				CAE192A3173DE9BF003FB844 /* ABMutableURLRequest.m in Sources */,
+				CAE192A4173DE9BF003FB844 /* AibangApi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

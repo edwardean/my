@@ -21,6 +21,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    api = [[AibangApi alloc] init];
+    api.delegate = self;
+    
     [NSTimer scheduledTimerWithTimeInterval:1 target: self selector: @selector(handleTimer:)  userInfo:nil  repeats: YES];
     self.array = @[@"ktv",@"spa",@"健身",@"咖啡",@"推拿",@"棋牌",@"游泳",@"网吧",@"茶艺",@"足疗",@"马术",@"高尔夫"];
     
@@ -75,6 +79,19 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+//    [api searchBizWithCity:@"北京"
+//                     Query:@"餐馆"
+//                   Address:@""
+//                  Category:@""
+//                       Lng:@""
+//                       Lat:@""
+//                    Radius:@""
+//                  Rankcode:@"0"
+//                      From:@"1"
+//                        To:@"10"];
+   ParseData *parse =  [[ParseData alloc] init];
+   NSLog(@"%@",[parse ParseStoreCommentData:nil]);
 }
 - (void)didReceiveMemoryWarning
 {
@@ -150,4 +167,10 @@
     }
 }
 
+- (void)requestDidFinishWithData:(NSData *)data aibangApi:(id)aibangApi {
+   NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    [str stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    //NSLog(@"%@",str);
+}
 @end
