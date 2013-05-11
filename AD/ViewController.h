@@ -11,6 +11,7 @@
 @interface ViewController : UIViewController{
 
     IBOutlet UIScrollView *sv;
+    
     IBOutlet UIPageControl *page;
     int TimeNum;
     BOOL Tend;
