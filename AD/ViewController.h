@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ViewController : UIViewController <AibangApiDelegate>{
+@interface ViewController : UIViewController <AibangApiDelegate,UIScrollViewDelegate>{
 
     IBOutlet UIScrollView *sv;
     
@@ -17,5 +16,6 @@
     BOOL Tend;
     AibangApi *api;
 }
-
+@property (nonatomic, retain) UIScrollView *sv;
+@property (nonatomic, retain) UIPageControl *page;
 @end

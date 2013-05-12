@@ -19,13 +19,13 @@
     [AibangApi setAppkey:@"f41c8afccc586de03a99c86097e98ccb"];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    
-    ViewControllers *viewControllers = [[ViewControllers alloc] initWithTitle:@"KYArcTab"
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    ViewControllers *viewControllers = [[ViewControllers alloc] initWithTitle:nil
                                                                    tabBarSize:(CGSize){kKYTabBarWdith, kKYTabBarHeight}
                                                         tabBarBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:kKYITabBarBackground]]
                                                                      itemSize:(CGSize){kKYTabBarItemWidth, kKYTabBarItemHeight}
                                                                         arrow:[UIImage imageNamed:kKYITabBarArrow]];
-    [self.window setRootViewController:viewControllers];
+    self.window.rootViewController = viewControllers;
     [self.window makeKeyAndVisible];
     return YES;
 }

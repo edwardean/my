@@ -21,10 +21,10 @@
 
 #define kKYButtonInNormalSize 64.f
 
-#define DEBUGLOG NSLog(@"%s",__func__)
+#define DEBUG NS(@"%s",__func__)
 #pragma mark - KYArcTab Configuration
 
-#define kKYTabBarHeight     75.f
+#define kKYTabBarHeight     70.f
 #define kKYTabBarWdith      kKYViewWidth
 #define kKYTabBarItemHeight 44.f
 #define kKYTabBarItemWidth  44.f

@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StoreSearchViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UINavigationControllerDelegate>
+@interface StoreSearchViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic, strong) UINavigationController *navigation;
 @property (nonatomic, retain) NSArray *array;
 @property (nonatomic, retain) UITableView *table;
 @end

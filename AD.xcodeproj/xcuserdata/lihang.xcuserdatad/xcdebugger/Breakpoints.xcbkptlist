@@ -159,5 +159,16 @@
          landmarkName = "-ParseSearchStoreData:"
          landmarkType = "5">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "AD/ViewControllers.h"
+         timestampString = "390013881.522672"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "9"
+         endingLineNumber = "9">
+      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

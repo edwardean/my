@@ -18,11 +18,24 @@
 @end
 
 @implementation ViewController
-
+@synthesize sv,page;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+}
+- (void)loadView {
+
+    [super loadView];
+    [self.view setFrame:(CGRect){CGPointZero,{kKYViewWidth,kKYViewHeight}}];
+    UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 138)];
+    self.sv = scrollView;
+    self.sv.delegate = self;
     
+    [self.view addSubview:sv];
+    UIPageControl *p = [[UIPageControl alloc] initWithFrame:CGRectMake(133, -20, 37, 320)];
+    self.page = p;
+    [self.view addSubview:page];
     api = [[AibangApi alloc] init];
     api.delegate = self;
     
@@ -35,7 +48,7 @@
     
     
     float width = self.view.frame.size.width/4.0;
-    float height = self.view.frame.size.height - 240;
+    float height = self.view.frame.size.height - 300;
     __block NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
     [_iconArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         CHDraggableView *view = [CHDraggableView viewWithImage:[UIImage imageNamed:[_iconArray objectAtIndex:idx]]];
@@ -76,10 +89,11 @@
         [self.view addSubview:lable];
     }];
     [self.view setBackgroundColor:[UIColor whiteColor]];
-	// Do any additional setup after loading the view, typically from a nib.
 }
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    self.title = @"休闲娱乐";
     
     
 //    [api searchBizWithCity:@"北京"
@@ -97,20 +111,17 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)btnTapped:(id)sender {
 
     NSLog(@"%@",[_arr objectAtIndex:(int)((UIButton *)sender).tag]);
+    
     ParseData *parse =  [[ParseData alloc] init];
-    //NSLog(@"%@",[parse ParseSearchStoreData:nil]);
+    //NS(@"%@",[parse ParseSearchStoreData:nil]);
     StoreSearchViewController *storeSearchVC = [[StoreSearchViewController alloc]initWithNibName:nil bundle:nil];
     storeSearchVC.array = [parse ParseSearchStoreData:nil];
-//    UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:storeSearchVC];
-//    [self.navigationController pushViewController:navigation animated:YES];
-    [self presentViewController:storeSearchVC animated:YES completion:NULL];
-    
+    [self.navigationController pushViewController:storeSearchVC animated:YES];
 }
 
 #pragma mark - 5秒换图片
@@ -181,7 +192,7 @@
    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     [str stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    //NSLog(@"%@",str);
+    //NS(@"%@",str);
 }
 
 - (void)requestDidFailedWithError:(NSError *)error aibangApi:(id)aibangApi {

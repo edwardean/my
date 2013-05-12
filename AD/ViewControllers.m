@@ -44,11 +44,15 @@ viewControllerFour  = viewControllerFour_;
     [super viewDidLoad];
 	
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
 - (void)setup {
     
     
     
-
+    
     NSString *str = Search_Store(@"南阳", @"网吧");
     NSLog(@"%@",str);
     NSString *str1 = Store_Detail(@"2029602847-421506714");
@@ -56,57 +60,46 @@ viewControllerFour  = viewControllerFour_;
     
     
     
-    
     self.viewFrame = (CGRect){CGPointZero, {kKYViewWidth, kKYViewHeight}};
-    
+    self.viewFrame = CGRectMake(0, 20, CGRectGetWidth([UIScreen mainScreen].bounds), CGRectGetHeight([UIScreen mainScreen].applicationFrame));
     viewControllerOne_   = [[UIViewController alloc] init];
     viewControllerTwo_   = [[UIViewController alloc] init];
     viewControllerThree_ = [[UIViewController alloc] init];
-    viewControllerFour_  = [[UIViewController alloc] init];
     
     CGRect childViewFrame = self.viewFrame;
     [viewControllerOne_.view   setFrame:childViewFrame];
     [viewControllerTwo_.view   setFrame:childViewFrame];
     [viewControllerThree_.view setFrame:childViewFrame];
-    [viewControllerFour_.view  setFrame:childViewFrame];
     
-    [viewControllerOne_.view   setBackgroundColor:[UIColor blackColor]];
+    [viewControllerOne_.view   setBackgroundColor:[UIColor cyanColor]];
     [viewControllerTwo_.view   setBackgroundColor:[UIColor redColor]];
     [viewControllerThree_.view setBackgroundColor:[UIColor greenColor]];
-    [viewControllerFour_.view  setBackgroundColor:[UIColor blueColor]];
     
-    ViewController *VC = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+    ViewController *VC = [[ViewController alloc] initWithNibName:nil bundle:nil];
     self.viewController = VC;
-    self.viewFrame = (CGRect){CGPointZero,{kKYViewWidth,kKYViewHeight}};
-    self.tabBarItems = @[@{@"image"           : [NSString stringWithFormat:kKYITabBarItemImageNameFormat,1],
-                           @"viewController" : _viewController},
-                        @{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat, 2],
-                           @"viewController" : viewControllerTwo_},
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:VC];
+    self.navigationController = nav;
+    
+    self.tabBarItems = @[@{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat,1],
+                           @"viewController" : _navigationController},
+                         @{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat, 2],
+                           @"viewController" : viewControllerOne_},
                          @{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat, 3],
-                           @"viewController" : viewControllerThree_},
+                           @"viewController" : viewControllerTwo_},
                         
                          @{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat, 4],
-                           @"viewController" : viewControllerOne_}];
+                           @"viewController" : viewControllerThree_}];
     
-    
-//    self.tabBarItems = @[@{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat, 1],
-//                           @"viewController" : viewControllerOne_},
-//                         @{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat, 2],
-//                           @"viewController" : viewControllerTwo_},
-//                         @{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat, 3],
-//                           @"viewController" : viewControllerThree_},
-//                         @{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat, 4],
-//                           @"viewController" : viewControllerFour_}];
-    // Add a gesture signal on the first view
-    UIImage * gestureImage = [UIImage imageNamed:kKYIArcTabGestureHelp];
-    CGRect gestureImageViewFrame =
-    (CGRect){{(kKYViewWidth - gestureImage.size.width) / 2.f,
-        (kKYViewHeight - kKYTabBarHeight - gestureImage.size.height) / 2.f},
-        gestureImage.size};
-    UIImageView * gestureImageView = [[UIImageView alloc] initWithFrame:gestureImageViewFrame];
-    [gestureImageView setImage:gestureImage];
-    [gestureImageView setUserInteractionEnabled:YES];
-    [viewControllerOne_.view addSubview:gestureImageView];
+//    UIImage * gestureImage = [UIImage imageNamed:kKYIArcTabGestureHelp];
+//    CGRect gestureImageViewFrame =
+//    (CGRect){{(kKYViewWidth - gestureImage.size.width) / 2.f,
+//        (kKYViewHeight - kKYTabBarHeight - gestureImage.size.height) / 2.f},
+//        gestureImage.size};
+//    UIImageView * gestureImageView = [[UIImageView alloc] initWithFrame:gestureImageViewFrame];
+//    [gestureImageView setImage:gestureImage];
+//    [gestureImageView setUserInteractionEnabled:YES];
+//    [viewControllerOne_.view addSubview:gestureImageView];
 }
 - (void)didReceiveMemoryWarning
 {

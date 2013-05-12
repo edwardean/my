@@ -215,7 +215,7 @@ static char encodingTable[64] = {
 //
 //  FOUND HERE http://code.google.com/p/drop-osx/source/browse/trunk/Source/NSData%2Bgzip.m
 //
-//  Also Check http://deusty.blogspot.com/2007/07/gzip-compressiondecompression.html
+//  Also Check http://deusty.bspot.com/2007/07/gzip-compressiondecompression.html
 // ================================================================================================
 
 #pragma mark -

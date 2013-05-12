@@ -54,7 +54,9 @@ static CGSize tabBarSize_, itemSize_;
 @synthesize menuArea = menuArea_,
             arrow    = arrow_;
 
+
 - (void)dealloc {
+    ;
   self.delegate = nil;
   self.buttons  = nil;
   self.menuArea = nil;
@@ -72,6 +74,7 @@ static CGSize tabBarSize_, itemSize_;
                 tag:(NSInteger)tag
            delegate:(NSObject<KYArcTabDelegate> *)delegate {
   if (self = [self initWithFrame:frame]) {
+      ;
     // Background color
     if (backgroundColor) [self setBackgroundColor:backgroundColor];
     
@@ -132,17 +135,18 @@ static CGSize tabBarSize_, itemSize_;
 
 // Secondary initializer
 - (id)initWithFrame:(CGRect)frame {
+    ;
   if (self = [super initWithFrame:frame]) {
     [self setFrame:frame];
     [self setOpaque:NO];
   }
   return self;
 }
-
 #pragma mark - Public Method
 
 // Action of touch down on tab bar item
 - (void)touchDownAction:(UIButton *)button {
+    ;
   [self _dimAllButtonsExcept:button];
   [self _moveArrowToNewPosition];
   
@@ -154,6 +158,7 @@ static CGSize tabBarSize_, itemSize_;
 
 // Action for selected item
 - (void)selectItemAtIndex:(NSInteger)index {
+    ;
   UIButton * button = [buttons_ objectAtIndex:index];
   [self _dimAllButtonsExcept:button];
 }
@@ -182,6 +187,7 @@ static CGSize tabBarSize_, itemSize_;
 
 // Action of touch up inside tab bar item
 - (void)_touchUpInsideAction:(UIButton *)button {
+    ;
   [self _dimAllButtonsExcept:button];
   
   if ([delegate_ respondsToSelector:@selector(touchUpInsideItemAtIndex:)])
@@ -190,6 +196,7 @@ static CGSize tabBarSize_, itemSize_;
 
 // Action of other touches on tab bar item
 - (void)_otherTouchesAction:(UIButton*)button {
+    ;
   [self _dimAllButtonsExcept:button];
 }
 
@@ -198,6 +205,7 @@ static CGSize tabBarSize_, itemSize_;
 // Only selected the pressed item, and highlight it
 - (void)_dimAllButtonsExcept:(UIButton *)selectedButton {
   for (UIButton * button in buttons_) {
+      ;
     if (button == selectedButton) {
       [button setSelected:YES];
       [button setHighlighted:button.selected ? NO : YES];
@@ -236,6 +244,7 @@ static CGSize tabBarSize_, itemSize_;
 //   |triangleB| = |distance from POINT pos X to center line|
 //
 - (void)_setFrameForButtonsBasedOnItemCount {
+    ;
   CGFloat tabAreaHalfHeight = tabBarSize_.height / 2.f;
   CGFloat tabAreaHalfWidth  = tabBarSize_.width  / 2.f;
   CGFloat buttonRadius      = itemSize_.width    / 2.f;
@@ -291,6 +300,7 @@ static CGSize tabBarSize_, itemSize_;
 // Set frame for button with special tag
 - (void)_setButtonWithTag:(NSInteger)buttonTag
                    origin:(CGPoint)origin {
+    ;
   UIButton * button = [self.buttons objectAtIndex:buttonTag];
   [button setFrame:(CGRect){origin, itemSize_}];
 }
@@ -314,6 +324,7 @@ static CGSize tabBarSize_, itemSize_;
 
 // Update arrow's position
 - (void)_moveArrowToNewPosition {
+    ;
   CGFloat tabAreaHalfHeight  = tabBarSize_.height / 2.f;
   CGFloat tabAreaHalfWidth   = tabBarSize_.width  / 2.f;
   CGFloat triangleHypotenuse = (pow(tabAreaHalfHeight, 2) + pow(tabAreaHalfWidth, 2)) / tabBarSize_.height;
@@ -368,6 +379,7 @@ static CGSize tabBarSize_, itemSize_;
 // Called when the animation completes its active duration
 //   or is removed from the object it is attached to.
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    ;
   // Update the layer's position so that the layer doesn't snap back when the animation completes
   [self.arrow.layer setPosition:newPositionForArrow_];
 }

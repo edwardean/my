@@ -9,17 +9,17 @@
 #import <UIKit/UIKit.h>
 
 #import "KYArcTab.h"
-
 @interface KYArcTabViewController : UIViewController <KYArcTabDelegate> {
   KYArcTab * tabBar_;
   NSArray  * tabBarItems_;
   CGRect     viewFrame_;
+    BOOL isTabBarHide_;  
 }
 
 @property (nonatomic, retain) KYArcTab * tabBar;
 @property (nonatomic, copy)   NSArray  * tabBarItems;
 @property (nonatomic, assign) CGRect     viewFrame;
-
+@property (nonatomic, assign) BOOL isTabBarHide;
 // Designated initializer
 - (id)  initWithTitle:(NSString *)title                // title
            tabBarSize:(CGSize)tabBarSize               // size of tab bar

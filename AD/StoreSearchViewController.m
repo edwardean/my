@@ -7,7 +7,8 @@
 //
 
 #import "StoreSearchViewController.h"
-#import<SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <QuartzCore/QuartzCore.h>
 @interface StoreSearchViewController ()
 
 @end
@@ -18,7 +19,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.table = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        self.table = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, 320, 480) style:UITableViewStylePlain];
         [self.table setDelegate:self];
         [self.table setDataSource:self];
     }
@@ -28,9 +29,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"NIHAO";
     [self.table setFrame:CGRectMake(0, 0, 320, 480)];
 	[self.view addSubview:_table];
+    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0,0, self.view.frame.size.width, 1)];
+    [_table setTableFooterView:footerView];
+    [_table setSeparatorColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"search_table_bg"]]];
+    NSLog(@"array:%@",_array);
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,6 +61,9 @@
         
     });
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 100;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if ([tableView isEqual:_table]) {
         return _array.count;
@@ -71,9 +78,45 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellID];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellID];
+            UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, 220, 50)];
+            UILabel *detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 50, 220, 50)];
+            UILabel *commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(112, 38, 30, 20)];
+            titleLabel.tag = 1;
+            detailLabel.tag = 2;
+            commentLabel.tag = 3;
+            [cell.contentView addSubview:titleLabel];
+            [cell.contentView addSubview:detailLabel];
+            [cell.contentView addSubview:commentLabel];
         }
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 90, 90)];
+        [cell.contentView addSubview:imgView];
+        [imgView.layer setCornerRadius:4.0f];
+        imgView.layer.masksToBounds = YES;
+        [imgView setImageWithURL:[dictionary objectForKey:@"img_url"] placeholderImage:[UIImage imageNamed:@"user_wde"]];
+
+        UILabel *Titlelable = (UILabel *)[cell.contentView viewWithTag:1];
+        UILabel *detailLabel = (UILabel *)[cell.contentView viewWithTag:2];
+        [detailLabel setFont:[UIFont boldSystemFontOfSize:13.0f]];
+        [Titlelable setText:[dictionary objectForKey:@"name"]];
+        [Titlelable setAdjustsFontSizeToFitWidth:YES];
+        [detailLabel setText:[dictionary objectForKey:@"addr"]];
+        [detailLabel setTextColor:[UIColor lightGrayColor]];
+        [detailLabel setNumberOfLines:0];
+        [detailLabel setBackgroundColor:[UIColor clearColor]];
+        [Titlelable setBackgroundColor:[UIColor clearColor]];
         
-        [cell.imageView setImageWithURL:[[_array objectAtIndex:indexPath.row] objectForKey:@"img_url"] placeholderImage:[UIImage imageNamed:@"user_wde"]];
+        UIImageView *accessTory = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"soft_cell_detail_button"]];
+        cell.accessoryView = accessTory;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        UIImageView *commentView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"heart"]];
+        [commentView setFrame:CGRectMake(96, 40, 16, 16)];
+        [cell.contentView addSubview:commentView];
+        UILabel *_commentLabel = (UILabel *)[cell.contentView viewWithTag:3];
+        [_commentLabel setBackgroundColor:[UIColor clearColor]];
+        [_commentLabel setTextColor:[UIColor grayColor]];
+        [_commentLabel setFont:[UIFont boldSystemFontOfSize:12.0f]];
+        [_commentLabel setText:[NSString stringWithFormat:@"%@分",[dictionary objectForKey:@"rate"]]];
         return cell;
     }
     return nil;
