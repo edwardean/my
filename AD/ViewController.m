@@ -30,6 +30,7 @@
     [self.view setFrame:(CGRect){CGPointZero,{kKYViewWidth,kKYViewHeight}}];
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 138)];
     self.sv = scrollView;
+    [sv setShowsHorizontalScrollIndicator:NO];
     self.sv.delegate = self;
     
     [self.view addSubview:sv];
@@ -70,7 +71,7 @@
         [self.view addSubview:btn];
         
     }];
-    self.arr = @[@"电影院",@"KTV",@"SPA",@"健身",@"Coffie",@"按摩",@"游泳",@"网吧",@"茶艺",@"象棋",@"马术",@"高尔夫"];
+    self.arr = @[@"电影院",@"KTV",@"SPA",@"健身",@"酒吧",@"按摩",@"游泳",@"网吧",@"茶艺",@"象棋",@"马术",@"高尔夫"];
     [_arr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         int i=idx%3+1;
         int j=idx%4+1;
@@ -95,17 +96,6 @@
     [super viewDidAppear:animated];
     self.title = @"休闲娱乐";
     
-    
-//    [api searchBizWithCity:@"北京"
-//                     Query:@"餐馆"
-//                   Address:@""
-//                  Category:@""
-//                       Lng:@""
-//                       Lat:@""
-//                    Radius:@""
-//                  Rankcode:@"0"
-//                      From:@"1"
-//                        To:@"10"];
    
 }
 - (void)didReceiveMemoryWarning
@@ -117,10 +107,19 @@
 
     NSLog(@"%@",[_arr objectAtIndex:(int)((UIButton *)sender).tag]);
     
-    ParseData *parse =  [[ParseData alloc] init];
-    //NS(@"%@",[parse ParseSearchStoreData:nil]);
+        [api searchBizWithCity:@"上海"
+                        Query:[_arr objectAtIndex:(int)((UIButton *)sender).tag]
+                       Address:@""
+                      Category:@""
+                           Lng:@""
+                           Lat:@""
+                        Radius:@""
+                      Rankcode:@"0"
+                          From:@"1"
+                            To:@"100"];
+    
     StoreSearchViewController *storeSearchVC = [[StoreSearchViewController alloc]initWithNibName:nil bundle:nil];
-    storeSearchVC.array = [parse ParseSearchStoreData:nil];
+    self.searchStoreDelegate = storeSearchVC;
     [self.navigationController pushViewController:storeSearchVC animated:YES];
 }
 
@@ -193,6 +192,10 @@
     
     [str stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     //NS(@"%@",str);
+    
+    ParseData *parse =  [[ParseData alloc] init];
+    NSArray *array = [parse ParseSearchStoreData:data];
+    [self.searchStoreDelegate passStoreSearchArray:array];
 }
 
 - (void)requestDidFailedWithError:(NSError *)error aibangApi:(id)aibangApi {

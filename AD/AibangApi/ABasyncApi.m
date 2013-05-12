@@ -97,7 +97,7 @@
     if (APPKEY) {
         [parameters setObject:APPKEY forKey:@"app_key"];
     }
-    [parameters setObject:@"json" forKey:@"alt"];
+    [parameters setObject:@"xml" forKey:@"alt"];
     
     
     
@@ -122,7 +122,7 @@
     if (APPKEY) {
         [parameters setObject:APPKEY forKey:@"app_key"];
     }
-    [parameters setObject:@"json" forKey:@"alt"];
+    [parameters setObject:@"xml" forKey:@"alt"];
     
     NSString* parameterStr = [self normalizedRequestParameters:parameters];
     return [ABAsyncHttp httpGet:url 
@@ -143,7 +143,7 @@
     if (APPKEY) {
         [parameters setObject:APPKEY forKey:@"app_key"];
     }
-    [parameters setObject:@"json" forKey:@"alt"];
+    [parameters setObject:@"xml" forKey:@"alt"];
     
     NSString* parameterStr = [self normalizedRequestParameters:parameters];
     return [ABAsyncHttp httpGet:url 
@@ -164,7 +164,7 @@
     if (APPKEY) {
         [parameters setObject:APPKEY forKey:@"app_key"];
     }
-    [parameters setObject:@"json" forKey:@"alt"];
+    [parameters setObject:@"xml" forKey:@"alt"];
     
     NSString* parameterStr = [self normalizedRequestParameters:parameters];
     return [ABAsyncHttp httpGet:url 
@@ -193,7 +193,7 @@
     if (APPKEY) {
         [parameters setObject:APPKEY forKey:@"app_key"];
     }
-    [parameters setObject:@"json" forKey:@"alt"];
+    [parameters setObject:@"xml" forKey:@"alt"];
     
     NSString* parameterStr = [self normalizedRequestParameters:parameters];
     return [ABAsyncHttp httpGet:url 
@@ -248,7 +248,7 @@
     if (APPKEY) {
         [parameters setObject:APPKEY forKey:@"app_key"];
     }
-    [parameters setObject:@"json" forKey:@"alt"];
+    [parameters setObject:@"xml" forKey:@"alt"];
     
     NSString* parameterStr = [self normalizedRequestParameters:parameters];
     return [ABAsyncHttp httpGet:url 
@@ -275,7 +275,7 @@
     if (APPKEY) {
         [parameters setObject:APPKEY forKey:@"app_key"];
     }
-    [parameters setObject:@"json" forKey:@"alt"];
+    [parameters setObject:@"xml" forKey:@"alt"];
     
     NSString* parameterStr = [self normalizedRequestParameters:parameters];
     return [ABAsyncHttp httpGet:url 
@@ -298,7 +298,7 @@
     if (APPKEY) {
         [parameters setObject:APPKEY forKey:@"app_key"];
     }
-    [parameters setObject:@"json" forKey:@"alt"];
+    [parameters setObject:@"xml" forKey:@"alt"];
     
     NSString* parameterStr = [self normalizedRequestParameters:parameters];
     return [ABAsyncHttp httpGet:url 
@@ -331,7 +331,7 @@
     if (APPKEY) {
         [parameters setObject:APPKEY forKey:@"app_key"];
     }
-    [parameters setObject:@"json" forKey:@"alt"];
+    [parameters setObject:@"xml" forKey:@"alt"];
     
     NSString* parameterStr = [self normalizedRequestParameters:parameters];
     return [ABAsyncHttp httpGet:url 
@@ -350,7 +350,7 @@
     if (!APPKEY) {
         APPKEY = @"";
     }
-    NSString *url = [NSString stringWithFormat:@"%@/biz/%@/comment?app_key=%@&uname=%@&alt=%@", self.serverUrl, bid, APPKEY, uname, @"json"];
+    NSString *url = [NSString stringWithFormat:@"%@/biz/%@/comment?app_key=%@&uname=%@&alt=%@", self.serverUrl, bid, APPKEY, uname, @"xml"];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     if (score) {
         [dic setValue:score forKey:@"score"];
@@ -378,7 +378,7 @@
     if (!APPKEY) {
         APPKEY = @"";
     }
-    NSString *url = [NSString stringWithFormat:@"%@/biz/%@/pic?app_key=%@&uname=%@&alt=%@", self.serverUrl, bid, APPKEY, uname, @"json"];
+    NSString *url = [NSString stringWithFormat:@"%@/biz/%@/pic?app_key=%@&uname=%@&alt=%@", self.serverUrl, bid, APPKEY, uname, @"xml"];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:title, @"title", nil];
     NSString *param = [self nameValString:dic];
     NSString *footer = [NSString stringWithFormat:@"\r\n--0194784892923--\r\n"];
@@ -411,7 +411,7 @@
     if (!APPKEY) {
         APPKEY = @"";
     }
-    NSString *url = [NSString stringWithFormat:@"%@/biz/%@?app_key=%@&uname=%@&alt=%@", self.serverUrl, bid, APPKEY, uname, @"json"];
+    NSString *url = [NSString stringWithFormat:@"%@/biz/%@?app_key=%@&uname=%@&alt=%@", self.serverUrl, bid, APPKEY, uname, @"xml"];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     if (bname) {
         [dic setValue:bname forKey:@"bname"];
@@ -482,7 +482,7 @@
     if (!APPKEY) {
         APPKEY = @"";
     }
-    NSString *url = [NSString stringWithFormat:@"%@/biz?app_key=%@&uname=%@&alt=%@", self.serverUrl, APPKEY, uname, @"json"];
+    NSString *url = [NSString stringWithFormat:@"%@/biz?app_key=%@&uname=%@&alt=%@", self.serverUrl, APPKEY, uname, @"xml"];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     if (bname) {
         [dic setValue:bname forKey:@"bname"];

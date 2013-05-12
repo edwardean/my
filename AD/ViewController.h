@@ -7,6 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol StoreSearchDelegate <NSObject>
+
+- (void)passStoreSearchArray:(NSArray *)array;
+@end
 @interface ViewController : UIViewController <AibangApiDelegate,UIScrollViewDelegate>{
 
     IBOutlet UIScrollView *sv;
@@ -18,4 +22,6 @@
 }
 @property (nonatomic, retain) UIScrollView *sv;
 @property (nonatomic, retain) UIPageControl *page;
+
+@property (nonatomic, assign) id <StoreSearchDelegate> searchStoreDelegate;
 @end

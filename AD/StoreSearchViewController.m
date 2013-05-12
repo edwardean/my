@@ -5,10 +5,12 @@
 //  Created by Edward on 13-5-11.
 //  Copyright (c) 2013年 斌. All rights reserved.
 //
-
+#import "ViewController.h"
 #import "StoreSearchViewController.h"
+#import "StoreDetailViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
+
 @interface StoreSearchViewController ()
 
 @end
@@ -25,7 +27,6 @@
     }
     return self;
 }
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -34,9 +35,17 @@
     UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0,0, self.view.frame.size.width, 1)];
     [_table setTableFooterView:footerView];
     [_table setSeparatorColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"search_table_bg"]]];
-    NSLog(@"array:%@",_array);
-}
+    
 
+
+    api = [[AibangApi alloc] init];
+    api.delegate = self;
+    storeDetail = [[StoreDetailViewController alloc] initWithNibName:nil bundle:nil];
+}
+- (void)passStoreSearchArray:(NSArray *)arry {
+    self.array = arry;
+    [self.table reloadData];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -96,7 +105,7 @@
         [cell.contentView addSubview:imgView];
         [imgView.layer setCornerRadius:4.0f];
         imgView.layer.masksToBounds = YES;
-        [imgView setImageWithURL:[dictionary objectForKey:@"img_url"] placeholderImage:[UIImage imageNamed:@"user_wde"]];
+        [imgView setImageWithURL:[dictionary objectForKey:@"img_url"] placeholderImage:[UIImage imageNamed:@"photoDefault.jpg"]];
 
         UILabel *Titlelable = (UILabel *)[cell.contentView viewWithTag:1];
         UILabel *detailLabel = (UILabel *)[cell.contentView viewWithTag:2];
@@ -137,6 +146,23 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSDictionary *dic = [_array objectAtIndex:[indexPath row]];
     NSString *store_id = [dic objectForKey:@"id"];
-    NSLog(@"%@",store_id);
+    NSString *store_detail = [dic objectForKey:@"desc"];
+    NSLog(@"%@ %@",store_id,store_detail);
+    [api bizWithBid:store_id];
+    
+    [self.navigationController pushViewController:storeDetail animated:YES];
+}
+
+- (void)requestDidFailedWithError:(NSError *)error aibangApi:(id)aibangApi {
+    NSLog(@"%s",__func__);
+}
+
+- (void)requestDidFinishWithData:(NSData *)data aibangApi:(id)aibangApi {
+    NSLog(@"%s",__func__);
+    ParseData *paser = [[ParseData alloc] init];
+    storeDetail.detailDictionary = [paser ParseStoreDetailData:data];
+    NSLog(@"Dic......%@",storeDetail.detailDictionary);
+    [storeDetail.table reloadData];
+    [storeDetail loadInfo];
 }
 @end

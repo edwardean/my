@@ -14,7 +14,7 @@
 @property (nonatomic, retain) TBXML *tb;
 - (id)init;
 - (NSMutableArray *)ParseSearchStoreData:(NSData *)data;
-- (NSMutableArray *)ParseStoreDetailData:(NSData *)data;
+- (NSDictionary *)ParseStoreDetailData:(NSData *)data;
 - (NSMutableArray *)ParseStoreCommentData:(NSData *)data;
 - (NSMutableArray *)ParseStoreImageData:(NSData *)data;
 @end

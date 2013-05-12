@@ -51,6 +51,11 @@ viewControllerFour  = viewControllerFour_;
 - (void)setup {
     
     
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:1367143197];
+    NSString *Datestr = [formatter stringFromDate:confromTimesp];
+    NSLog(@"1363948516  = %@",Datestr);
     
     
     NSString *str = Search_Store(@"南阳", @"网吧");

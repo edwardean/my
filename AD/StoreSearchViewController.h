@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface StoreSearchViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
-
+#import "AibangApi.h"
+@class StoreDetailViewController;
+@interface StoreSearchViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,AibangApiDelegate,StoreSearchDelegate> {
+    AibangApi *api;
+    StoreDetailViewController *storeDetail;
+}
+- (void)loadInfo;
 @property (nonatomic, retain) NSArray *array;
 @property (nonatomic, retain) UITableView *table;
 @end
