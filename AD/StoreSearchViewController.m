@@ -74,19 +74,23 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellID = @"ILOVEYOU,DONGXUE";
     if ([tableView isEqual:_table]) {
+        @autoreleasepool {
         NSDictionary *dictionary = [_array objectAtIndex:[indexPath row]];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellID];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellID];
-            UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, 220, 50)];
-            UILabel *detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 50, 220, 50)];
-            UILabel *commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(112, 38, 30, 20)];
+            UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, 200, 50)];
+            UILabel *detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 50, 190, 50)];
+            UILabel *commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(112, 36, 30, 20)];
+            UILabel *cateLabel = [[UILabel alloc] initWithFrame:CGRectMake(147, 36, 140, 20)];
             titleLabel.tag = 1;
             detailLabel.tag = 2;
             commentLabel.tag = 3;
+            cateLabel.tag = 4;
             [cell.contentView addSubview:titleLabel];
             [cell.contentView addSubview:detailLabel];
             [cell.contentView addSubview:commentLabel];
+            [cell.contentView addSubview:cateLabel];
         }
         UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 90, 90)];
         [cell.contentView addSubview:imgView];
@@ -117,8 +121,22 @@
         [_commentLabel setTextColor:[UIColor grayColor]];
         [_commentLabel setFont:[UIFont boldSystemFontOfSize:12.0f]];
         [_commentLabel setText:[NSString stringWithFormat:@"%@分",[dictionary objectForKey:@"rate"]]];
+        UILabel *_cateLabel = (UILabel *)[cell.contentView viewWithTag:4];
+        [_cateLabel setBackgroundColor:[UIColor clearColor]];
+        [_cateLabel setTextColor:[UIColor grayColor]];
+        [_cateLabel setFont:[UIFont boldSystemFontOfSize:12.0f]];
+        [_cateLabel setAdjustsFontSizeToFitWidth:NO];
+        [_cateLabel setText:[NSString stringWithFormat:@"%@",[dictionary objectForKey:@"cate"]]];
         return cell;
     }
+    }
     return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSDictionary *dic = [_array objectAtIndex:[indexPath row]];
+    NSString *store_id = [dic objectForKey:@"id"];
+    NSLog(@"%@",store_id);
 }
 @end
