@@ -9,8 +9,6 @@
 #import "ViewController.h"
 #import "CHDraggableView+Avatar.h"
 #import "StoreSearchViewController.h"
-#import "AURosetteView.h"
-#import "AURosetteItem.h"
 @interface ViewController ()
 @property (nonatomic, retain) NSArray *array;
 
@@ -26,9 +24,6 @@
     [super viewDidLoad];
 
 }
-
-
-
 - (void)loadView {
 
     [super loadView];
@@ -204,16 +199,6 @@
 }
 
 - (void)requestDidFailedWithError:(NSError *)error aibangApi:(id)aibangApi {
-<<<<<<< .merge_file_Ao8lmC
-    NSLog(@"%s  Error:%@",__func__,[error localizedDescription]);
-    [[[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
-=======
     NSLog(@"%s  Error:%@",__func__,error);
->>>>>>> .merge_file_sRbDv9
 }
-
-
-
-
-
 @end

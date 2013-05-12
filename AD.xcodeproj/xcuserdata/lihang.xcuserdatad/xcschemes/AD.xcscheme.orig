@@ -44,11 +44,11 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-<<<<<<< .merge_file_9Enj5L
+<<<<<<< HEAD
       buildConfiguration = "Debug"
 =======
       buildConfiguration = "Release"
->>>>>>> .merge_file_iyAlrU
+>>>>>>> 6accfbd86b1e24d62e593d2ed02ac13772ef0a6a
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">

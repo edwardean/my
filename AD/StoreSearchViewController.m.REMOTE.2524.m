@@ -10,11 +10,7 @@
 #import "StoreDetailViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
-<<<<<<< .merge_file_VQAnSa
-#import "AppDelegate.h"
-=======
 
->>>>>>> .merge_file_RN61Io
 @interface StoreSearchViewController ()
 
 @end
@@ -155,17 +151,10 @@
     [api bizWithBid:store_id];
     
     [self.navigationController pushViewController:storeDetail animated:YES];
-
 }
 
 - (void)requestDidFailedWithError:(NSError *)error aibangApi:(id)aibangApi {
-<<<<<<< .merge_file_VQAnSa
-    NSLog(@"%s  Error:%@",__func__,[error localizedDescription]);
-    [[[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
-    
-=======
     NSLog(@"%s",__func__);
->>>>>>> .merge_file_RN61Io
 }
 
 - (void)requestDidFinishWithData:(NSData *)data aibangApi:(id)aibangApi {
