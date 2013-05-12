@@ -112,7 +112,7 @@
 
     NSLog(@"%@",[_arr objectAtIndex:(int)((UIButton *)sender).tag]);
     
-        [api searchBizWithCity:@"上海"
+        [api searchBizWithCity:@"南阳"
                         Query:[_arr objectAtIndex:(int)((UIButton *)sender).tag]
                        Address:@""
                       Category:@""
@@ -196,7 +196,6 @@
    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     [str stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    //NS(@"%@",str);
     
     ParseData *parse =  [[ParseData alloc] init];
     NSArray *array = [parse ParseSearchStoreData:data];

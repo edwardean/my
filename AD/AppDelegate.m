@@ -16,7 +16,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [AibangApi setAppkey:@"f41c8afccc586de03a99c86097e98ccb"];
+    [AibangApi setAppkey:APP_KEY];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     [[UIApplication sharedApplication] setStatusBarHidden:YES];

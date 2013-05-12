@@ -270,7 +270,7 @@
         [parameters setObject:keyword forKey:@"q"];
     }
     if(withxys){
-        [parameters setObject:[NSString stringWithFormat:@"%d", withxys] forKey:@"with_xys"];
+        [parameters setObject:[NSString stringWithFormat:@"%d", [[withxys forKey:@"with_xys"] intValue]]];
     }    
     if (APPKEY) {
         [parameters setObject:APPKEY forKey:@"app_key"];

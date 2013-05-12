@@ -60,15 +60,15 @@
         }
         NSString* errorMessage = nil;
         if (statusCode == 400) {
-            errorMessage = [NSString stringWithString:@"请求的地址不存在或者参数不符合API规定"];
+            errorMessage = @"请求的地址不存在或者参数不符合API规定";
         }else if (statusCode == 401) {
-            errorMessage = [NSString stringWithString:@"未授权"];
+            errorMessage = @"未授权";
         }else if (statusCode == 404) {
-            errorMessage = [NSString stringWithString:@"资源不存在"];
+            errorMessage = @"资源不存在";
         }else if (statusCode == 500) {
-            errorMessage = [NSString stringWithString:@"内部错误"];
+            errorMessage = @"内部错误";
         }else {
-            errorMessage = [NSString stringWithString:@"错误"];
+            errorMessage = @"错误";
         }
         
 //        [connection cancel];

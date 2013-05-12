@@ -12,6 +12,7 @@
 #import "DLStarRatingControl.h"
 #import "AURosetteView.h"
 #import "AURosetteItem.h"
+#import "BlockActionSheet.h"
 @interface StoreDetailViewController ()
 @property (nonatomic, retain) UIScrollView *scrollView;
 @property (nonatomic, strong) DLStarRatingControl *starRating;
@@ -162,6 +163,8 @@
         
         //[_countyLabel setText:[NSString stringWithFormat:@"%@",[_detailDictionary objectForKey:@"county"]]];
         
+        self.tel = [_detailDictionary objectForKey:@"tel"];
+        
     }
 
 }
@@ -173,6 +176,25 @@
 }
 - (void)phoneAction:(id)sender {
     NSLog(@"%s",__func__);
+    if ([_tel length]==0) {
+        [MNMToast showWithText:@"该店铺没有留下电话号码" autoHidding:YES priority:MNMToastPriorityNormal completionHandler:^(MNMToastValue *toast) {
+            
+        } tapHandler:^(MNMToastValue *toast) {
+            
+        }];
+        return;
+    }
+    
+    NSArray *array = [_tel componentsSeparatedByString:@" "];
+    NSLog(@"array:%@",array);
+    BlockActionSheet *sheet = [BlockActionSheet sheetWithTitle:@"拨打热线咨询"];
+    [sheet setCancelButtonWithTitle:@"取消" atIndex:0 block:NULL];
+    for (NSString *str in array) {
+        [sheet addButtonWithTitle:str block:^{
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",str]]];
+        }];
+    }
+    [sheet showInView:self.scrollView];
 }
 - (void)websetAction:(id)sender {
     NSLog(@"%s",__func__);

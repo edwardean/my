@@ -12,7 +12,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "AppDelegate.h"
 @interface StoreSearchViewController ()
-
+@property (nonatomic, retain) UIImageView *ohhImg;
 @end
 
 @implementation StoreSearchViewController
@@ -30,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"地点";
     [self.table setFrame:CGRectMake(0, 0, 320, 480)];
 	[self.view addSubview:_table];
     UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0,0, self.view.frame.size.width, 1)];
@@ -41,10 +42,26 @@
     api = [[AibangApi alloc] init];
     api.delegate = self;
     storeDetail = [[StoreDetailViewController alloc] initWithNibName:nil bundle:nil];
+    
+    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ohh"]];
+    self.ohhImg = imgView;
+    [_ohhImg setCenter:self.view.center];
+    [_ohhImg setHidden:YES];
+    [self.view addSubview:_ohhImg];
+    [DejalKeyboardActivityView activityViewForView:self.view withLabel:@"正在加载..."];
 }
 - (void)passStoreSearchArray:(NSArray *)arry {
     self.array = arry;
-    [self.table reloadData];
+    if ([arry count]>0) {
+        [DejalActivityView removeView];
+        [_ohhImg setHidden:YES];
+        [self.table reloadData];
+    } else {
+        [DejalActivityView removeView];
+        [_ohhImg setHidden:NO];
+        NSLog(@"没有数据");
+         
+    }
 }
 - (void)didReceiveMemoryWarning
 {
