@@ -199,6 +199,6 @@
 }
 
 - (void)requestDidFailedWithError:(NSError *)error aibangApi:(id)aibangApi {
-
+    NSLog(@"%s  Error:%@",__func__,error);
 }
 @end

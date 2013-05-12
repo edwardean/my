@@ -137,7 +137,7 @@
         [_cateLabel setAdjustsFontSizeToFitWidth:NO];
         [_cateLabel setText:[NSString stringWithFormat:@"%@",[dictionary objectForKey:@"cate"]]];
         return cell;
-    }
+        }
     }
     return nil;
 }

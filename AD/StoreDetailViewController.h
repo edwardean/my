@@ -16,7 +16,7 @@
 @property (nonatomic, retain) NSArray *commentsArray;
 @property (nonatomic, retain) NSDictionary *detailDictionary;
 
-@property (nonatomic, copy) NSString *rateStr;          //评分
+@property (nonatomic, retain) UILabel *starLabel;          //评分
 @property (nonatomic, retain) UIImageView *img;         //图片
 @property (nonatomic, retain) UILabel *descLabel;       //介绍
 @property (nonatomic, retain) UILabel *addrLabel;       //地址
@@ -25,6 +25,7 @@
 @property (nonatomic, retain) UILabel *costLabel;       //人均消费
 @property (nonatomic, copy)NSString *lng,*lat;          //经纬度
 @property (nonatomic, retain) UILabel *workTimeLabel;   //营业时间
+@property (nonatomic, retain) UILabel *nameLabel;
 
 - (void)loadInfo;
 @end
