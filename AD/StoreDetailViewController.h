@@ -27,6 +27,7 @@
 @property (nonatomic, retain) UILabel *workTimeLabel;   //营业时间
 @property (nonatomic, retain) UILabel *nameLabel;
 @property (nonatomic, copy) NSString *tel;              //电话
+@property (nonatomic, copy) NSString *wap_url;          //wap链接
 
 - (void)loadInfo;
 @end

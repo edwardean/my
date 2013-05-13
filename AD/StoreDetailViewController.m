@@ -13,6 +13,7 @@
 #import "AURosetteView.h"
 #import "AURosetteItem.h"
 #import "BlockActionSheet.h"
+#import "MapViewController.h"
 @interface StoreDetailViewController ()
 @property (nonatomic, retain) UIScrollView *scrollView;
 @property (nonatomic, strong) DLStarRatingControl *starRating;
@@ -165,6 +166,11 @@
         
         self.tel = [_detailDictionary objectForKey:@"tel"];
         
+        self.wap_url = [_detailDictionary objectForKey:@"web_url"];
+        
+        self.lat = [_detailDictionary objectForKey:@"lat"];
+        self.lng = [_detailDictionary objectForKey:@"lng"];
+        
     }
 
 }
@@ -173,6 +179,16 @@
 
 - (void)locateAction:(id)sender {
     NSLog(@"%s",__func__);
+    if ([_lat length]==0 || [_lng length]==0) {
+        [MNMToast showWithText:@"该店铺没有留下位置信息" autoHidding:YES priority:MNMToastPriorityNormal completionHandler:^(MNMToastValue *toast) {
+            
+        } tapHandler:^(MNMToastValue *toast) {
+            
+        }];
+        return;
+    }
+    MapViewController *map = [[MapViewController alloc] initWithLat:_lat andLng:_lng andName:[_detailDictionary objectForKey:@"name"] andCounty:[_detailDictionary objectForKey:@"county"]];
+    [self.navigationController pushViewController:map animated:YES];
 }
 - (void)phoneAction:(id)sender {
     NSLog(@"%s",__func__);
@@ -198,6 +214,18 @@
 }
 - (void)websetAction:(id)sender {
     NSLog(@"%s",__func__);
+    if ([_wap_url length]==0) {
+        [MNMToast showWithText:@"该店铺没有主页信息" autoHidding:YES priority:MNMToastPriorityNormal completionHandler:^(MNMToastValue *toast) {
+            
+        } tapHandler:^(MNMToastValue *toast) {
+            
+        }];
+        return;
+    }
+    
+SVWebViewController *webController = [[SVWebViewController alloc] initWithAddress:_wap_url];
+[self.navigationController pushViewController:webController animated:YES];
+
 }
 
 #pragma UITableViewDelegate And UITableViewDataSource

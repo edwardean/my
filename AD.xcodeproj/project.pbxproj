@@ -19,6 +19,8 @@
 		0913E231166CCB030096A686 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0913E230166CCB030096A686 /* ViewController.m */; };
 		0913E24F166CD0970096A686 /* a.png in Resources */ = {isa = PBXBuildFile; fileRef = 0913E24E166CD0970096A686 /* a.png */; };
 		0913E251166CD0A90096A686 /* d.png in Resources */ = {isa = PBXBuildFile; fileRef = 0913E250166CD0A90096A686 /* d.png */; };
+		CA462D3C1740719D0096E447 /* DDAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = CA462D391740719D0096E447 /* DDAnnotation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CA462D3D1740719D0096E447 /* DDAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA462D3B1740719D0096E447 /* DDAnnotationView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CA66B1BF173F277F00098731 /* search_table_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CA66B1BE173F277F00098731 /* search_table_bg.png */; };
 		CA66B1C1173F27BD00098731 /* search_table_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA66B1C0173F27BD00098731 /* search_table_bg@2x.png */; };
 		CA66B1C5173F288100098731 /* little_xingxing.png in Resources */ = {isa = PBXBuildFile; fileRef = CA66B1C3173F288100098731 /* little_xingxing.png */; };
@@ -171,6 +173,11 @@
 		CAE192A4173DE9BF003FB844 /* AibangApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE1929F173DE9BF003FB844 /* AibangApi.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CAE192A7173E1C06003FB844 /* user_wde.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE192A6173E1C06003FB844 /* user_wde.png */; };
 		CAE192AA173E2636003FB844 /* StoreSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE192A9173E2636003FB844 /* StoreSearchViewController.m */; };
+		CAE965A61740688800091098 /* SVModalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE965A21740688800091098 /* SVModalWebViewController.m */; };
+		CAE965A71740688800091098 /* SVWebViewController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CAE965A31740688800091098 /* SVWebViewController.bundle */; };
+		CAE965A81740688800091098 /* SVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE965A51740688800091098 /* SVWebViewController.m */; };
+		CAE965AD1740691500091098 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE965AC1740691500091098 /* MessageUI.framework */; };
+		CAE965B017406C1D00091098 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE965AF17406C1D00091098 /* MapViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,6 +215,10 @@
 		0913E230166CCB030096A686 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0913E24E166CD0970096A686 /* a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = a.png; path = ../a.png; sourceTree = "<group>"; };
 		0913E250166CD0A90096A686 /* d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = d.png; path = ../d.png; sourceTree = "<group>"; };
+		CA462D381740719D0096E447 /* DDAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAnnotation.h; sourceTree = "<group>"; };
+		CA462D391740719D0096E447 /* DDAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAnnotation.m; sourceTree = "<group>"; };
+		CA462D3A1740719D0096E447 /* DDAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAnnotationView.h; sourceTree = "<group>"; };
+		CA462D3B1740719D0096E447 /* DDAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAnnotationView.m; sourceTree = "<group>"; };
 		CA66B1BE173F277F00098731 /* search_table_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_table_bg.png; sourceTree = "<group>"; };
 		CA66B1C0173F27BD00098731 /* search_table_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_table_bg@2x.png"; sourceTree = "<group>"; };
 		CA66B1C3173F288100098731 /* little_xingxing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = little_xingxing.png; sourceTree = "<group>"; };
@@ -416,6 +427,14 @@
 		CAE192A6173E1C06003FB844 /* user_wde.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_wde.png; sourceTree = "<group>"; };
 		CAE192A8173E2635003FB844 /* StoreSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreSearchViewController.h; sourceTree = "<group>"; };
 		CAE192A9173E2636003FB844 /* StoreSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = StoreSearchViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		CAE965A11740688800091098 /* SVModalWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVModalWebViewController.h; sourceTree = "<group>"; };
+		CAE965A21740688800091098 /* SVModalWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVModalWebViewController.m; sourceTree = "<group>"; };
+		CAE965A31740688800091098 /* SVWebViewController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVWebViewController.bundle; sourceTree = "<group>"; };
+		CAE965A41740688800091098 /* SVWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewController.h; sourceTree = "<group>"; };
+		CAE965A51740688800091098 /* SVWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewController.m; sourceTree = "<group>"; };
+		CAE965AC1740691500091098 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		CAE965AE17406C1D00091098 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		CAE965AF17406C1D00091098 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -423,6 +442,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAE965AD1740691500091098 /* MessageUI.framework in Frameworks */,
 				CA66B246173FA9C700098731 /* CoreImage.framework in Frameworks */,
 				CAD118F4173E493F0013CAD7 /* MapKit.framework in Frameworks */,
 				CAD118F2173E49390013CAD7 /* ImageIO.framework in Frameworks */,
@@ -457,6 +477,7 @@
 		0913E216166CCB020096A686 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CAE965AC1740691500091098 /* MessageUI.framework */,
 				CA66B245173FA9C600098731 /* CoreImage.framework */,
 				CAB03A65173E9C92004F06EA /* SDWebImage */,
 				CAB03A7A173E9C92004F06EA /* SDWebImage.xcodeproj */,
@@ -474,15 +495,6 @@
 		0913E21D166CCB020096A686 /* AD */ = {
 			isa = PBXGroup;
 			children = (
-				CAC80232174001080080353B /* HUD */,
-				CAC80223173FF82D0080353B /* MNMToast */,
-				CAC801F9173FF30F0080353B /* BlockActionSheet */,
-				CA66B249173FAA1A00098731 /* RosetteView */,
-				CA66B1F8173F7BF400098731 /* RatingView */,
-				CAE19294173DE9BF003FB844 /* Api */,
-				CAE1928D173DE7A3003FB844 /* TBXML */,
-				CAABC1AC173D4BB4001EAF00 /* KYArcTab */,
-				CABB861E173CDE320068DE76 /* CH */,
 				0913E226166CCB030096A686 /* AppDelegate.h */,
 				0913E227166CCB030096A686 /* AppDelegate.m */,
 				CAABC1B6173D4D00001EAF00 /* ViewControllers.h */,
@@ -493,6 +505,8 @@
 				CAE192A9173E2636003FB844 /* StoreSearchViewController.m */,
 				CA66B1F1173F461F00098731 /* StoreDetailViewController.h */,
 				CA66B1F2173F461F00098731 /* StoreDetailViewController.m */,
+				CAE965AE17406C1D00091098 /* MapViewController.h */,
+				CAE965AF17406C1D00091098 /* MapViewController.m */,
 				CAE19288173DE76D003FB844 /* ParseData.h */,
 				CAE19289173DE76D003FB844 /* ParseData.m */,
 				CAE1927E173DCD72003FB844 /* Help.h */,
@@ -504,6 +518,7 @@
 		0913E21E166CCB020096A686 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CAE965AB1740689E00091098 /* Support */,
 				CA66B25C173FCA9100098731 /* Bundle.bundle */,
 				CA66B1C2173F280400098731 /* images */,
 				CAE192A5173E1BE9003FB844 /* avatar */,
@@ -521,6 +536,17 @@
 				0913E22D166CCB030096A686 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CA462D371740719D0096E447 /* DDAnnotationView */ = {
+			isa = PBXGroup;
+			children = (
+				CA462D381740719D0096E447 /* DDAnnotation.h */,
+				CA462D391740719D0096E447 /* DDAnnotation.m */,
+				CA462D3A1740719D0096E447 /* DDAnnotationView.h */,
+				CA462D3B1740719D0096E447 /* DDAnnotationView.m */,
+			);
+			path = DDAnnotationView;
 			sourceTree = "<group>";
 		};
 		CA66B1C2173F280400098731 /* images */ = {
@@ -846,6 +872,36 @@
 			name = avatar;
 			sourceTree = "<group>";
 		};
+		CAE965A01740688800091098 /* SVWebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CAE965A11740688800091098 /* SVModalWebViewController.h */,
+				CAE965A21740688800091098 /* SVModalWebViewController.m */,
+				CAE965A31740688800091098 /* SVWebViewController.bundle */,
+				CAE965A41740688800091098 /* SVWebViewController.h */,
+				CAE965A51740688800091098 /* SVWebViewController.m */,
+			);
+			path = SVWebViewController;
+			sourceTree = "<group>";
+		};
+		CAE965AB1740689E00091098 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				CA462D371740719D0096E447 /* DDAnnotationView */,
+				CAE965A01740688800091098 /* SVWebViewController */,
+				CAC80232174001080080353B /* HUD */,
+				CAC80223173FF82D0080353B /* MNMToast */,
+				CAC801F9173FF30F0080353B /* BlockActionSheet */,
+				CA66B249173FAA1A00098731 /* RosetteView */,
+				CA66B1F8173F7BF400098731 /* RatingView */,
+				CAE19294173DE9BF003FB844 /* Api */,
+				CAE1928D173DE7A3003FB844 /* TBXML */,
+				CAABC1AC173D4BB4001EAF00 /* KYArcTab */,
+				CABB861E173CDE320068DE76 /* CH */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1042,6 +1098,7 @@
 				CAC8021D173FF3100080353B /* action-sheet-panel.png in Resources */,
 				CAC8021E173FF3100080353B /* action-sheet-panel@2x.png in Resources */,
 				CAC80231173FFD9E0080353B /* ohh.png in Resources */,
+				CAE965A71740688800091098 /* SVWebViewController.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1086,6 +1143,11 @@
 				CAC8022E173FF82D0080353B /* MNMToastValue.m in Sources */,
 				CAC8022F173FF82D0080353B /* MNMToastView.m in Sources */,
 				CAC802351740010F0080353B /* DejalActivityView.m in Sources */,
+				CAE965A61740688800091098 /* SVModalWebViewController.m in Sources */,
+				CAE965A81740688800091098 /* SVWebViewController.m in Sources */,
+				CAE965B017406C1D00091098 /* MapViewController.m in Sources */,
+				CA462D3C1740719D0096E447 /* DDAnnotation.m in Sources */,
+				CA462D3D1740719D0096E447 /* DDAnnotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

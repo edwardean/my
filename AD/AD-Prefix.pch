@@ -20,4 +20,5 @@
 #import "KYArcTabViewController.h"
 #import "MNMToast.h"
 #import "DejalActivityView.h"
+#import "SVWebViewController.h"
 #endif
