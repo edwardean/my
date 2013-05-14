@@ -39,7 +39,7 @@
     self.scrollView = scrol;
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.table = tableView;
-    [self.table setFrame:CGRectMake(0, 400, 320, 600)];
+    [self.table setFrame:CGRectMake(0, 140, 320, 600)];
     [_scrollView addSubview:_table];
     [self.view addSubview:_scrollView];
     [_table setDataSource:self];

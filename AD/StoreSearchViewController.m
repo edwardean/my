@@ -21,9 +21,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.table = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, 320, 480) style:UITableViewStylePlain];
-        [self.table setDelegate:self];
-        [self.table setDataSource:self];
+        
     }
     return self;
 }
@@ -31,6 +29,10 @@
 {
     [super viewDidLoad];
     self.title = @"地点";
+    UITableView *tabeView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, 320, 480) style:UITableViewStylePlain];
+    self.table = tabeView;
+    [self.table setDelegate:self];
+    [self.table setDataSource:self];
     [self.table setFrame:CGRectMake(0, 0, 320, 480)];
 	[self.view addSubview:_table];
     UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0,0, self.view.frame.size.width, 1)];
@@ -165,9 +167,21 @@
     NSString *store_id = [dic objectForKey:@"id"];
     NSString *store_detail = [dic objectForKey:@"desc"];
     NSLog(@"%@ %@",store_id,store_detail);
-    [api bizWithBid:store_id];
+    
+    //////////////////////////////////////////////////////////////////////////////////////////
+    //[api bizWithBid:store_id];                                                            //
+    //////////////////////////////////////////////////////////////////////////////////////////
+    
+    
     
     [self.navigationController pushViewController:storeDetail animated:YES];
+    
+    
+    ParseData *paser = [[ParseData alloc] init];
+    storeDetail.detailDictionary = [paser ParseStoreDetailData:nil];
+    NSLog(@"Dic......%@",storeDetail.detailDictionary);
+    [storeDetail.table reloadData];
+    [storeDetail loadInfo];
 
 }
 

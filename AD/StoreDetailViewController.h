@@ -10,7 +10,7 @@
 
 @interface StoreDetailViewController : UIViewController <UITableViewDataSource,UITableViewDelegate> {
 
-    UITableView *_table;
+
 }
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, retain) NSArray *commentsArray;

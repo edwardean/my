@@ -8,12 +8,14 @@
 
 #ifndef AD_Help_h
 #define AD_Help_h
+#define US [NSUserDefaults standardUserDefaults]
+#define CITYKEY @"key"
 
 //UTF-8
 #define UTF8String(str) [[NSString stringWithFormat:@"%@",str] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
 
 //app_key
-#define APP_KEY @"f41c8afccc586de03a99c86097e98ccb"
+#define APP_KEY @"1d07b03072c3b0ad9b369dfaaa1f1f06"//@"f41c8afccc586de03a99c86097e98ccb"
 
 //商户搜索
 #define Search_Store(city,store) [NSString stringWithFormat:@"http://openapi.aibang.com/search?app_key=%@&city=%@&q=%@",APP_KEY,UTF8String(city),UTF8String(store)]

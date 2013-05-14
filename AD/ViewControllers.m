@@ -8,27 +8,23 @@
 
 #import "ViewControllers.h"
 #import "ViewController.h"
+#import "SetCityViewController.h"
 @interface ViewControllers (){
 @private
-UIViewController * viewControllerOne_,
+UIViewController 
 * viewControllerTwo_,
-    * viewControllerThree_,
-    * viewControllerFour;
-
+    * viewControllerThree_;
 }
 
-@property (nonatomic, retain) UIViewController * viewControllerOne,
+@property (nonatomic, retain) UIViewController 
 * viewControllerTwo,
-* viewControllerThree,
-* viewControllerFour;
+* viewControllerThree;
 
 @end
 
 @implementation ViewControllers
-@synthesize viewControllerOne   = viewControllerOne_,
-viewControllerTwo   = viewControllerTwo_,
-viewControllerThree = viewControllerThree_,
-viewControllerFour  = viewControllerFour_;
+@synthesize viewControllerTwo   = viewControllerTwo_,
+viewControllerThree = viewControllerThree_;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -67,44 +63,36 @@ viewControllerFour  = viewControllerFour_;
     
     self.viewFrame = (CGRect){CGPointZero, {kKYViewWidth, kKYViewHeight}};
     self.viewFrame = CGRectMake(0, 20, CGRectGetWidth([UIScreen mainScreen].bounds), CGRectGetHeight([UIScreen mainScreen].applicationFrame));
-    viewControllerOne_   = [[UIViewController alloc] init];
+
     viewControllerTwo_   = [[UIViewController alloc] init];
     viewControllerThree_ = [[UIViewController alloc] init];
     
     CGRect childViewFrame = self.viewFrame;
-    [viewControllerOne_.view   setFrame:childViewFrame];
+
     [viewControllerTwo_.view   setFrame:childViewFrame];
     [viewControllerThree_.view setFrame:childViewFrame];
     
-    [viewControllerOne_.view   setBackgroundColor:[UIColor cyanColor]];
+
     [viewControllerTwo_.view   setBackgroundColor:[UIColor redColor]];
     [viewControllerThree_.view setBackgroundColor:[UIColor greenColor]];
     
     ViewController *VC = [[ViewController alloc] initWithNibName:nil bundle:nil];
-    self.viewController = VC;
+    UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:VC];
     
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:VC];
-    self.navigationController = nav;
+    
+    SetCityViewController *secondVC = [[SetCityViewController alloc] initWithNibName:nil bundle:nil];
+    UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:secondVC];
     
     self.tabBarItems = @[@{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat,1],
-                           @"viewController" : _navigationController},
+                           @"viewController" : nav1},
                          @{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat, 2],
-                           @"viewController" : viewControllerOne_},
+                           @"viewController" : nav2},
                          @{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat, 3],
                            @"viewController" : viewControllerTwo_},
                         
                          @{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat, 4],
                            @"viewController" : viewControllerThree_}];
     
-//    UIImage * gestureImage = [UIImage imageNamed:kKYIArcTabGestureHelp];
-//    CGRect gestureImageViewFrame =
-//    (CGRect){{(kKYViewWidth - gestureImage.size.width) / 2.f,
-//        (kKYViewHeight - kKYTabBarHeight - gestureImage.size.height) / 2.f},
-//        gestureImage.size};
-//    UIImageView * gestureImageView = [[UIImageView alloc] initWithFrame:gestureImageViewFrame];
-//    [gestureImageView setImage:gestureImage];
-//    [gestureImageView setUserInteractionEnabled:YES];
-//    [viewControllerOne_.view addSubview:gestureImageView];
 }
 - (void)didReceiveMemoryWarning
 {

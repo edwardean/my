@@ -10,8 +10,6 @@
 
 @class ViewController;
 @interface ViewControllers : KYArcTabViewController {
-    ViewController *_viewController;
+
 }
-@property (nonatomic, strong) UINavigationController *navigationController;
-@property (nonatomic, strong) ViewController *viewController;
 @end

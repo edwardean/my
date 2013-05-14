@@ -112,20 +112,23 @@
 
     NSLog(@"%@",[_arr objectAtIndex:(int)((UIButton *)sender).tag]);
     
-        [api searchBizWithCity:@"南阳"
-                        Query:[_arr objectAtIndex:(int)((UIButton *)sender).tag]
-                       Address:@""
-                      Category:@""
-                           Lng:@""
-                           Lat:@""
-                        Radius:@""
-                      Rankcode:@"0"
-                          From:@"1"
-                            To:@"100"];
+//        [api searchBizWithCity:@"北京"
+//                        Query:[_arr objectAtIndex:(int)((UIButton *)sender).tag]
+//                       Address:@""
+//                      Category:@""
+//                           Lng:@""
+//                           Lat:@""
+//                        Radius:@""
+//                      Rankcode:@"0"
+//                          From:@"1"
+//                            To:@"100"];
     
     StoreSearchViewController *storeSearchVC = [[StoreSearchViewController alloc]initWithNibName:nil bundle:nil];
     self.searchStoreDelegate = storeSearchVC;
     [self.navigationController pushViewController:storeSearchVC animated:YES];
+    ParseData *parse =  [[ParseData alloc] init];
+    NSArray *array = [parse ParseSearchStoreData:nil];
+    [self.searchStoreDelegate passStoreSearchArray:array];
 }
 
 #pragma mark - 5秒换图片
