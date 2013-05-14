@@ -8,17 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StoreDetailViewController : UIViewController <UITableViewDataSource,UITableViewDelegate> {
-
+@interface StoreDetailViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,AibangApiDelegate> {
+    AibangApi *api;
 
 }
 @property (nonatomic, strong) UITableView *table;
-@property (nonatomic, retain) NSArray *commentsArray;
 @property (nonatomic, retain) NSDictionary *detailDictionary;
 
+
+@property (nonatomic, copy) NSString *store_uid;        //ID
 @property (nonatomic, retain) UILabel *starLabel;       //评分
 @property (nonatomic, retain) UIImageView *img;         //图片
-@property (nonatomic, retain) UILabel *descLabel;       //介绍
+@property (nonatomic, copy) NSString *storeDesc;        //介绍
 @property (nonatomic, retain) UILabel *addrLabel;       //地址
 @property (nonatomic, retain) UILabel *cateLabel;       //商户类别
 @property (nonatomic, retain) UILabel *countyLabel;     //区县

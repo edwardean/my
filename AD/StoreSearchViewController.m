@@ -165,8 +165,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSDictionary *dic = [_array objectAtIndex:[indexPath row]];
     NSString *store_id = [dic objectForKey:@"id"];
-    NSString *store_detail = [dic objectForKey:@"desc"];
-    NSLog(@"%@ %@",store_id,store_detail);
+    //NSString *store_detail = [dic objectForKey:@"desc"];
     
     //////////////////////////////////////////////////////////////////////////////////////////
     //[api bizWithBid:store_id];                                                            //
@@ -175,27 +174,26 @@
     
     
     [self.navigationController pushViewController:storeDetail animated:YES];
-    
-    
+    storeDetail.store_uid = store_id;
+//////////////////////////////////////////////////////////////////////////////////////////////
     ParseData *paser = [[ParseData alloc] init];
     storeDetail.detailDictionary = [paser ParseStoreDetailData:nil];
-    NSLog(@"Dic......%@",storeDetail.detailDictionary);
+    //NSLog(@"Dic......%@",storeDetail.detailDictionary);
     [storeDetail.table reloadData];
     [storeDetail loadInfo];
-
+///////////////////////////////////////////////////////////////////////////////////////////////
 }
 
 - (void)requestDidFailedWithError:(NSError *)error aibangApi:(id)aibangApi {
-    NSLog(@"%s  Error:%@",__func__,[error localizedDescription]);
-    [[[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+    [UIAlertView showErrorWithMessage:[error localizedDescription] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
     
 }
 
 - (void)requestDidFinishWithData:(NSData *)data aibangApi:(id)aibangApi {
-    NSLog(@"%s",__func__);
     ParseData *paser = [[ParseData alloc] init];
     storeDetail.detailDictionary = [paser ParseStoreDetailData:data];
-    NSLog(@"Dic......%@",storeDetail.detailDictionary);
     [storeDetail.table reloadData];
     [storeDetail loadInfo];
 }

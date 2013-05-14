@@ -111,8 +111,13 @@
 - (void)btnTapped:(id)sender {
 
     NSLog(@"%@",[_arr objectAtIndex:(int)((UIButton *)sender).tag]);
-    
-//        [api searchBizWithCity:@"北京"
+    NSString *cityStr = [US objectForKey:CITYKEY];
+    if (!cityStr) {
+        [[[UIAlertView alloc] initWithTitle:@"Alert" message:@"None city Selected!" delegate:nil cancelButtonTitle:@"I get it." otherButtonTitles:nil, nil] show];
+        return;
+    }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+//        [api searchBizWithCity:cityStr
 //                        Query:[_arr objectAtIndex:(int)((UIButton *)sender).tag]
 //                       Address:@""
 //                      Category:@""
@@ -122,13 +127,19 @@
 //                      Rankcode:@"0"
 //                          From:@"1"
 //                            To:@"100"];
-    
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
     StoreSearchViewController *storeSearchVC = [[StoreSearchViewController alloc]initWithNibName:nil bundle:nil];
     self.searchStoreDelegate = storeSearchVC;
     [self.navigationController pushViewController:storeSearchVC animated:YES];
+    
+    
+//////////////////////////////////////////////////////////////////////////////////////////////////////////    
     ParseData *parse =  [[ParseData alloc] init];
     NSArray *array = [parse ParseSearchStoreData:nil];
     [self.searchStoreDelegate passStoreSearchArray:array];
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 }
 
 #pragma mark - 5秒换图片
@@ -185,12 +196,12 @@
     for (NSUInteger subviewIndex = 0; subviewIndex < [page.subviews count]; subviewIndex++) {
         UIImageView* subview = [page.subviews objectAtIndex:subviewIndex];
         CGSize size;
-        size.height = 24/2;
-        size.width = 24/2;
+        size.height = 7;
+        size.width = 7;
         [subview setFrame:CGRectMake(subview.frame.origin.x, subview.frame.origin.y,
                                      size.width,size.height)];
-        if (subviewIndex == secondPage) [subview setImage:[UIImage imageNamed:@"a.png"]];
-        else [subview setImage:[UIImage imageNamed:@"d.png"]];
+        if (subviewIndex == secondPage) [subview setImage:[UIImage imageNamed:@"/Bundle.bundle/Resources/poin_hover"]];
+        else [subview setImage:[UIImage imageNamed:@"/Bundle.bundle/Resources/poin_normal"]];
     }
 }
 
@@ -206,8 +217,9 @@
 }
 
 - (void)requestDidFailedWithError:(NSError *)error aibangApi:(id)aibangApi {
-    NSLog(@"%s  Error:%@",__func__,[error localizedDescription]);
-    [[[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+        [UIAlertView showErrorWithMessage:[error localizedDescription] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 
 

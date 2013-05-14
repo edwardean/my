@@ -17,6 +17,15 @@
 @interface StoreDetailViewController ()
 @property (nonatomic, retain) UIScrollView *scrollView;
 @property (nonatomic, strong) DLStarRatingControl *starRating;
+@property (nonatomic, retain) NSArray *commentsArray;   //评论列表
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
+typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
+    descLabelTag = 1,
+    commentUserLabelTag,
+    commentDateLabelTag,
+    
+};
+
 @end
 
 @implementation StoreDetailViewController
@@ -34,9 +43,11 @@
 {
     [super viewDidLoad];
     @autoreleasepool {
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"diwen"]];
+    //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"diwen"]];
     UIScrollView *scrol = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 800)];
     self.scrollView = scrol;
+    [_scrollView setBackgroundColor:[UIColor orangeColor]];
+    [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 1000)];
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.table = tableView;
     [self.table setFrame:CGRectMake(0, 140, 320, 600)];
@@ -117,12 +128,9 @@
         [rosette setCenter:CGPointMake(170.0f, 93.0f)];
         [self.scrollView addSubview:rosette];
         
-        
-        
-//        self.countyLabel = county;
-//        [_countyLabel setAdjustsFontSizeToFitWidth:YES];
-//        [_countyLabel setNumberOfLines:0];
-//        [self.scrollView addSubview:_countyLabel];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        self.dateFormatter = formatter;
+        [_dateFormatter setDateFormat:@"yyyy-MM-dd"];
     }
 }
 
@@ -132,11 +140,31 @@
 }
 
 - (void)loadView {
-
     [super loadView];
-    [self.view setBackgroundColor:[UIColor whiteColor]];
-    
 }
+
+//////////////////////////////////////////////////
+//   Custom Instance Set Property Using ARC     //
+//                                              //
+//////////////////////////////////////////////////
+#pragma mark -
+#pragma 获取评论列表
+- (void)setStore_uid:(NSString *)storeid {
+    NSLog(@"Store_uid:%@",storeid);
+    if (_store_uid != storeid) {
+        _store_uid = nil;
+        _store_uid = storeid;
+    }
+/////////////////////////////////////////////////
+//    api = [[AibangApi alloc] init];
+//    [api setDelegate:self];
+//    [api bizCommentsWithBid:_store_uid];
+/////////////////////////////////////////////////
+    ParseData *parser = [[ParseData alloc] init];
+    self.commentsArray = [parser ParseStoreCommentData:nil];
+    [self.table reloadData];
+}
+
 
 - (void)loadInfo {
     @autoreleasepool {
@@ -229,32 +257,119 @@ SVWebViewController *webController = [[SVWebViewController alloc] initWithAddres
 }
 
 #pragma UITableViewDelegate And UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSString *sectionTitle = nil;
+    if ([tableView isEqual:_table]) {
+        if (section == 0) {
+            sectionTitle = @"详情";
+        } else if (section == 1){
+            sectionTitle = @"评论列表";
+        } else {
+            NSAssert(section >1, @"tableview should have not more than 2 sections here");
+        }
+    }
+    return sectionTitle;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat rowHight = 0;
     if ([tableView isEqual:_table]) {
-        return 50;
+        if ([indexPath section] == 0) {
+            rowHight = 100;////这个高度待定，根据详情的文本多少而定
+        } else if ([indexPath section] == 1){
+            rowHight = 50;////这个为评论的每一行，类似iPhone上PP助手应用的品论列表
+        } else {
+            NSAssert([indexPath section]>1, @"tableview should have not more than 2 sections here");
+        }
     }
-    return 0;
+    return rowHight;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSInteger rows = 0;
     if ([tableView isEqual:_table]) {
-        return _commentsArray.count;
+        if (section == 0) {
+            rows = 1;
+        } else if (section == 1) {
+            rows = [_commentsArray count];
+        } else {
+            NSAssert(section > 1, @"tableview should have not more than 2 sections here");
+        }
     }
-    return 0;
+    return rows;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellID = @"ILOVEYOU,DONGXUE";
+    NSDictionary *commentDictionary = nil;
     @autoreleasepool {
     if ([tableView isEqual:_table]) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellID];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellID];
+            
+            UITextView *descTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
+            descTextView.font = [UIFont fontWithName:@"Arial" size:14.0f];
+            descTextView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+            descTextView.editable = NO;
+            descTextView.scrollEnabled = YES;
+            [descTextView setTag:descLabelTag];
+            if (indexPath.section == 0) {
+                [cell.contentView addSubview:descTextView];
+            }
+            
+            UIView *commentCellHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
+            UILabel *commentUserLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
+            UILabel *commentDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(250, 0, 70, 20)];
+            [commentCellHeader setBackgroundColor:[UIColor redColor]];
+            [commentUserLabel setTag:commentUserLabelTag];
+            [commentDateLabel setTag:commentDateLabelTag];
+            [commentUserLabel setAdjustsFontSizeToFitWidth:YES];
+            [commentDateLabel setAdjustsFontSizeToFitWidth:YES];
+            
+            if (indexPath.section == 1) {
+                [cell.contentView addSubview:commentCellHeader];
+                [cell.contentView addSubview:commentUserLabel];
+                [cell.contentView addSubview:commentDateLabel];
+                
+            }
         }
+        if (indexPath.section == 1) {
+            commentDictionary = [_commentsArray objectAtIndex:indexPath.row];
+        }
+
+        UITextView *_descTextView = (UITextView *)[cell.contentView viewWithTag:descLabelTag];
+        [_descTextView setText:[_detailDictionary objectForKey:@"desc"]];
+        
+        UILabel *_commemtUserLabel = (UILabel *)[cell.contentView viewWithTag:commentUserLabelTag];
+        [_commemtUserLabel setText:[commentDictionary objectForKey:@"uname"]];
+        
+        UILabel *_commentDateLabel = (UILabel *)[cell.contentView viewWithTag:commentDateLabelTag];
+        NSString *pubTime = [commentDictionary objectForKey:@"pubtime"];
+        NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[pubTime longLongValue]];//1367143197];
+        [_commentDateLabel setText:[_dateFormatter stringFromDate:confromTimesp]];
         
         
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
      }
     }
     return nil;
+}
+
+#pragma mark -
+#pragma mark APIDelegate
+- (void)requestDidFailedWithError:(NSError *)error aibangApi:(id)aibangApi {
+    [UIAlertView showErrorWithMessage:[error localizedDescription] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        //[self.navigationController popViewControllerAnimated:YES];
+    }];
+}
+
+- (void)requestDidFinishWithData:(NSData *)data aibangApi:(id)aibangApi {
+    NSLog(@"%s",__func__);
+    ParseData *parser = [[ParseData alloc] init];
+    self.commentsArray = [parser ParseStoreCommentData:data];
+    [self.table reloadData];
 }
 @end

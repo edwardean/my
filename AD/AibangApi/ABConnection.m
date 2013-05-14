@@ -71,7 +71,7 @@
             errorMessage = @"错误";
         }
         
-//        [connection cancel];
+        [connection cancel];
         
         NSDictionary* errorInfo = [NSDictionary dictionaryWithObject:errorMessage 
                                                               forKey:NSLocalizedDescriptionKey];

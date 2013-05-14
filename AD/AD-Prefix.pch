@@ -21,4 +21,5 @@
 #import "MNMToast.h"
 #import "DejalActivityView.h"
 #import "SVWebViewController.h"
+#import "UIAlertView+Blocks.h"
 #endif

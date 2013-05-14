@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSMutableArray *sectionArray;
 @property (nonatomic, retain) NSIndexPath *lastIndexPath;
 @property (nonatomic, copy) NSString *currentCity;
+@property (nonatomic, assign) BOOL isSearchBarVisible;
 @end
 
 @implementation SetCityViewController
@@ -35,6 +36,7 @@
 {
     [super viewDidLoad];
     self.lastIndexPath = nil;
+    self.isSearchBarVisible = NO;
     UISearchBar *search = [[UISearchBar alloc] initWithFrame:CGRectZero];
     self.searchBar = search;
     _searchBar.placeholder = @"搜索";
@@ -63,7 +65,8 @@
     
     //__weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSString *cityPlist = [[NSBundle mainBundle] pathForResource:@"city" ofType:@"plist"];
+        NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"Bundle" ofType:@"bundle"]];
+        NSString *cityPlist = [bundle pathForResource:@"city" ofType:@"plist"];
         NSArray *allCityArray = [NSArray arrayWithContentsOfFile:cityPlist];
         self.citySourceArray = allCityArray;
         UILocalizedIndexedCollation *collation = [UILocalizedIndexedCollation currentCollation];
@@ -95,9 +98,8 @@
     }
 }
 - (void)setCurrentCity:(NSString *)currentCity {
-    NSLog(@"NewCity:%@",currentCity);
+    NSLog(@"CityInUserDefault:%@ NewCity:%@",[US objectForKey:CITYKEY],currentCity);
     if (currentCity != _currentCity) {
-        //[_currentCity release];
         _currentCity = [currentCity copy];
         self.title = _currentCity;
     }
@@ -110,16 +112,18 @@
 
 - (void)scrollTableViewToSearchBarAnimated:(BOOL)animated
 {
-    // The search bar is always visible, so just scroll to the first section
-    //[self.table scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:NSNotFound inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:animated];
-    
-    //The search bar is always not visible, so scroll it to visible area
-    [self.table scrollRectToVisible:self.searchBar.frame animated:animated];
+    if (_isSearchBarVisible) {
+        // The search bar is always visible, so just scroll to the first section
+        [self.table scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:NSNotFound inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:animated];
+    } else {
+        //The search bar is always not visible, so scroll it to visible area
+        [self.table scrollRectToVisible:self.searchBar.frame animated:animated];
+    }
+
 }
 
 #pragma UITableViewDelegate
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    //NSLog(@"%s",__func__);
     NSArray *sectonIndexTitlesArray = nil;
     if ([tableView isEqual:self.table]) {
         if ([tableView isEqual:self.searchDisplayController.searchResultsTableView]) {
@@ -132,9 +136,9 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-    //NSLog(@"%s",__func__);
     if ([title isEqualToString:UITableViewIndexSearch]) {
         [self scrollTableViewToSearchBarAnimated:YES];
+        self.isSearchBarVisible = !_isSearchBarVisible ? YES : NO;
         return NSNotFound;
     } else {
         return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index]-1;
@@ -142,7 +146,6 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    //NSLog(@"%s",__func__);
     NSUInteger sections = 0;
 
         if ([tableView isEqual:self.searchDisplayController.searchResultsTableView]) {
@@ -154,7 +157,6 @@
     return sections;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //NSLog(@"%s",__func__);
     NSUInteger rows = 0;
 
         if ([tableView isEqual:self.searchDisplayController.searchResultsTableView]) {
@@ -167,7 +169,6 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    //NSLog(@"%s",__func__);
     NSString *title = nil;
         if ([tableView isEqual:self.searchDisplayController.searchResultsTableView ]) {
             title = nil;
@@ -186,51 +187,34 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellID = @"ILOVEYOU,DONGXUE";
     UITableViewCell *cell = nil;
-    
-    UITableViewCell *lastCellInSearchResultTableView = nil,
-                    *currentCellInSearchResultTableView = nil,
-                    *lastCellInNormalTableView = nil,
-                    *currentCellInNormalTableView = nil;
-    
-        @autoreleasepool {
+            @autoreleasepool {
             if([tableView isEqual:self.searchDisplayController.searchResultsTableView ]){
                 cell = [tableView dequeueReusableCellWithIdentifier:CellID];
                 if(!cell) {
                     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellID];
                 }
                 cell.textLabel.text = [_searchResultArray objectAtIndex:indexPath.row];
-                lastCellInSearchResultTableView = [self.searchDisplayController.searchResultsTableView cellForRowAtIndexPath:_lastIndexPath];
-                currentCellInSearchResultTableView = [self.searchDisplayController.searchResultsTableView cellForRowAtIndexPath:indexPath];
-                
-            } else {
+                } else {
                 cell = [tableView dequeueReusableCellWithIdentifier:CellID];
                 if(!cell) {
                     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellID];
                 }
                 cell.textLabel.text = [[_sectionArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-                lastCellInNormalTableView = [tableView cellForRowAtIndexPath:_lastIndexPath];
-                currentCellInNormalTableView = [tableView cellForRowAtIndexPath:indexPath];
                 }
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-        if (lastCellInSearchResultTableView == lastCellInNormalTableView) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        }else{
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
-
         if ([cell.textLabel.text isEqualToString:[US objectForKey:CITYKEY]]) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         } else {
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
     
-
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"indexPath:%@",indexPath);
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
         if ([tableView isEqual:self.searchDisplayController.searchResultsTableView]) {
             BOOL isSlected = [[self.searchDisplayController.searchResultsTableView cellForRowAtIndexPath:self.lastIndexPath]accessoryType] == UITableViewCellAccessoryCheckmark ? YES : NO;
@@ -262,7 +246,6 @@
         [self.searchDisplayController.searchResultsTableView reloadData];
         }
         else {
-            //[tableView mo];
             BOOL isSelected = [[tableView cellForRowAtIndexPath:self.lastIndexPath] accessoryType] == UITableViewCellAccessoryCheckmark ? YES : NO;
             if (!(indexPath.row==_lastIndexPath.row && indexPath.section == _lastIndexPath.section)) {
                 UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];

@@ -23,13 +23,18 @@
     return [TBXML tbxmlWithXMLData:data];
 }
 - (NSMutableArray *)ParseSearchStoreData:(NSData *)data {
-    //TBXML *tbxml = [self TBXMLWithData:data];
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////TBXML *tbxml = [[TBXML alloc] initWithXMLData:data];
+    ////TBXMLElement *root = tbxml.rootXMLElement;
+    ////
+    ////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
     
     //使用本地XML数据测试
-    TBXML *xmlparser = [[TBXML alloc] initWithXMLFile:@"Search_Store.xml"];
-    TBXMLElement *root = xmlparser.rootXMLElement;
-    //TBXMLElement *root = tbxml.rootXMLElement;
+    TBXML *tbxml = [[TBXML alloc] initWithXMLFile:@"Search_Store.xml"];
+    TBXMLElement *root = tbxml.rootXMLElement;
+    
     if (root) {
         TBXMLElement *total = [TBXML childElementNamed:@"total" parentElement:root];
         TBXMLElement *result_num = [TBXML childElementNamed:@"result_num" parentElement:root];
@@ -68,12 +73,13 @@
             }
         }
     }
-    [xmlparser release];
+    [tbxml release];
     return array;
 }
 - (NSDictionary *)ParseStoreDetailData:(NSData *)data {
-    
-    //TBXML *tbxml = [[TBXML alloc] initWithXMLData:data];
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//    TBXML *tbxml = [[TBXML alloc] initWithXMLData:data];
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     NSDictionary *dictionary = [NSDictionary dictionary];
     
     //使用本地XML数据测试
@@ -83,9 +89,7 @@
         TBXMLElement *biz = [TBXML childElementNamed:@"biz" parentElement:root];
         if (biz) {
             TBXMLElement *store_id = [TBXML childElementNamed:@"id" parentElement:biz];
-            NSLog(@"id %@",[TBXML textForElement:store_id]);
             TBXMLElement *name = [TBXML childElementNamed:@"name" parentElement:biz];
-            NSLog(@"name %@",[TBXML textForElement:name]);
             TBXMLElement *county = [TBXML childElementNamed:@"county" parentElement:biz];
             TBXMLElement *addr = [TBXML childElementNamed:@"addr" parentElement:biz];
             TBXMLElement *tel = [TBXML childElementNamed:@"tel" parentElement:biz];
@@ -125,8 +129,11 @@
     return dictionary;
 }
 - (NSMutableArray *)ParseStoreCommentData:(NSData *)data {
-    self.tb = [self TBXMLWithData:data];
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//    TBXML *xmlParse = [[TBXML alloc] initWithXMLData:data];
+//    TBXMLElement *root = xmlParse.rootXMLElement;
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     //使用本地XML数据测试
     TBXML *xmlParse = [[TBXML alloc] initWithXMLFile:@"Store_Comment.xml"];
