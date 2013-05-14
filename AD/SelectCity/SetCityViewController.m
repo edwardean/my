@@ -107,6 +107,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)scrollTableViewToSearchBarAnimated:(BOOL)animated
+{
+    // The search bar is always visible, so just scroll to the first section
+    //[self.table scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:NSNotFound inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:animated];
+    
+    //The search bar is always not visible, so scroll it to visible area
+    [self.table scrollRectToVisible:self.searchBar.frame animated:animated];
+}
+
 #pragma UITableViewDelegate
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
     //NSLog(@"%s",__func__);
@@ -124,6 +134,7 @@
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
     //NSLog(@"%s",__func__);
     if ([title isEqualToString:UITableViewIndexSearch]) {
+        [self scrollTableViewToSearchBarAnimated:YES];
         return NSNotFound;
     } else {
         return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index]-1;
