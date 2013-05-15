@@ -19,6 +19,10 @@
 @property (nonatomic, strong) DLStarRatingControl *starRating;
 @property (nonatomic, retain) NSArray *commentsArray;   //评论列表
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
+
+@property (nonatomic, strong) UILabel *descLabel;
+@property (nonatomic, assign) CGRect descLabelFrame;
+@property (nonatomic, assign) CGSize descLabelSize;
 typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
     descLabelTag = 1,
     commentUserLabelTag,
@@ -43,10 +47,9 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
 {
     [super viewDidLoad];
     @autoreleasepool {
-    //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"diwen"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"diwen"]];
     UIScrollView *scrol = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 800)];
     self.scrollView = scrol;
-    [_scrollView setBackgroundColor:[UIColor orangeColor]];
     [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 1000)];
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.table = tableView;
@@ -165,7 +168,8 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
     [self.table reloadData];
 }
 
-
+#pragma mark -
+#pragma 由其"委托者"调用，加载视图数据
 - (void)loadInfo {
     @autoreleasepool {
         
@@ -199,12 +203,28 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
         self.lat = [_detailDictionary objectForKey:@"lat"];
         self.lng = [_detailDictionary objectForKey:@"lng"];
         
+        self.storeDesc = [_detailDictionary objectForKey:@"desc"];
+        self.descLabelFrame = CGRectMake(_scrollView.frame.origin.x, _scrollView.frame.origin.y+150, self.view.frame.size.width, 500.);
+        self.descLabelSize = [_storeDesc sizeWithFont:[UIFont systemFontOfSize:14.]constrainedToSize:_descLabelFrame.size lineBreakMode:UILineBreakModeWordWrap];
+        UILabel *label = [[UILabel alloc] initWithFrame:_descLabelFrame];
+        label.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        self.descLabel= label;
+        [_descLabel setBackgroundColor:[UIColor orangeColor]];
+        _descLabel.layer.cornerRadius = 3.0f;
+        [_descLabel setText:_storeDesc];
+        [_descLabel setFont:[UIFont systemFontOfSize:14.]];
+        self.descLabel.numberOfLines = 0;
+        [_descLabel sizeToFit];
+        [_scrollView addSubview:_descLabel];
+        [_table setFrame:CGRectMake(0, _descLabel.frame.origin.y+_descLabel.frame.size.height, _table.frame.size.width, _table.frame.size.height)];
+        
     }
 
 }
 }
 
-
+#pragma mark -
+#pragma 扇形菜单动作
 - (void)locateAction:(id)sender {
     NSLog(@"%s",__func__);
     if ([_lat length]==0 || [_lng length]==0) {
@@ -340,7 +360,7 @@ SVWebViewController *webController = [[SVWebViewController alloc] initWithAddres
         }
 
         UITextView *_descTextView = (UITextView *)[cell.contentView viewWithTag:descLabelTag];
-        [_descTextView setText:[_detailDictionary objectForKey:@"desc"]];
+        [_descTextView setText:_storeDesc];
         
         UILabel *_commemtUserLabel = (UILabel *)[cell.contentView viewWithTag:commentUserLabelTag];
         [_commemtUserLabel setText:[commentDictionary objectForKey:@"uname"]];
