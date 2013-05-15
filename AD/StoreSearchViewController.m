@@ -138,11 +138,9 @@ typedef enum {
         }
         NSDictionary *dictionary = [_array objectAtIndex:[indexPath row]];
 
-        //dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            UIImageView *_imgView = (UIImageView *)[cell.contentView viewWithTag:imgViewTag];
-            [_imgView setImageWithURL:[NSURL URLWithString:[dictionary objectForKey:@"img_url"]] placeholderImage:[UIImage imageNamed:@"photoDefault.jpg"] options:SDWebImageProgressiveDownload];
-        //});
-        
+
+        UIImageView *_imgView = (UIImageView *)[cell.contentView viewWithTag:imgViewTag];
+        [_imgView setImageWithURL:[NSURL URLWithString:[dictionary objectForKey:@"img_url"]] placeholderImage:[UIImage imageNamed:@"photoDefault.jpg"] options:SDWebImageProgressiveDownload];
 
         UILabel *Titlelable = (UILabel *)[cell.contentView viewWithTag:titleLabelTag];
         UILabel *detailLabel = (UILabel *)[cell.contentView viewWithTag:detailLabelTag];
@@ -184,7 +182,7 @@ typedef enum {
     //NSString *store_detail = [dic objectForKey:@"desc"];
     
     //////////////////////////////////////////////////////////////////////////////////////////
-    //[api bizWithBid:store_id];                                                            //
+    [api bizWithBid:store_id];                                                            //
     //////////////////////////////////////////////////////////////////////////////////////////
     
     
@@ -192,11 +190,11 @@ typedef enum {
     [self.navigationController pushViewController:storeDetail animated:YES];
     storeDetail.store_uid = store_id;
 //////////////////////////////////////////////////////////////////////////////////////////////
-    ParseData *paser = [[ParseData alloc] init];
-    storeDetail.detailDictionary = [paser ParseStoreDetailData:nil];
+//    ParseData *paser = [[ParseData alloc] init];
+//    storeDetail.detailDictionary = [paser ParseStoreDetailData:nil];
     ////NSLog(@"Dic......%@",storeDetail.detailDictionary);
-    [storeDetail.table reloadData];
-    [storeDetail loadInfo];
+//    [storeDetail.table reloadData];
+//    [storeDetail loadInfo];
 ///////////////////////////////////////////////////////////////////////////////////////////////
 }
 
@@ -210,7 +208,7 @@ typedef enum {
 - (void)requestDidFinishWithData:(NSData *)data aibangApi:(id)aibangApi {
     ParseData *paser = [[ParseData alloc] init];
     storeDetail.detailDictionary = [paser ParseStoreDetailData:data];
-    [storeDetail.table reloadData];
+    //[storeDetail.table reloadData];
     [storeDetail loadInfo];
 }
 @end

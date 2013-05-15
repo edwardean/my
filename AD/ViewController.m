@@ -117,16 +117,16 @@
         return;
     }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-//        [api searchBizWithCity:cityStr
-//                        Query:[_arr objectAtIndex:(int)((UIButton *)sender).tag]
-//                       Address:@""
-//                      Category:@""
-//                           Lng:@""
-//                           Lat:@""
-//                        Radius:@""
-//                      Rankcode:@"0"
-//                          From:@"1"
-//                            To:@"100"];
+        [api searchBizWithCity:cityStr
+                        Query:[_arr objectAtIndex:(int)((UIButton *)sender).tag]
+                       Address:@""
+                      Category:@""
+                           Lng:@""
+                           Lat:@""
+                        Radius:@""
+                      Rankcode:@"0"
+                          From:@"1"
+                            To:@"100"];
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
  
     StoreSearchViewController *storeSearchVC = [[StoreSearchViewController alloc]initWithNibName:nil bundle:nil];
@@ -135,9 +135,9 @@
     
     
 //////////////////////////////////////////////////////////////////////////////////////////////////////////    
-    ParseData *parse =  [[ParseData alloc] init];
-    NSArray *array = [parse ParseSearchStoreData:nil];
-    [self.searchStoreDelegate passStoreSearchArray:array];
+//    ParseData *parse =  [[ParseData alloc] init];
+//    NSArray *array = [parse ParseSearchStoreData:nil];
+//    [self.searchStoreDelegate passStoreSearchArray:array];
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }

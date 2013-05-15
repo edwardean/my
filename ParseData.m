@@ -24,16 +24,16 @@
 }
 - (NSMutableArray *)ParseSearchStoreData:(NSData *)data {
     //////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////TBXML *tbxml = [[TBXML alloc] initWithXMLData:data];
-    ////TBXMLElement *root = tbxml.rootXMLElement;
+    TBXML *tbxml = [[TBXML alloc] initWithXMLData:data];
+    TBXMLElement *root = tbxml.rootXMLElement;
     ////
     ////
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
     
     //使用本地XML数据测试
-    TBXML *tbxml = [[TBXML alloc] initWithXMLFile:@"Search_Store.xml"];
-    TBXMLElement *root = tbxml.rootXMLElement;
+    //TBXML *tbxml = [[TBXML alloc] initWithXMLFile:@"Search_Store.xml"];
+    //TBXMLElement *root = tbxml.rootXMLElement;
     
     if (root) {
         TBXMLElement *total = [TBXML childElementNamed:@"total" parentElement:root];
@@ -78,12 +78,12 @@
 }
 - (NSDictionary *)ParseStoreDetailData:(NSData *)data {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//    TBXML *tbxml = [[TBXML alloc] initWithXMLData:data];
+    TBXML *tbxml = [[TBXML alloc] initWithXMLData:data];
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     NSDictionary *dictionary = [NSDictionary dictionary];
     
     //使用本地XML数据测试
-    TBXML *tbxml = [[TBXML alloc] initWithXMLFile:@"Store_Detail.xml"];
+    //TBXML *tbxml = [[TBXML alloc] initWithXMLFile:@"Store_Detail.xml"];
     TBXMLElement *root = tbxml.rootXMLElement;
     if (root) {
         TBXMLElement *biz = [TBXML childElementNamed:@"biz" parentElement:root];
@@ -131,13 +131,13 @@
 - (NSMutableArray *)ParseStoreCommentData:(NSData *)data {
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//    TBXML *xmlParse = [[TBXML alloc] initWithXMLData:data];
-//    TBXMLElement *root = xmlParse.rootXMLElement;
+    TBXML *xmlParse = [[TBXML alloc] initWithXMLData:data];
+    TBXMLElement *root = xmlParse.rootXMLElement;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     //使用本地XML数据测试
-    TBXML *xmlParse = [[TBXML alloc] initWithXMLFile:@"Store_Comment.xml"];
-    TBXMLElement *root = xmlParse.rootXMLElement;
+    //TBXML *xmlParse = [[TBXML alloc] initWithXMLFile:@"Store_Comment.xml"];
+    //TBXMLElement *root = xmlParse.rootXMLElement;
     if (root) {
         TBXMLElement *total = [TBXML childElementNamed:@"total" parentElement:root];
         TBXMLElement *result_num = [TBXML childElementNamed:@"result_num" parentElement:root];

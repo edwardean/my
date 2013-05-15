@@ -63,12 +63,12 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"diwen"]];
     UIScrollView *scrol = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     self.scrollView = scrol;
-    [author setCenter:CGPointMake(self.view.frame.size.width/2.0, _scrollView.frame.origin.y - 80)];
+    [author setCenter:CGPointMake(self.view.frame.size.width/2.0, _scrollView.frame.origin.y - 60)];
     [_scrollView addSubview:author];
-    [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 1100)];
+    [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.table = tableView;
-    [self.table setFrame:CGRectMake(0, 140, 320, 600)];
+    [self.table setFrame:CGRectMake(0, 140, 320, 0)];
     [_scrollView addSubview:_table];
     [self.view addSubview:_scrollView];
     [_table setDataSource:self];
@@ -170,33 +170,34 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
 #pragma mark -
 #pragma 获取评论列表
 - (void)setStore_uid:(NSString *)storeid {
-    //NSLog(@"Store_uid:%@",storeid);
+    NSLog(@"Store_uid:%@",storeid);
     if (_store_uid != storeid) {
         _store_uid = nil;
         _store_uid = storeid;
     }
-/////////////////////////////////////////////////
-//    api = [[AibangApi alloc] init];
-//    [api setDelegate:self];
-//    [api bizCommentsWithBid:_store_uid];
-/////////////////////////////////////////////////
-    ParseData *parser = [[ParseData alloc] init];
-    self.commentsArray = [parser ParseStoreCommentData:nil];
-    self.commentHeaerDic = [_commentsArray lastObject];
-    
-    CGRect tableViewFrame = _table.frame;
-    tableViewFrame.size.height += [_commentsArray count]*CommentCellHeight;
-    _table.frame = tableViewFrame;
-    
-    CGSize scrollViewSize = _scrollView.frame.size;
-    scrollViewSize.height += [_commentsArray count]*CommentCellHeight;
-    _scrollView.contentSize = scrollViewSize;
-    [self.table reloadData];
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    api = [[AibangApi alloc] init];
+    [api setDelegate:self];
+    [api bizCommentsWithBid:_store_uid];
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//    ParseData *parser = [[ParseData alloc] init];
+//    self.commentsArray = [parser ParseStoreCommentData:nil];
+//    self.commentHeaerDic = [_commentsArray lastObject];
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//    CGRect tableViewFrame = _table.frame;
+//    tableViewFrame.size.height += [_commentsArray count]*CommentCellHeight;
+//    _table.frame = tableViewFrame;
+//
+//    CGSize scrollViewSize = _scrollView.frame.size;
+//    scrollViewSize.height += [_commentsArray count]*CommentCellHeight;
+//    _scrollView.contentSize = scrollViewSize;
+//    [self.table reloadData];
 }
 
 #pragma mark -
 #pragma 由其"委托者"调用，加载视图数据
 - (void)loadInfo {
+    NSLog(@"%s",__func__);
     @autoreleasepool {
         
     if (_detailDictionary) {
@@ -235,6 +236,9 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
         self.descLabelSize = [_storeDesc sizeWithFont:[UIFont systemFontOfSize:14.]constrainedToSize:_descLabelFrame.size lineBreakMode:UILineBreakModeWordWrap];
         UILabel *label = [[UILabel alloc] initWithFrame:_descLabelFrame];
         label.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        if (_descLabel.text) {
+            [_descLabel setText:nil];
+        }
         self.descLabel= label;
         [_descLabel setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
         _descLabel.layer.cornerRadius = 3.0f;
@@ -410,12 +414,13 @@ SVWebViewController *webController = [[SVWebViewController alloc] initWithAddres
             UILabel *commentDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(250, 0, 70, 20)];
             UIImageView *userAvatarView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
             UILabel *commentContentLabel = [[UILabel alloc] initWithFrame:CGRectMake(61, commentCellHeaderHeight, self.view.frame.size.width - 60, CommentCellHeight - commentCellHeaderHeight)];
-            [commentCellHeader setBackgroundColor:[UIColor cyanColor]];
+            [commentCellHeader setBackgroundColor:[UIColor grayColor]];
             [commentUserLabel setTag:commentUserLabelTag];
             [commentDateLabel setTag:commentDateLabelTag];
             [userAvatarView setTag:userAvatarViewTag];
             [commentContentLabel setTag:commentContentLabelTag];
             [userAvatarView setCenter:CGPointMake(35, (CommentCellHeight - commentCellHeaderHeight)/2.0 + userAvatarView.frame.size.height / 2.0 - 5)];
+            [userAvatarView.layer setCornerRadius:4.f];
             [commentUserLabel setBackgroundColor:[UIColor clearColor]];
             [commentDateLabel setBackgroundColor:[UIColor clearColor]];
             [commentUserLabel setAdjustsFontSizeToFitWidth:YES];
@@ -433,10 +438,8 @@ SVWebViewController *webController = [[SVWebViewController alloc] initWithAddres
             }
         }
         
-        
         if (indexPath.section == 1) {
             commentDictionary = [_commentsArray objectAtIndex:indexPath.row];
-            NSLog(@"commentDictionary:%@",commentDictionary);
         }
         UILabel *_commemtUserLabel = (UILabel *)[cell.contentView viewWithTag:commentUserLabelTag];
         [_commemtUserLabel setText:[commentDictionary objectForKey:@"uname"]];
@@ -459,7 +462,7 @@ SVWebViewController *webController = [[SVWebViewController alloc] initWithAddres
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [_userAvatarView setImageWithURL:[NSURL URLWithString:[commentDictionary objectForKey:@"avatar_url"]] placeholderImage:[UIImage imageNamed:@"user_avatar"] options:SDWebImageProgressiveDownload];
         });
-        _userAvatarView.layer.cornerRadius = 4.0f;
+        //_userAvatarView.layer.cornerRadius = 4.0f;
         
         UILabel *_commentContentLabel = (UILabel *)[cell.contentView viewWithTag:commentContentLabelTag];
         [_commentContentLabel setText:[commentDictionary objectForKey:@"content"]];
@@ -482,9 +485,21 @@ SVWebViewController *webController = [[SVWebViewController alloc] initWithAddres
 }
 
 - (void)requestDidFinishWithData:(NSData *)data aibangApi:(id)aibangApi {
-    //NSLog(@"%s",__func__);
+    NSLog(@"%s",__func__);
     ParseData *parser = [[ParseData alloc] init];
     self.commentsArray = [parser ParseStoreCommentData:data];
+    self.commentHeaerDic = [_commentsArray lastObject];
+    CGRect tableViewFrame = _table.frame;
+    tableViewFrame.size.height = ([_commentsArray count] +1)*CommentCellHeight;
+    _table.frame = tableViewFrame;
+    NSLog(@"Count:%d  descLabelSize.height:%.1f  _table.frame.height:%.1f",[_commentsArray count],_descLabelSize.height,tableViewFrame.size.height);
+    
+    CGSize scrollViewSize = CGSizeZero;
+   
+    //scrollViewSize.height = ([_commentsArray count] + 1)*CommentCellHeight + _descLabelSize.height + 350;
+    scrollViewSize.height = tableViewFrame.size.height + _descLabelSize.height + 350;
+     NSLog(@"scrollViewSize.hight:%.1f",scrollViewSize.height);
+    _scrollView.contentSize = scrollViewSize;
     [self.table reloadData];
 }
 @end
