@@ -16,7 +16,14 @@
 @end
 
 @implementation StoreSearchViewController
-
+typedef enum {
+    titleLabelTag = 1,
+    detailLabelTag,
+    commentLabelTag,
+    cateLabelTag,
+    accessoryViewTag,
+    imgViewTag,
+} CellContentSubView;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -61,7 +68,7 @@
     } else {
         [DejalActivityView removeView];
         [_ohhImg setHidden:NO];
-        NSLog(@"没有数据");
+        //NSLog(@"没有数据");
          
     }
 }
@@ -101,33 +108,44 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellID = @"ILOVEYOU,DONGXUE";
+    UITableViewCell *cell = nil;
     if ([tableView isEqual:_table]) {
         @autoreleasepool {
-        NSDictionary *dictionary = [_array objectAtIndex:[indexPath row]];
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellID];
+        cell = [tableView dequeueReusableCellWithIdentifier:CellID];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellID];
             UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, 200, 50)];
             UILabel *detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 50, 190, 50)];
             UILabel *commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(112, 36, 30, 20)];
             UILabel *cateLabel = [[UILabel alloc] initWithFrame:CGRectMake(147, 36, 140, 20)];
-            titleLabel.tag = 1;
-            detailLabel.tag = 2;
-            commentLabel.tag = 3;
-            cateLabel.tag = 4;
+            UIImageView *likeHeartView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"heart"]];
+            UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 90, 90)];
+            [imgView.layer setCornerRadius:4.0f];
+            [imgView.layer setMasksToBounds:YES];
+            [likeHeartView setFrame:CGRectMake(96, 40, 16, 16)];
+            
+            [titleLabel setTag:titleLabelTag];
+            [detailLabel setTag:detailLabelTag];
+            [commentLabel setTag:commentLabelTag];
+            [cateLabel setTag:cateLabelTag];
+            [imgView setTag:imgViewTag];
             [cell.contentView addSubview:titleLabel];
             [cell.contentView addSubview:detailLabel];
             [cell.contentView addSubview:commentLabel];
             [cell.contentView addSubview:cateLabel];
+            [cell.contentView addSubview:likeHeartView];
+            [cell.contentView addSubview:imgView];
         }
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 90, 90)];
-        [cell.contentView addSubview:imgView];
-        [imgView.layer setCornerRadius:4.0f];
-        imgView.layer.masksToBounds = YES;
-        [imgView setImageWithURL:[dictionary objectForKey:@"img_url"] placeholderImage:[UIImage imageNamed:@"photoDefault.jpg"]];
+        NSDictionary *dictionary = [_array objectAtIndex:[indexPath row]];
 
-        UILabel *Titlelable = (UILabel *)[cell.contentView viewWithTag:1];
-        UILabel *detailLabel = (UILabel *)[cell.contentView viewWithTag:2];
+        //dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            UIImageView *_imgView = (UIImageView *)[cell.contentView viewWithTag:imgViewTag];
+            [_imgView setImageWithURL:[NSURL URLWithString:[dictionary objectForKey:@"img_url"]] placeholderImage:[UIImage imageNamed:@"photoDefault.jpg"] options:SDWebImageProgressiveDownload];
+        //});
+        
+
+        UILabel *Titlelable = (UILabel *)[cell.contentView viewWithTag:titleLabelTag];
+        UILabel *detailLabel = (UILabel *)[cell.contentView viewWithTag:detailLabelTag];
         [detailLabel setFont:[UIFont boldSystemFontOfSize:13.0f]];
         [Titlelable setText:[dictionary objectForKey:@"name"]];
         [Titlelable setAdjustsFontSizeToFitWidth:YES];
@@ -136,29 +154,27 @@
         [detailLabel setNumberOfLines:0];
         [detailLabel setBackgroundColor:[UIColor clearColor]];
         [Titlelable setBackgroundColor:[UIColor clearColor]];
-        
-        UIImageView *accessTory = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"soft_cell_detail_button"]];
-        cell.accessoryView = accessTory;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        UIImageView *commentView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"heart"]];
-        [commentView setFrame:CGRectMake(96, 40, 16, 16)];
-        [cell.contentView addSubview:commentView];
-        UILabel *_commentLabel = (UILabel *)[cell.contentView viewWithTag:3];
+
+        UIButton *accessButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [accessButton setFrame:CGRectMake(0, 0, 16, 16)];
+        [accessButton setBackgroundImage:[UIImage imageNamed:@"soft_cell_detail_button"] forState:UIControlStateNormal];
+        cell.accessoryView = accessButton;
+            
+        UILabel *_commentLabel = (UILabel *)[cell.contentView viewWithTag:commentLabelTag];
         [_commentLabel setBackgroundColor:[UIColor clearColor]];
         [_commentLabel setTextColor:[UIColor grayColor]];
         [_commentLabel setFont:[UIFont boldSystemFontOfSize:12.0f]];
         [_commentLabel setText:[NSString stringWithFormat:@"%@分",[dictionary objectForKey:@"rate"]]];
-        UILabel *_cateLabel = (UILabel *)[cell.contentView viewWithTag:4];
+        UILabel *_cateLabel = (UILabel *)[cell.contentView viewWithTag:cateLabelTag];
         [_cateLabel setBackgroundColor:[UIColor clearColor]];
         [_cateLabel setTextColor:[UIColor grayColor]];
         [_cateLabel setFont:[UIFont boldSystemFontOfSize:12.0f]];
         [_cateLabel setAdjustsFontSizeToFitWidth:NO];
         [_cateLabel setText:[NSString stringWithFormat:@"%@",[dictionary objectForKey:@"cate"]]];
-        return cell;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
     }
-    return nil;
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -178,7 +194,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////
     ParseData *paser = [[ParseData alloc] init];
     storeDetail.detailDictionary = [paser ParseStoreDetailData:nil];
-    //NSLog(@"Dic......%@",storeDetail.detailDictionary);
+    ////NSLog(@"Dic......%@",storeDetail.detailDictionary);
     [storeDetail.table reloadData];
     [storeDetail loadInfo];
 ///////////////////////////////////////////////////////////////////////////////////////////////

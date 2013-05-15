@@ -36,6 +36,7 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
     commentDateLabelTag,
     commentCountLabelTag,
     rateScoreLabelTag,
+    userAvatarViewTag,
     
 };
 
@@ -169,7 +170,7 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
 #pragma mark -
 #pragma 获取评论列表
 - (void)setStore_uid:(NSString *)storeid {
-    NSLog(@"Store_uid:%@",storeid);
+    //NSLog(@"Store_uid:%@",storeid);
     if (_store_uid != storeid) {
         _store_uid = nil;
         _store_uid = storeid;
@@ -204,7 +205,7 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
         [self.img setImageWithURL:[NSURL URLWithString:[_detailDictionary objectForKey:@"img_url"]] placeholderImage:[UIImage imageNamed:@"placeholder_bg"] options:SDWebImageProgressiveDownload success:^(UIImage *image) {
             
         } failure:^(NSError *error) {
-            NSLog(@"加载失败");
+            //NSLog(@"加载失败");
             [weakSelf.img setImage:[UIImage imageNamed:@"photoDefault.jpg"]];
         }];
         
@@ -266,7 +267,7 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
 #pragma mark -
 #pragma 扇形菜单动作
 - (void)locateAction:(id)sender {
-    NSLog(@"%s",__func__);
+    //NSLog(@"%s",__func__);
     if ([_lat length]==0 || [_lng length]==0) {
         [MNMToast showWithText:@"该店铺没有留下位置信息" autoHidding:YES priority:MNMToastPriorityNormal completionHandler:^(MNMToastValue *toast) {
             
@@ -279,7 +280,7 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
     [self.navigationController pushViewController:map animated:YES];
 }
 - (void)phoneAction:(id)sender {
-    NSLog(@"%s",__func__);
+    //NSLog(@"%s",__func__);
     if ([_tel length]==0) {
         [MNMToast showWithText:@"该店铺没有留下电话号码" autoHidding:YES priority:MNMToastPriorityNormal completionHandler:^(MNMToastValue *toast) {
             
@@ -300,7 +301,7 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
     [sheet showInView:self.scrollView];
 }
 - (void)websetAction:(id)sender {
-    NSLog(@"%s",__func__);
+    //NSLog(@"%s",__func__);
     if ([_wap_url length]==0) {
         [MNMToast showWithText:@"该店铺没有主页信息" autoHidding:YES priority:MNMToastPriorityNormal completionHandler:^(MNMToastValue *toast) {
             
@@ -410,9 +411,11 @@ SVWebViewController *webController = [[SVWebViewController alloc] initWithAddres
             UIView *commentCellHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
             UILabel *commentUserLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
             UILabel *commentDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(250, 0, 70, 20)];
+            UIImageView *userAvatarView = [[UIImageView alloc] initWithFrame:CGRectMake(2, 22, 44, 44)];
             [commentCellHeader setBackgroundColor:[UIColor cyanColor]];
             [commentUserLabel setTag:commentUserLabelTag];
             [commentDateLabel setTag:commentDateLabelTag];
+            [userAvatarView setTag:userAvatarViewTag];
             [commentUserLabel setBackgroundColor:[UIColor clearColor]];
             [commentDateLabel setBackgroundColor:[UIColor clearColor]];
             [commentUserLabel setAdjustsFontSizeToFitWidth:YES];
@@ -422,22 +425,24 @@ SVWebViewController *webController = [[SVWebViewController alloc] initWithAddres
                 [cell.contentView addSubview:commentCellHeader];
                 [cell.contentView addSubview:commentUserLabel];
                 [cell.contentView addSubview:commentDateLabel];
+                [cell.contentView addSubview:userAvatarView];
+                
                 
             }
         }
+        
+        
         if (indexPath.section == 1) {
             commentDictionary = [_commentsArray objectAtIndex:indexPath.row];
+            //NSLog(@"commentDictionary:%@",commentDictionary);
         }
-
-        
         UILabel *_commemtUserLabel = (UILabel *)[cell.contentView viewWithTag:commentUserLabelTag];
         [_commemtUserLabel setText:[commentDictionary objectForKey:@"uname"]];
         
         UILabel *_commentDateLabel = (UILabel *)[cell.contentView viewWithTag:commentDateLabelTag];
         NSString *pubTime = [commentDictionary objectForKey:@"pubtime"];
-        NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[pubTime longLongValue]];//1367143197];
-        [_commentDateLabel setText:[_dateFormatter stringFromDate:confromTimesp]];
-       
+        NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[pubTime longLongValue]];                                         [_commentDateLabel setText:[_dateFormatter stringFromDate:confromTimesp]];
+        
         UILabel *_commentCountLabel = (UILabel *)[cell.contentView viewWithTag:commentCountLabelTag];
         NSString *commentCountString = [NSString stringWithFormat:@"%@次",[_commentHeaerDic objectForKey:@"total"]];
         [_commentCountLabel setText:commentCountString];
@@ -445,6 +450,15 @@ SVWebViewController *webController = [[SVWebViewController alloc] initWithAddres
         UILabel *_rateScoreLabel = (UILabel *)[cell.contentView viewWithTag:rateScoreLabelTag];
         NSString *rateScoreString = [NSString stringWithFormat:@"综合分数:%@",_rateScoreString];
         [_rateScoreLabel setText:rateScoreString];
+        
+        
+        UIImageView *_userAvatarView = (UIImageView *)[cell.contentView viewWithTag:userAvatarViewTag];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [_userAvatarView setImageWithURL:[NSURL URLWithString:[commentDictionary objectForKey:@"avatar_url"]] placeholderImage:[UIImage imageNamed:@"user_avatar"] options:SDWebImageProgressiveDownload];
+            _userAvatarView.layer.cornerRadius = 4.0f;
+        });
+        
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
@@ -462,7 +476,7 @@ SVWebViewController *webController = [[SVWebViewController alloc] initWithAddres
 }
 
 - (void)requestDidFinishWithData:(NSData *)data aibangApi:(id)aibangApi {
-    NSLog(@"%s",__func__);
+    //NSLog(@"%s",__func__);
     ParseData *parser = [[ParseData alloc] init];
     self.commentsArray = [parser ParseStoreCommentData:data];
     [self.table reloadData];

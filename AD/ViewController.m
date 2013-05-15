@@ -110,7 +110,7 @@
 
 - (void)btnTapped:(id)sender {
 
-    NSLog(@"%@",[_arr objectAtIndex:(int)((UIButton *)sender).tag]);
+    //NSLog(@"%@",[_arr objectAtIndex:(int)((UIButton *)sender).tag]);
     NSString *cityStr = [US objectForKey:CITYKEY];
     if (!cityStr) {
         [[[UIAlertView alloc] initWithTitle:@"Alert" message:@"None city Selected!" delegate:nil cancelButtonTitle:@"I get it." otherButtonTitles:nil, nil] show];

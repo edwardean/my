@@ -48,9 +48,9 @@ viewControllerThree = viewControllerThree_;
     
     
     NSString *str = Search_Store(@"南阳", @"网吧");
-    NSLog(@"%@",str);
+    //NSLog(@"%@",str);
     NSString *str1 = Store_Detail(@"2029602847-421506714");
-    NSLog(@"%@",str1);
+    //NSLog(@"%@",str1);
     
     
     

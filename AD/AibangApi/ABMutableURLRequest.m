@@ -15,7 +15,7 @@
 	if (aQueryString) {
 		[url appendFormat:@"?%@", aQueryString];
 	}
-    NSLog(@"URL:%@",url);
+    //NSLog(@"URL:%@",url);
 	NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]] autorelease];
 	[request setHTTPMethod:@"GET"];
 	[request setTimeoutInterval:60.0f];

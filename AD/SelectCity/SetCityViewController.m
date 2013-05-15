@@ -98,7 +98,7 @@
     }
 }
 - (void)setCurrentCity:(NSString *)currentCity {
-    NSLog(@"CityInUserDefault:%@ NewCity:%@",[US objectForKey:CITYKEY],currentCity);
+    //NSLog(@"CityInUserDefault:%@ NewCity:%@",[US objectForKey:CITYKEY],currentCity);
     if (currentCity != _currentCity) {
         _currentCity = [currentCity copy];
         self.title = _currentCity;
@@ -214,7 +214,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"indexPath:%@",indexPath);
+    //NSLog(@"indexPath:%@",indexPath);
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
         if ([tableView isEqual:self.searchDisplayController.searchResultsTableView]) {
             BOOL isSlected = [[self.searchDisplayController.searchResultsTableView cellForRowAtIndexPath:self.lastIndexPath]accessoryType] == UITableViewCellAccessoryCheckmark ? YES : NO;
