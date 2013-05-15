@@ -14,10 +14,17 @@
 #import "AURosetteItem.h"
 #import "BlockActionSheet.h"
 #import "MapViewController.h"
+#import "CHDraggableView+Avatar.h"
+
+#define HeaderCellHeight 50
+#define CommentCellHeight 100
+
 @interface StoreDetailViewController ()
 @property (nonatomic, retain) UIScrollView *scrollView;
 @property (nonatomic, strong) DLStarRatingControl *starRating;
-@property (nonatomic, retain) NSArray *commentsArray;   //评论列表
+@property (nonatomic, retain) NSArray *commentsArray;           //评论列表
+@property (nonatomic, strong) NSDictionary *commentHeaerDic;    //获取评论次数
+@property (nonatomic, copy) NSString *rateScoreString;          //综合分数
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 
 @property (nonatomic, strong) UILabel *descLabel;
@@ -27,6 +34,8 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
     descLabelTag = 1,
     commentUserLabelTag,
     commentDateLabelTag,
+    commentCountLabelTag,
+    rateScoreLabelTag,
     
 };
 
@@ -47,10 +56,15 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
 {
     [super viewDidLoad];
     @autoreleasepool {
+    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"Bundle" ofType:@"bundle"]];
+    NSString *authorImagePath = [bundle pathForResource:@"lihang" ofType:@"png"];
+    CHDraggableView *author = [CHDraggableView viewWithImage:[UIImage imageWithContentsOfFile:authorImagePath]];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"diwen"]];
-    UIScrollView *scrol = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 800)];
+    UIScrollView *scrol = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     self.scrollView = scrol;
-    [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 1000)];
+    [author setCenter:CGPointMake(self.view.frame.size.width/2.0, _scrollView.frame.origin.y - 80)];
+    [_scrollView addSubview:author];
+    [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 1100)];
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.table = tableView;
     [self.table setFrame:CGRectMake(0, 140, 320, 600)];
@@ -58,6 +72,8 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
     [self.view addSubview:_scrollView];
     [_table setDataSource:self];
     [_table setDelegate:self];
+    [_table setScrollEnabled:NO];
+    [_table setShowsVerticalScrollIndicator:NO];
     
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 100, 100)];
     self.img = imgView;
@@ -165,6 +181,15 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
 /////////////////////////////////////////////////
     ParseData *parser = [[ParseData alloc] init];
     self.commentsArray = [parser ParseStoreCommentData:nil];
+    self.commentHeaerDic = [_commentsArray lastObject];
+    
+    CGRect tableViewFrame = _table.frame;
+    tableViewFrame.size.height += [_commentsArray count]*CommentCellHeight;
+    _table.frame = tableViewFrame;
+    
+    CGSize scrollViewSize = _scrollView.frame.size;
+    scrollViewSize.height += [_commentsArray count]*CommentCellHeight;
+    _scrollView.contentSize = scrollViewSize;
     [self.table reloadData];
 }
 
@@ -204,19 +229,34 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
         self.lng = [_detailDictionary objectForKey:@"lng"];
         
         self.storeDesc = [_detailDictionary objectForKey:@"desc"];
-        self.descLabelFrame = CGRectMake(_scrollView.frame.origin.x, _scrollView.frame.origin.y+150, self.view.frame.size.width, 500.);
+        self.rateScoreString = [_detailDictionary objectForKey:@"rateScore"];
+        
+        
+                
+        self.descLabelFrame = CGRectMake(_scrollView.frame.origin.x, _scrollView.frame.origin.y+170, self.view.frame.size.width, 500.);
         self.descLabelSize = [_storeDesc sizeWithFont:[UIFont systemFontOfSize:14.]constrainedToSize:_descLabelFrame.size lineBreakMode:UILineBreakModeWordWrap];
         UILabel *label = [[UILabel alloc] initWithFrame:_descLabelFrame];
         label.backgroundColor = [UIColor groupTableViewBackgroundColor];
         self.descLabel= label;
-        [_descLabel setBackgroundColor:[UIColor orangeColor]];
+        [_descLabel setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
         _descLabel.layer.cornerRadius = 3.0f;
         [_descLabel setText:_storeDesc];
         [_descLabel setFont:[UIFont systemFontOfSize:14.]];
         self.descLabel.numberOfLines = 0;
         [_descLabel sizeToFit];
         [_scrollView addSubview:_descLabel];
-        [_table setFrame:CGRectMake(0, _descLabel.frame.origin.y+_descLabel.frame.size.height, _table.frame.size.width, _table.frame.size.height)];
+        [_scrollView setShowsVerticalScrollIndicator:NO];
+        
+        //使详情label与评论列表上下错开10个像素高度，放上一行分割线...................................................................
+        UIImageView *line1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detail_image"]];
+        [line1 setFrame:CGRectMake(0, _descLabel.frame.origin.y-10, 320, 10)];
+        [_scrollView addSubview:line1];
+        UIImageView *line2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detail_image"]];
+        [line2 setFrame:CGRectMake(0, _descLabel.frame.origin.y+_descLabel.frame.size.height, 320, 10)];
+        [_scrollView addSubview:line2];
+        
+        
+        [_table setFrame:CGRectMake(0, _descLabel.frame.origin.y+_descLabel.frame.size.height + 10, _table.frame.size.width, _table.frame.size.height)];
         
     }
 
@@ -250,8 +290,7 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
     }
     
     NSArray *array = [_tel componentsSeparatedByString:@" "];
-    NSLog(@"array:%@",array);
-    BlockActionSheet *sheet = [BlockActionSheet sheetWithTitle:@"拨打热线咨询"];
+    BlockActionSheet *sheet = [BlockActionSheet sheetWithTitle:@"拨打电话咨询"];
     [sheet setCancelButtonWithTitle:@"取消" atIndex:0 block:NULL];
     for (NSString *str in array) {
         [sheet addButtonWithTitle:str block:^{
@@ -277,30 +316,52 @@ SVWebViewController *webController = [[SVWebViewController alloc] initWithAddres
 }
 
 #pragma UITableViewDelegate And UITableViewDataSource
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    NSString *headerTitle = nil;
+    if (section == 0) {
+        headerTitle = @"";
+    } else if (section == 1) {
+        headerTitle = @"评论";
+    } else {
+        NSAssert(section > 1, @"tableview should have not more than 2 sections here");
+    }
+    UIView* myView = [[UIView alloc] init];
+    myView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"soft_detail_cell_bg"]];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 90, 22)];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.text=headerTitle;
+    [myView addSubview:titleLabel];
+    return myView;
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
 }
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    NSString *sectionTitle = nil;
-    if ([tableView isEqual:_table]) {
-        if (section == 0) {
-            sectionTitle = @"详情";
-        } else if (section == 1){
-            sectionTitle = @"评论列表";
-        } else {
-            NSAssert(section >1, @"tableview should have not more than 2 sections here");
-        }
-    }
-    return sectionTitle;
-}
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//  This Method is not needed again,Use tableView:viewForHeaderInSection: instead
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//    NSString *sectionTitle = nil;
+//    if ([tableView isEqual:_table]) {
+//        if (section == 0) {
+//            sectionTitle = @"详情";
+//        } else if (section == 1){
+//            sectionTitle = @"评论列表";
+//        } else {
+//            NSAssert(section >1, @"tableview should have not more than 2 sections here");
+//        }
+//    }
+//    return sectionTitle;
+//}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat rowHight = 0;
     if ([tableView isEqual:_table]) {
         if ([indexPath section] == 0) {
-            rowHight = 100;////这个高度待定，根据详情的文本多少而定
+            rowHight = HeaderCellHeight;
         } else if ([indexPath section] == 1){
-            rowHight = 50;////这个为评论的每一行，类似iPhone上PP助手应用的品论列表
+            rowHight = CommentCellHeight;////这个为评论的每一行，类似iPhone上PP助手应用的品论列表
         } else {
             NSAssert([indexPath section]>1, @"tableview should have not more than 2 sections here");
         }
@@ -328,23 +389,32 @@ SVWebViewController *webController = [[SVWebViewController alloc] initWithAddres
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellID];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellID];
+
+            UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"soft_detail_comment_icon"]];
+            [image setFrame:CGRectMake(10, 18, 20, 20)];
             
-            UITextView *descTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
-            descTextView.font = [UIFont fontWithName:@"Arial" size:14.0f];
-            descTextView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
-            descTextView.editable = NO;
-            descTextView.scrollEnabled = YES;
-            [descTextView setTag:descLabelTag];
+            UILabel *commentCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 18, 60, 20)];
+            [commentCountLabel setAdjustsFontSizeToFitWidth:YES];
+            [commentCountLabel setTag:commentCountLabelTag];
+            
+            UILabel *rateScoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width-70, 16, 70, 20)];
+            [rateScoreLabel setAdjustsFontSizeToFitWidth:YES];
+            [rateScoreLabel setTag:rateScoreLabelTag];
+            
             if (indexPath.section == 0) {
-                [cell.contentView addSubview:descTextView];
+                [cell.contentView addSubview:image];
+                [cell.contentView addSubview:commentCountLabel];
+                [cell.contentView addSubview:rateScoreLabel];
             }
             
             UIView *commentCellHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
             UILabel *commentUserLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
             UILabel *commentDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(250, 0, 70, 20)];
-            [commentCellHeader setBackgroundColor:[UIColor redColor]];
+            [commentCellHeader setBackgroundColor:[UIColor cyanColor]];
             [commentUserLabel setTag:commentUserLabelTag];
             [commentDateLabel setTag:commentDateLabelTag];
+            [commentUserLabel setBackgroundColor:[UIColor clearColor]];
+            [commentDateLabel setBackgroundColor:[UIColor clearColor]];
             [commentUserLabel setAdjustsFontSizeToFitWidth:YES];
             [commentDateLabel setAdjustsFontSizeToFitWidth:YES];
             
@@ -359,8 +429,6 @@ SVWebViewController *webController = [[SVWebViewController alloc] initWithAddres
             commentDictionary = [_commentsArray objectAtIndex:indexPath.row];
         }
 
-        UITextView *_descTextView = (UITextView *)[cell.contentView viewWithTag:descLabelTag];
-        [_descTextView setText:_storeDesc];
         
         UILabel *_commemtUserLabel = (UILabel *)[cell.contentView viewWithTag:commentUserLabelTag];
         [_commemtUserLabel setText:[commentDictionary objectForKey:@"uname"]];
@@ -369,7 +437,14 @@ SVWebViewController *webController = [[SVWebViewController alloc] initWithAddres
         NSString *pubTime = [commentDictionary objectForKey:@"pubtime"];
         NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[pubTime longLongValue]];//1367143197];
         [_commentDateLabel setText:[_dateFormatter stringFromDate:confromTimesp]];
+       
+        UILabel *_commentCountLabel = (UILabel *)[cell.contentView viewWithTag:commentCountLabelTag];
+        NSString *commentCountString = [NSString stringWithFormat:@"%@次",[_commentHeaerDic objectForKey:@"total"]];
+        [_commentCountLabel setText:commentCountString];
         
+        UILabel *_rateScoreLabel = (UILabel *)[cell.contentView viewWithTag:rateScoreLabelTag];
+        NSString *rateScoreString = [NSString stringWithFormat:@"综合分数:%@",_rateScoreString];
+        [_rateScoreLabel setText:rateScoreString];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
