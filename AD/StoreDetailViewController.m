@@ -18,7 +18,7 @@
 
 #define HeaderCellHeight 50
 #define CommentCellHeight 100
-
+#define commentCellHeaderHeight 20
 @interface StoreDetailViewController ()
 @property (nonatomic, retain) UIScrollView *scrollView;
 @property (nonatomic, strong) DLStarRatingControl *starRating;
@@ -37,7 +37,7 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
     commentCountLabelTag,
     rateScoreLabelTag,
     userAvatarViewTag,
-    
+    commentContentLabelTag,
 };
 
 @end
@@ -220,7 +220,6 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
         
         [_workTimeLabel setText:[NSString stringWithFormat:@"%@营业",[_detailDictionary objectForKey:@"work_time"]]];
         
-        //[_countyLabel setText:[NSString stringWithFormat:@"%@",[_detailDictionary objectForKey:@"county"]]];
         
         self.tel = [_detailDictionary objectForKey:@"tel"];
         
@@ -232,8 +231,6 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
         self.storeDesc = [_detailDictionary objectForKey:@"desc"];
         self.rateScoreString = [_detailDictionary objectForKey:@"rateScore"];
         
-        
-                
         self.descLabelFrame = CGRectMake(_scrollView.frame.origin.x, _scrollView.frame.origin.y+170, self.view.frame.size.width, 500.);
         self.descLabelSize = [_storeDesc sizeWithFont:[UIFont systemFontOfSize:14.]constrainedToSize:_descLabelFrame.size lineBreakMode:UILineBreakModeWordWrap];
         UILabel *label = [[UILabel alloc] initWithFrame:_descLabelFrame];
@@ -408,24 +405,29 @@ SVWebViewController *webController = [[SVWebViewController alloc] initWithAddres
                 [cell.contentView addSubview:rateScoreLabel];
             }
             
-            UIView *commentCellHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
+            UIView *commentCellHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, commentCellHeaderHeight)];
             UILabel *commentUserLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
             UILabel *commentDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(250, 0, 70, 20)];
-            UIImageView *userAvatarView = [[UIImageView alloc] initWithFrame:CGRectMake(2, 22, 44, 44)];
+            UIImageView *userAvatarView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+            UILabel *commentContentLabel = [[UILabel alloc] initWithFrame:CGRectMake(61, commentCellHeaderHeight, self.view.frame.size.width - 60, CommentCellHeight - commentCellHeaderHeight)];
             [commentCellHeader setBackgroundColor:[UIColor cyanColor]];
             [commentUserLabel setTag:commentUserLabelTag];
             [commentDateLabel setTag:commentDateLabelTag];
             [userAvatarView setTag:userAvatarViewTag];
+            [commentContentLabel setTag:commentContentLabelTag];
+            [userAvatarView setCenter:CGPointMake(35, (CommentCellHeight - commentCellHeaderHeight)/2.0 + userAvatarView.frame.size.height / 2.0 - 5)];
             [commentUserLabel setBackgroundColor:[UIColor clearColor]];
             [commentDateLabel setBackgroundColor:[UIColor clearColor]];
             [commentUserLabel setAdjustsFontSizeToFitWidth:YES];
             [commentDateLabel setAdjustsFontSizeToFitWidth:YES];
+            
             
             if (indexPath.section == 1) {
                 [cell.contentView addSubview:commentCellHeader];
                 [cell.contentView addSubview:commentUserLabel];
                 [cell.contentView addSubview:commentDateLabel];
                 [cell.contentView addSubview:userAvatarView];
+                [cell.contentView addSubview:commentContentLabel];
                 
                 
             }
@@ -434,7 +436,7 @@ SVWebViewController *webController = [[SVWebViewController alloc] initWithAddres
         
         if (indexPath.section == 1) {
             commentDictionary = [_commentsArray objectAtIndex:indexPath.row];
-            //NSLog(@"commentDictionary:%@",commentDictionary);
+            NSLog(@"commentDictionary:%@",commentDictionary);
         }
         UILabel *_commemtUserLabel = (UILabel *)[cell.contentView viewWithTag:commentUserLabelTag];
         [_commemtUserLabel setText:[commentDictionary objectForKey:@"uname"]];
@@ -456,10 +458,14 @@ SVWebViewController *webController = [[SVWebViewController alloc] initWithAddres
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [_userAvatarView setImageWithURL:[NSURL URLWithString:[commentDictionary objectForKey:@"avatar_url"]] placeholderImage:[UIImage imageNamed:@"user_avatar"] options:SDWebImageProgressiveDownload];
-            _userAvatarView.layer.cornerRadius = 4.0f;
         });
+        _userAvatarView.layer.cornerRadius = 4.0f;
         
-        
+        UILabel *_commentContentLabel = (UILabel *)[cell.contentView viewWithTag:commentContentLabelTag];
+        [_commentContentLabel setText:[commentDictionary objectForKey:@"content"]];
+        [_commentContentLabel setNumberOfLines:0];
+        [_commentContentLabel setFont:[UIFont systemFontOfSize:13.0f]];
+        [_commentContentLabel setAdjustsFontSizeToFitWidth:YES];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
      }
