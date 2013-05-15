@@ -9,28 +9,26 @@
 #import "ViewControllers.h"
 #import "ViewController.h"
 #import "SetCityViewController.h"
+#import "AboutViewController.h"
 @interface ViewControllers (){
 @private
 UIViewController 
-* viewControllerTwo_,
-    * viewControllerThree_;
+    * viewControllerTwo_;
 }
 
 @property (nonatomic, retain) UIViewController 
-* viewControllerTwo,
-* viewControllerThree;
+* viewControllerTwo;
 
 @end
 
 @implementation ViewControllers
-@synthesize viewControllerTwo   = viewControllerTwo_,
-viewControllerThree = viewControllerThree_;
+@synthesize viewControllerTwo   = viewControllerTwo_;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -46,28 +44,15 @@ viewControllerThree = viewControllerThree_;
 }
 - (void)setup {
     
-    
-    NSString *str = Search_Store(@"南阳", @"网吧");
-    //NSLog(@"%@",str);
-    NSString *str1 = Store_Detail(@"2029602847-421506714");
-    //NSLog(@"%@",str1);
-    
-    
-    
     self.viewFrame = (CGRect){CGPointZero, {kKYViewWidth, kKYViewHeight}};
-    self.viewFrame = CGRectMake(0, 20, CGRectGetWidth([UIScreen mainScreen].bounds), CGRectGetHeight([UIScreen mainScreen].applicationFrame));
-
     viewControllerTwo_   = [[UIViewController alloc] init];
-    viewControllerThree_ = [[UIViewController alloc] init];
     
     CGRect childViewFrame = self.viewFrame;
 
     [viewControllerTwo_.view   setFrame:childViewFrame];
-    [viewControllerThree_.view setFrame:childViewFrame];
     
 
     [viewControllerTwo_.view   setBackgroundColor:[UIColor redColor]];
-    [viewControllerThree_.view setBackgroundColor:[UIColor greenColor]];
     
     ViewController *VC = [[ViewController alloc] initWithNibName:nil bundle:nil];
     UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:VC];
@@ -76,15 +61,18 @@ viewControllerThree = viewControllerThree_;
     SetCityViewController *secondVC = [[SetCityViewController alloc] initWithNibName:nil bundle:nil];
     UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:secondVC];
     
-    self.tabBarItems = @[@{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat,1],
+    AboutViewController *aboutVC = [[AboutViewController alloc] initWithNibName:nil bundle:nil];
+    UINavigationController *nav4 = [[UINavigationController alloc] initWithRootViewController:aboutVC];
+    
+    self.tabBarItems = @[@{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat,3],
                            @"viewController" : nav1},
-                         @{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat, 2],
+                         @{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat, 1],
                            @"viewController" : nav2},
-                         @{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat, 3],
+                         @{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat, 2],
                            @"viewController" : viewControllerTwo_},
                         
                          @{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat, 4],
-                           @"viewController" : viewControllerThree_}];
+                           @"viewController" : nav4}];
     
 }
 - (void)didReceiveMemoryWarning

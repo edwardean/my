@@ -133,6 +133,23 @@
 		CABB8662173D1C780068DE76 /* 电影院_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CABB8661173D1C780068DE76 /* 电影院_icon.png */; };
 		CAC24F21174370C200CEA478 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC24F1F174370BD00CEA478 /* icon.png */; };
 		CAC24F22174370C200CEA478 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC24F20174370C000CEA478 /* icon@2x.png */; };
+		CAC24F411743C66F00CEA478 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC24F291743C66F00CEA478 /* AboutViewController.m */; };
+		CAC24F421743C66F00CEA478 /* ASDepthModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC24F2B1743C66F00CEA478 /* ASDepthModalViewController.m */; };
+		CAC24F431743C66F00CEA478 /* button_background.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC24F2C1743C66F00CEA478 /* button_background.png */; };
+		CAC24F441743C66F00CEA478 /* button_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC24F2D1743C66F00CEA478 /* button_background@2x.png */; };
+		CAC24F451743C66F00CEA478 /* button_background_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC24F2E1743C66F00CEA478 /* button_background_disabled.png */; };
+		CAC24F461743C66F00CEA478 /* button_background_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC24F2F1743C66F00CEA478 /* button_background_disabled@2x.png */; };
+		CAC24F471743C66F00CEA478 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC24F311743C66F00CEA478 /* DetailViewController.m */; };
+		CAC24F481743C66F00CEA478 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC24F321743C66F00CEA478 /* DetailViewController.xib */; };
+		CAC24F491743C66F00CEA478 /* Harpy.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC24F351743C66F00CEA478 /* Harpy.m */; };
+		CAC24F4A1743C66F00CEA478 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CAC24F371743C66F00CEA478 /* README.md */; };
+		CAC24F4B1743C66F00CEA478 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC24F391743C66F00CEA478 /* HelpViewController.m */; };
+		CAC24F4C1743C66F00CEA478 /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC24F3A1743C66F00CEA478 /* HelpViewController.xib */; };
+		CAC24F4D1743C66F00CEA478 /* KGModal.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC24F3C1743C66F00CEA478 /* KGModal.m */; };
+		CAC24F4E1743C66F00CEA478 /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = CAC24F3D1743C66F00CEA478 /* license.txt */; };
+		CAC24F4F1743C66F00CEA478 /* pattern1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CAC24F3E1743C66F00CEA478 /* pattern1.jpg */; };
+		CAC24F501743C66F00CEA478 /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = CAC24F3F1743C66F00CEA478 /* readme.md */; };
+		CAC24F511743C66F00CEA478 /* softlogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CAC24F401743C66F00CEA478 /* softlogo.jpg */; };
 		CAC80211173FF3100080353B /* action-black-button-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC801FA173FF3100080353B /* action-black-button-selected.png */; };
 		CAC80212173FF3100080353B /* action-black-button-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC801FB173FF3100080353B /* action-black-button-selected@2x.png */; };
 		CAC80213173FF3100080353B /* action-black-button.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC801FC173FF3100080353B /* action-black-button.png */; };
@@ -373,6 +390,30 @@
 		CABB8661173D1C780068DE76 /* 电影院_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "电影院_icon.png"; sourceTree = "<group>"; };
 		CAC24F1F174370BD00CEA478 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		CAC24F20174370C000CEA478 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		CAC24F281743C66F00CEA478 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		CAC24F291743C66F00CEA478 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		CAC24F2A1743C66F00CEA478 /* ASDepthModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASDepthModalViewController.h; sourceTree = "<group>"; };
+		CAC24F2B1743C66F00CEA478 /* ASDepthModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASDepthModalViewController.m; sourceTree = "<group>"; };
+		CAC24F2C1743C66F00CEA478 /* button_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_background.png; sourceTree = "<group>"; };
+		CAC24F2D1743C66F00CEA478 /* button_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_background@2x.png"; sourceTree = "<group>"; };
+		CAC24F2E1743C66F00CEA478 /* button_background_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_background_disabled.png; sourceTree = "<group>"; };
+		CAC24F2F1743C66F00CEA478 /* button_background_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_background_disabled@2x.png"; sourceTree = "<group>"; };
+		CAC24F301743C66F00CEA478 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		CAC24F311743C66F00CEA478 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		CAC24F321743C66F00CEA478 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		CAC24F341743C66F00CEA478 /* Harpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Harpy.h; sourceTree = "<group>"; };
+		CAC24F351743C66F00CEA478 /* Harpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Harpy.m; sourceTree = "<group>"; };
+		CAC24F361743C66F00CEA478 /* HarpyConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HarpyConstants.h; sourceTree = "<group>"; };
+		CAC24F371743C66F00CEA478 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		CAC24F381743C66F00CEA478 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		CAC24F391743C66F00CEA478 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		CAC24F3A1743C66F00CEA478 /* HelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
+		CAC24F3B1743C66F00CEA478 /* KGModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGModal.h; sourceTree = "<group>"; };
+		CAC24F3C1743C66F00CEA478 /* KGModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGModal.m; sourceTree = "<group>"; };
+		CAC24F3D1743C66F00CEA478 /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
+		CAC24F3E1743C66F00CEA478 /* pattern1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pattern1.jpg; sourceTree = "<group>"; };
+		CAC24F3F1743C66F00CEA478 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.md; sourceTree = "<group>"; };
+		CAC24F401743C66F00CEA478 /* softlogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = softlogo.jpg; sourceTree = "<group>"; };
 		CAC801FA173FF3100080353B /* action-black-button-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action-black-button-selected.png"; sourceTree = "<group>"; };
 		CAC801FB173FF3100080353B /* action-black-button-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action-black-button-selected@2x.png"; sourceTree = "<group>"; };
 		CAC801FC173FF3100080353B /* action-black-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action-black-button.png"; sourceTree = "<group>"; };
@@ -507,6 +548,7 @@
 		0913E21D166CCB020096A686 /* AD */ = {
 			isa = PBXGroup;
 			children = (
+				CAC24F271743C66F00CEA478 /* About */,
 				CA462D4117407C990096E447 /* SelectCity */,
 				0913E226166CCB030096A686 /* AppDelegate.h */,
 				0913E227166CCB030096A686 /* AppDelegate.m */,
@@ -801,6 +843,45 @@
 				CABB8655173D1C2D0068DE76 /* 高尔夫_icon.png */,
 			);
 			path = icons;
+			sourceTree = "<group>";
+		};
+		CAC24F271743C66F00CEA478 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				CAC24F281743C66F00CEA478 /* AboutViewController.h */,
+				CAC24F291743C66F00CEA478 /* AboutViewController.m */,
+				CAC24F2A1743C66F00CEA478 /* ASDepthModalViewController.h */,
+				CAC24F2B1743C66F00CEA478 /* ASDepthModalViewController.m */,
+				CAC24F2C1743C66F00CEA478 /* button_background.png */,
+				CAC24F2D1743C66F00CEA478 /* button_background@2x.png */,
+				CAC24F2E1743C66F00CEA478 /* button_background_disabled.png */,
+				CAC24F2F1743C66F00CEA478 /* button_background_disabled@2x.png */,
+				CAC24F301743C66F00CEA478 /* DetailViewController.h */,
+				CAC24F311743C66F00CEA478 /* DetailViewController.m */,
+				CAC24F321743C66F00CEA478 /* DetailViewController.xib */,
+				CAC24F331743C66F00CEA478 /* Harpy */,
+				CAC24F381743C66F00CEA478 /* HelpViewController.h */,
+				CAC24F391743C66F00CEA478 /* HelpViewController.m */,
+				CAC24F3A1743C66F00CEA478 /* HelpViewController.xib */,
+				CAC24F3B1743C66F00CEA478 /* KGModal.h */,
+				CAC24F3C1743C66F00CEA478 /* KGModal.m */,
+				CAC24F3D1743C66F00CEA478 /* license.txt */,
+				CAC24F3E1743C66F00CEA478 /* pattern1.jpg */,
+				CAC24F3F1743C66F00CEA478 /* readme.md */,
+				CAC24F401743C66F00CEA478 /* softlogo.jpg */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
+		CAC24F331743C66F00CEA478 /* Harpy */ = {
+			isa = PBXGroup;
+			children = (
+				CAC24F341743C66F00CEA478 /* Harpy.h */,
+				CAC24F351743C66F00CEA478 /* Harpy.m */,
+				CAC24F361743C66F00CEA478 /* HarpyConstants.h */,
+				CAC24F371743C66F00CEA478 /* README.md */,
+			);
+			path = Harpy;
 			sourceTree = "<group>";
 		};
 		CAC801F9173FF30F0080353B /* BlockActionSheet */ = {
@@ -1137,6 +1218,17 @@
 				CAED41BE17433D8900FBF49D /* user_avatar.png in Resources */,
 				CAC24F21174370C200CEA478 /* icon.png in Resources */,
 				CAC24F22174370C200CEA478 /* icon@2x.png in Resources */,
+				CAC24F431743C66F00CEA478 /* button_background.png in Resources */,
+				CAC24F441743C66F00CEA478 /* button_background@2x.png in Resources */,
+				CAC24F451743C66F00CEA478 /* button_background_disabled.png in Resources */,
+				CAC24F461743C66F00CEA478 /* button_background_disabled@2x.png in Resources */,
+				CAC24F481743C66F00CEA478 /* DetailViewController.xib in Resources */,
+				CAC24F4A1743C66F00CEA478 /* README.md in Resources */,
+				CAC24F4C1743C66F00CEA478 /* HelpViewController.xib in Resources */,
+				CAC24F4E1743C66F00CEA478 /* license.txt in Resources */,
+				CAC24F4F1743C66F00CEA478 /* pattern1.jpg in Resources */,
+				CAC24F501743C66F00CEA478 /* readme.md in Resources */,
+				CAC24F511743C66F00CEA478 /* softlogo.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1188,6 +1280,12 @@
 				CA462D3D1740719D0096E447 /* DDAnnotationView.m in Sources */,
 				CA462D5617408A4A0096E447 /* SetCityViewController.m in Sources */,
 				CAAC4DA417428E8E00D644EF /* UIAlertView+Blocks.m in Sources */,
+				CAC24F411743C66F00CEA478 /* AboutViewController.m in Sources */,
+				CAC24F421743C66F00CEA478 /* ASDepthModalViewController.m in Sources */,
+				CAC24F471743C66F00CEA478 /* DetailViewController.m in Sources */,
+				CAC24F491743C66F00CEA478 /* Harpy.m in Sources */,
+				CAC24F4B1743C66F00CEA478 /* HelpViewController.m in Sources */,
+				CAC24F4D1743C66F00CEA478 /* KGModal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
