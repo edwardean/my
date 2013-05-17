@@ -30,6 +30,10 @@
 @property (nonatomic, strong) UILabel *descLabel;
 @property (nonatomic, assign) CGRect descLabelFrame;
 @property (nonatomic, assign) CGSize descLabelSize;
+
+@property (nonatomic, assign) BOOL isLoadInfoMethodFinished;
+
+@property (nonatomic, strong) UIImageView *line1,*line2;
 typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
     descLabelTag = 1,
     commentUserLabelTag,
@@ -151,7 +155,13 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         self.dateFormatter = formatter;
         [_dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        
+        self.line1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detail_image"]];
+        self.line2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detail_image"]];
+        [_scrollView addSubview:_line1];
+        [_scrollView addSubview:_line2];
     }
+    self.isLoadInfoMethodFinished = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -196,6 +206,7 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
 
 #pragma mark -
 #pragma 由其"委托者"调用，加载视图数据
+
 - (void)loadInfo {
     NSLog(@"%s",__func__);
     @autoreleasepool {
@@ -206,7 +217,7 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
         [self.img setImageWithURL:[NSURL URLWithString:[_detailDictionary objectForKey:@"img_url"]] placeholderImage:[UIImage imageNamed:@"placeholder_bg"] options:SDWebImageProgressiveDownload success:^(UIImage *image) {
             
         } failure:^(NSError *error) {
-            //NSLog(@"加载失败");
+            NSLog(@"加载失败");
             [weakSelf.img setImage:[UIImage imageNamed:@"photoDefault.jpg"]];
         }];
         
@@ -250,21 +261,30 @@ typedef NS_ENUM(NSInteger, DetailAndCommentLabelTag){
         [_scrollView setShowsVerticalScrollIndicator:NO];
         
         //使详情label与评论列表上下错开10个像素高度，放上一行分割线...................................................................
-        UIImageView *line1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detail_image"]];
-        [line1 setFrame:CGRectMake(0, _descLabel.frame.origin.y-10, 320, 10)];
-        [_scrollView addSubview:line1];
-        UIImageView *line2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"detail_image"]];
-        [line2 setFrame:CGRectMake(0, _descLabel.frame.origin.y+_descLabel.frame.size.height, 320, 10)];
-        [_scrollView addSubview:line2];
-        
-        
+        [_line1 setFrame:CGRectMake(0, _descLabel.frame.origin.y-10, 320, 10)];
+
+        [_line2 setFrame:CGRectMake(0, _descLabel.frame.origin.y+_descLabel.frame.size.height, 320, 10)];
+
         [_table setFrame:CGRectMake(0, _descLabel.frame.origin.y+_descLabel.frame.size.height + 10, _table.frame.size.width, _table.frame.size.height)];
         
+        }
+
     }
-
+    self.isLoadInfoMethodFinished = YES;
 }
-}
 
+
+- (void)setIsLoadInfoMethodFinished:(BOOL)isLoadInfoMethodFinished {
+    
+    _isLoadInfoMethodFinished = isLoadInfoMethodFinished;
+    if (_isLoadInfoMethodFinished) {
+        NSLog(@"%s",__func__);
+        CGSize scrollViewSize = CGSizeZero;
+        scrollViewSize.height = (_table.frame.size.height + _descLabelSize.height)*1.5;
+        _scrollView.contentSize = scrollViewSize;
+        [self.table reloadData];
+    }
+}
 #pragma mark -
 #pragma 扇形菜单动作
 - (void)locateAction:(id)sender {
@@ -419,8 +439,9 @@ SVWebViewController *webController = [[SVWebViewController alloc] initWithAddres
             [commentDateLabel setTag:commentDateLabelTag];
             [userAvatarView setTag:userAvatarViewTag];
             [commentContentLabel setTag:commentContentLabelTag];
-            [userAvatarView setCenter:CGPointMake(35, (CommentCellHeight - commentCellHeaderHeight)/2.0 + userAvatarView.frame.size.height / 2.0 - 5)];
+            [userAvatarView setCenter:CGPointMake(33, (CommentCellHeight - commentCellHeaderHeight)/2.0 + userAvatarView.frame.size.height / 2.0 - 5)];
             [userAvatarView.layer setCornerRadius:4.f];
+            [userAvatarView.layer setMasksToBounds:YES];
             [commentUserLabel setBackgroundColor:[UIColor clearColor]];
             [commentDateLabel setBackgroundColor:[UIColor clearColor]];
             [commentUserLabel setAdjustsFontSizeToFitWidth:YES];
@@ -458,11 +479,12 @@ SVWebViewController *webController = [[SVWebViewController alloc] initWithAddres
         
         
         UIImageView *_userAvatarView = (UIImageView *)[cell.contentView viewWithTag:userAvatarViewTag];
-        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [_userAvatarView setImageWithURL:[NSURL URLWithString:[commentDictionary objectForKey:@"avatar_url"]] placeholderImage:[UIImage imageNamed:@"user_avatar"] options:SDWebImageProgressiveDownload];
+            [_userAvatarView setImageWithURL:[commentDictionary objectForKey:@"avatar_url"] placeholderImage:[UIImage imageNamed:@"user_avatar"] options:SDWebImageProgressiveDownload success:^(UIImage *image) {
+            } failure:^(NSError *error) {
+                
+            }];
         });
-        //_userAvatarView.layer.cornerRadius = 4.0f;
         
         UILabel *_commentContentLabel = (UILabel *)[cell.contentView viewWithTag:commentContentLabelTag];
         [_commentContentLabel setText:[commentDictionary objectForKey:@"content"]];
@@ -490,16 +512,16 @@ SVWebViewController *webController = [[SVWebViewController alloc] initWithAddres
     self.commentsArray = [parser ParseStoreCommentData:data];
     self.commentHeaerDic = [_commentsArray lastObject];
     CGRect tableViewFrame = _table.frame;
-    tableViewFrame.size.height = ([_commentsArray count] +1)*CommentCellHeight;
+    tableViewFrame.size.height = [_commentsArray count]*CommentCellHeight + 2*HeaderCellHeight;
     _table.frame = tableViewFrame;
     NSLog(@"Count:%d  descLabelSize.height:%.1f  _table.frame.height:%.1f",[_commentsArray count],_descLabelSize.height,tableViewFrame.size.height);
     
     CGSize scrollViewSize = CGSizeZero;
-   
-    //scrollViewSize.height = ([_commentsArray count] + 1)*CommentCellHeight + _descLabelSize.height + 350;
-    scrollViewSize.height = tableViewFrame.size.height + _descLabelSize.height + 350;
+    scrollViewSize.height = (tableViewFrame.size.height + _descLabelSize.height)*1.5;
      NSLog(@"scrollViewSize.hight:%.1f",scrollViewSize.height);
     _scrollView.contentSize = scrollViewSize;
     [self.table reloadData];
+    
+    self.isLoadInfoMethodFinished = NO;
 }
 @end

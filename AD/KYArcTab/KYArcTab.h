@@ -40,7 +40,7 @@
 
 
 @interface KYArcTab : UIView {
-  NSObject <KYArcTabDelegate> * delegate_;
+ __unsafe_unretained NSObject <KYArcTabDelegate> * delegate_;
   NSMutableArray              * buttons_;
   NSInteger                     previousItemIndex_;
 }

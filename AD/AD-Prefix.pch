@@ -22,4 +22,7 @@
 #import "DejalActivityView.h"
 #import "SVWebViewController.h"
 #import "UIAlertView+Blocks.h"
+#import <ShareSDK/ShareSDK.h>
+#import <QQApi/QQApi.h>
+#import "WXApi.h"
 #endif

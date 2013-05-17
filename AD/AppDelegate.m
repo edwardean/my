@@ -10,16 +10,42 @@
 
 #import "ViewController.h"
 
-
 #import "ViewControllers.h"
 @implementation AppDelegate
 
+
+- (void)initilalizePlat {
+    //SinaWeibo
+   [ShareSDK connectSinaWeiboWithAppKey:SinaWeiboAppKey appSecret:SinaWeiboAppSecret redirectUri:SinaWeiboRedirectURI];
+    
+    //TencentWeibo
+    [ShareSDK connectTencentWeiboWithAppKey:TencentWeiboAppKey appSecret:TencentWeiboAppSecret redirectUri:TencentWeiboRedirectURI];
+    //QZone
+    [ShareSDK connectQZoneWithAppKey:QZoneAppKey appSecret:QZoneAppSecret];
+    
+    //QQ
+    [ShareSDK connectQQWithAppId:QQApiID qqApiCls:[QQApi class]];
+    
+    //KaiXin
+    [ShareSDK connectKaiXinWithAppKey:KaiXinAppKey appSecret:KaiXinAppSecret redirectUri:KaiXinAppRedirectURI];
+    
+    //RenRen
+    [ShareSDK connectRenRenWithAppKey:RenRenAppKey appSecret:RenRenAppSecret];
+
+    //WeiChat
+    [ShareSDK connectWeChatWithAppId:WeiChatAppKey wechatCls:[WXApi class]];
+}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //设置应用Api信息
     [AibangApi setAppkey:APP_KEY];
+    
+    [ShareSDK registerApp:ShareSDKAppKey];
+    [ShareSDK convertUrlEnabled:YES];
+    [self initilalizePlat];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    //[[UIApplication sharedApplication] setStatusBarHidden:YES];
     ViewControllers *viewControllers = [[ViewControllers alloc] initWithTitle:nil
                                                                    tabBarSize:(CGSize){kKYTabBarWdith, kKYTabBarHeight}
                                                         tabBarBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:kKYITabBarBackground]]
@@ -30,6 +56,12 @@
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [ShareSDK handleOpenURL:url wxDelegate:self];
+}
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [ShareSDK handleOpenURL:url sourceApplication:sourceApplication annotation:annotation wxDelegate:self];
+}
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

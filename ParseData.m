@@ -73,7 +73,7 @@
             }
         }
     }
-    [tbxml release];
+    //[tbxml release];
     return array;
 }
 - (NSDictionary *)ParseStoreDetailData:(NSData *)data {
@@ -125,7 +125,7 @@
         }
     }
     
-    [tbxml release];
+    //[tbxml release];
     return dictionary;
 }
 - (NSMutableArray *)ParseStoreCommentData:(NSData *)data {
@@ -173,7 +173,7 @@
             }
         }
     }
-    [xmlParse release];
+    //[xmlParse release];
     return array;
 }
 - (NSMutableArray *)ParseStoreImageData:(NSData *)data {
@@ -219,7 +219,7 @@
         }
     }
     
-    [xmlParse release];
+    //[xmlParse release];
     return array;
 }
 @end

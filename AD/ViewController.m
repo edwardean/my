@@ -48,7 +48,7 @@
     [NSTimer scheduledTimerWithTimeInterval:1 target: self selector: @selector(handleTimer:)  userInfo:nil  repeats: YES];
     self.array = @[@"ktv",@"spa",@"健身",@"咖啡",@"推拿",@"棋牌",@"游泳",@"网吧",@"茶艺",@"足疗",@"马术",@"高尔夫"];
     
-    self.iconArray = @[@"电影院_icon",@"ktv_icon",@"spa_icon",@"健身_icon",@"coffie",@"按摩_icon",@"游泳_icon",@"网吧_icon",@"茶艺_icon",@"象棋_icon",@"horse_icon",@"高尔夫_icon"];
+    self.iconArray = @[@"电影院_icon.png",@"ktv_icon",@"spa_icon",@"健身_icon",@"coffie",@"按摩_icon",@"游泳_icon",@"网吧_icon",@"茶艺_icon",@"象棋_icon",@"horse_icon",@"高尔夫_icon"];
     [self AddImg];
     [self setCurrentPage:page.currentPage];
     

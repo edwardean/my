@@ -74,7 +74,8 @@ NSString *const KGModalGradientViewTapped = @"KGModalGradientViewTapped";
     self.window.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.window.opaque = NO;
 
-    KGModalViewController *viewController = self.viewController = [[KGModalViewController alloc] init];
+    KGModalViewController *viewController  = [[KGModalViewController alloc] init];
+    self.viewController = viewController;
     self.window.rootViewController = viewController;
 
     CGFloat padding = 17;
@@ -82,7 +83,8 @@ NSString *const KGModalGradientViewTapped = @"KGModalGradientViewTapped";
     containerViewRect.origin.x = containerViewRect.origin.y = 0;
     containerViewRect.origin.x = round(CGRectGetMidX(self.window.bounds)-CGRectGetMidX(containerViewRect));
     containerViewRect.origin.y = round(CGRectGetMidY(self.window.bounds)-CGRectGetMidY(containerViewRect));
-    KGModalContainerView *containerView = self.containerView = [[KGModalContainerView alloc] initWithFrame:containerViewRect];
+    KGModalContainerView *containerView  = [[KGModalContainerView alloc] initWithFrame:containerViewRect];
+    self.containerView = containerView;
     containerView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|
     UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
     containerView.layer.rasterizationScale = [[UIScreen mainScreen] scale];
@@ -90,7 +92,8 @@ NSString *const KGModalGradientViewTapped = @"KGModalGradientViewTapped";
     [containerView addSubview:contentView];
     [viewController.view addSubview:containerView];
 
-    KGModalCloseButton *closeButton = self.closeButton = [[KGModalCloseButton alloc] init];
+    KGModalCloseButton *closeButton  = [[KGModalCloseButton alloc] init];
+    self.closeButton = closeButton;
     [closeButton addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
     [closeButton setHidden:!self.showCloseButton];
     [containerView addSubview:closeButton];
@@ -187,7 +190,8 @@ NSString *const KGModalGradientViewTapped = @"KGModalGradientViewTapped";
     self.view.backgroundColor = [UIColor clearColor];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     
-    KGModalGradientView *styleView = self.styleView = [[KGModalGradientView alloc] initWithFrame:self.view.bounds];
+    KGModalGradientView *styleView = [[KGModalGradientView alloc] initWithFrame:self.view.bounds];
+    self.styleView = styleView;
     styleView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     styleView.opaque = NO;
     [self.view addSubview:styleView];

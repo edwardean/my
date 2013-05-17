@@ -24,7 +24,6 @@
 #if ! __has_feature(objc_arc)
 #define SDWIAutorelease(__v) ([__v autorelease]);
 #define SDWIReturnAutoreleased SDWIAutorelease
-
 #define SDWIRetain(__v) ([__v retain]);
 #define SDWIReturnRetained SDWIRetain
 

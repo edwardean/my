@@ -207,8 +207,10 @@ typedef enum {
 
 - (void)requestDidFinishWithData:(NSData *)data aibangApi:(id)aibangApi {
     ParseData *paser = [[ParseData alloc] init];
+    
+
     storeDetail.detailDictionary = [paser ParseStoreDetailData:data];
-    //[storeDetail.table reloadData];
     [storeDetail loadInfo];
+    [storeDetail.table reloadData];
 }
 @end

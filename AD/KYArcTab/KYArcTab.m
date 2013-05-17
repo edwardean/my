@@ -61,7 +61,7 @@ static CGSize tabBarSize_, itemSize_;
   self.buttons  = nil;
   self.menuArea = nil;
   self.arrow    = nil;
-  [super dealloc];
+  //[super dealloc];
 }
 
 // Designated initializer

@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "SetCityViewController.h"
 #import "AboutViewController.h"
+#import "ShareViewController.h"
 @interface ViewControllers (){
 @private
 UIViewController 
@@ -49,7 +50,7 @@ UIViewController
     
     CGRect childViewFrame = self.viewFrame;
 
-    [viewControllerTwo_.view   setFrame:childViewFrame];
+    //[viewControllerTwo_.view   setFrame:childViewFrame];
     
 
     [viewControllerTwo_.view   setBackgroundColor:[UIColor redColor]];
@@ -64,12 +65,15 @@ UIViewController
     AboutViewController *aboutVC = [[AboutViewController alloc] initWithNibName:nil bundle:nil];
     UINavigationController *nav4 = [[UINavigationController alloc] initWithRootViewController:aboutVC];
     
+    ShareViewController *shareVC = [[ShareViewController alloc] initWithNibName:nil bundle:nil];
+    UINavigationController *nav3 = [[UINavigationController alloc] initWithRootViewController:shareVC];
+    
     self.tabBarItems = @[@{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat,3],
                            @"viewController" : nav1},
                          @{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat, 1],
                            @"viewController" : nav2},
                          @{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat, 2],
-                           @"viewController" : viewControllerTwo_},
+                           @"viewController" : nav3/*viewControllerTwo_*/},
                         
                          @{@"image"          : [NSString stringWithFormat:kKYITabBarItemImageNameFormat, 4],
                            @"viewController" : nav4}];
@@ -82,4 +86,17 @@ UIViewController
     // Dispose of any resources that can be recreated.
 }
 
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return UIInterfaceOrientationIsPortrait(toInterfaceOrientation);
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (BOOL)shouldAutorotate {
+    return YES;
+}
 @end
