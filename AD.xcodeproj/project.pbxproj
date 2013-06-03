@@ -21,6 +21,7 @@
 		CA66B215173F82C200098731 /* DLStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA66B211173F82C200098731 /* DLStarView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CA66B216173F82C200098731 /* UIView+Subviews.m in Sources */ = {isa = PBXBuildFile; fileRef = CA66B213173F82C200098731 /* UIView+Subviews.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CA66B246173FA9C700098731 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA66B245173FA9C600098731 /* CoreImage.framework */; };
+		CA7C3810175C70960023DF4E /* BugSense-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA7C380F175C70960023DF4E /* BugSense-iOS.framework */; };
 		CA9D449117450B2F00999B06 /* DouBanConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA9D446717450B2F00999B06 /* DouBanConnection.framework */; };
 		CA9D449217450B2F00999B06 /* FacebookConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA9D446817450B2F00999B06 /* FacebookConnection.framework */; };
 		CA9D449317450B2F00999B06 /* InstapaperConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA9D446917450B2F00999B06 /* InstapaperConnection.framework */; };
@@ -315,6 +316,7 @@
 		CA66B243173F98EC00098731 /* diwen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "diwen@2x.png"; sourceTree = "<group>"; };
 		CA66B245173FA9C600098731 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		CA66B25C173FCA9100098731 /* Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Bundle.bundle; sourceTree = "<group>"; };
+		CA7C380F175C70960023DF4E /* BugSense-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "BugSense-iOS.framework"; sourceTree = "<group>"; };
 		CA9D446717450B2F00999B06 /* DouBanConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DouBanConnection.framework; sourceTree = "<group>"; };
 		CA9D446817450B2F00999B06 /* FacebookConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookConnection.framework; sourceTree = "<group>"; };
 		CA9D446917450B2F00999B06 /* InstapaperConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = InstapaperConnection.framework; sourceTree = "<group>"; };
@@ -585,6 +587,7 @@
 				CA9D44AF17450B2F00999B06 /* ShareSDKiPhoneAppRecommendShareViewUI.framework in Frameworks */,
 				CA9D44B117450B2F00999B06 /* ShareSDKiPhoneDefaultShareViewUI.framework in Frameworks */,
 				CA9D44B317450B2F00999B06 /* ShareSDKiPhoneSimpleShareViewUI.framework in Frameworks */,
+				CA7C3810175C70960023DF4E /* BugSense-iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,6 +614,7 @@
 		0913E216166CCB020096A686 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CA7C380F175C70960023DF4E /* BugSense-iOS.framework */,
 				CA9D44B817450B6400999B06 /* libicucore.dylib */,
 				CA9D44B617450B5700999B06 /* SystemConfiguration.framework */,
 				CAE965AC1740691500091098 /* MessageUI.framework */,
@@ -1514,6 +1518,7 @@
 		0913E238166CCB030096A686 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/AD/ShareSDK_v2.1.1/Connection\"",
@@ -1521,21 +1526,25 @@
 					"\"$(SRCROOT)/AD/ShareSDK_v2.1.1/Extend\"",
 					"\"$(SRCROOT)/AD/ShareSDK_v2.1.1\"",
 					"\"$(SRCROOT)/AD/ShareSDK_v2.1.1/UI\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AD/AD-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/SDWebImage\"";
 				INFOPLIST_FILE = "AD/AD-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/AD/ShareSDK_v2.1.1/Extend/SDKExport\"",
+					"\"$(SRCROOT)/SDWebImage\"",
 				);
 				OTHER_LDFLAGS = (
 					"-force_load",
 					"${BUILT_PRODUCTS_DIR}/libSDWebImageARC.a",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = YES;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1544,6 +1553,7 @@
 		0913E239166CCB030096A686 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/AD/ShareSDK_v2.1.1/Connection\"",
@@ -1551,21 +1561,25 @@
 					"\"$(SRCROOT)/AD/ShareSDK_v2.1.1/Extend\"",
 					"\"$(SRCROOT)/AD/ShareSDK_v2.1.1\"",
 					"\"$(SRCROOT)/AD/ShareSDK_v2.1.1/UI\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AD/AD-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/SDWebImage\"";
 				INFOPLIST_FILE = "AD/AD-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/AD/ShareSDK_v2.1.1/Extend/SDKExport\"",
+					"\"$(SRCROOT)/SDWebImage\"",
 				);
 				OTHER_LDFLAGS = (
 					"-force_load",
 					"${BUILT_PRODUCTS_DIR}/libSDWebImageARC.a",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = YES;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
