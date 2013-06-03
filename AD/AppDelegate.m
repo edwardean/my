@@ -11,6 +11,8 @@
 #import "ViewController.h"
 
 #import "ViewControllers.h"
+
+#import "SharedBugSenseController.h"
 @implementation AppDelegate
 
 
@@ -43,6 +45,9 @@
     [ShareSDK registerApp:ShareSDKAppKey];
     [ShareSDK convertUrlEnabled:YES];
     [self initilalizePlat];
+    [SharedBugSenseController sharedBugSenseController];
+    [BugSenseController setUsesProxy:YES];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     [[UIApplication sharedApplication] setStatusBarHidden:YES];

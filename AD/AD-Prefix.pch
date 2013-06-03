@@ -25,4 +25,5 @@
 #import <ShareSDK/ShareSDK.h>
 #import <QQApi/QQApi.h>
 #import "WXApi.h"
+#import <BugSense-iOS/BugSenseController.h>
 #endif

@@ -11,6 +11,8 @@
 #define US [NSUserDefaults standardUserDefaults]
 #define CITYKEY @"key"
 
+#define BUGAPIKEY               @"407fe0dd"
+
 //ShareSDKAppKey
 #define ShareSDKAppKey          @"37cecbd32a0"
 

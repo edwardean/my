@@ -22,6 +22,7 @@
 		CA66B216173F82C200098731 /* UIView+Subviews.m in Sources */ = {isa = PBXBuildFile; fileRef = CA66B213173F82C200098731 /* UIView+Subviews.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CA66B246173FA9C700098731 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA66B245173FA9C600098731 /* CoreImage.framework */; };
 		CA7C3810175C70960023DF4E /* BugSense-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA7C380F175C70960023DF4E /* BugSense-iOS.framework */; };
+		CA7C3815175C76190023DF4E /* SharedBugSenseController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7C3814175C76190023DF4E /* SharedBugSenseController.m */; };
 		CA9D449117450B2F00999B06 /* DouBanConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA9D446717450B2F00999B06 /* DouBanConnection.framework */; };
 		CA9D449217450B2F00999B06 /* FacebookConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA9D446817450B2F00999B06 /* FacebookConnection.framework */; };
 		CA9D449317450B2F00999B06 /* InstapaperConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA9D446917450B2F00999B06 /* InstapaperConnection.framework */; };
@@ -317,6 +318,8 @@
 		CA66B245173FA9C600098731 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		CA66B25C173FCA9100098731 /* Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Bundle.bundle; sourceTree = "<group>"; };
 		CA7C380F175C70960023DF4E /* BugSense-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "BugSense-iOS.framework"; sourceTree = "<group>"; };
+		CA7C3813175C76190023DF4E /* SharedBugSenseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedBugSenseController.h; sourceTree = "<group>"; };
+		CA7C3814175C76190023DF4E /* SharedBugSenseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedBugSenseController.m; sourceTree = "<group>"; };
 		CA9D446717450B2F00999B06 /* DouBanConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DouBanConnection.framework; sourceTree = "<group>"; };
 		CA9D446817450B2F00999B06 /* FacebookConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookConnection.framework; sourceTree = "<group>"; };
 		CA9D446917450B2F00999B06 /* InstapaperConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = InstapaperConnection.framework; sourceTree = "<group>"; };
@@ -653,6 +656,8 @@
 				CAE965AF17406C1D00091098 /* MapViewController.m */,
 				CAE19288173DE76D003FB844 /* ParseData.h */,
 				CAE19289173DE76D003FB844 /* ParseData.m */,
+				CA7C3813175C76190023DF4E /* SharedBugSenseController.h */,
+				CA7C3814175C76190023DF4E /* SharedBugSenseController.m */,
 				CAE1927E173DCD72003FB844 /* Help.h */,
 				0913E21E166CCB020096A686 /* Supporting Files */,
 			);
@@ -1440,6 +1445,7 @@
 				CAC24F4B1743C66F00CEA478 /* HelpViewController.m in Sources */,
 				CAC24F4D1743C66F00CEA478 /* KGModal.m in Sources */,
 				CAFC51F6174488E500083706 /* ShareViewController.m in Sources */,
+				CA7C3815175C76190023DF4E /* SharedBugSenseController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1475,7 +1481,7 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
+				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1518,7 +1524,7 @@
 		0913E238166CCB030096A686 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/AD/ShareSDK_v2.1.1/Connection\"",
@@ -1544,7 +1550,7 @@
 					"${BUILT_PRODUCTS_DIR}/libSDWebImageARC.a",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRIP_INSTALLED_PRODUCT = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1553,7 +1559,7 @@
 		0913E239166CCB030096A686 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/AD/ShareSDK_v2.1.1/Connection\"",
@@ -1579,7 +1585,7 @@
 					"${BUILT_PRODUCTS_DIR}/libSDWebImageARC.a",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRIP_INSTALLED_PRODUCT = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
