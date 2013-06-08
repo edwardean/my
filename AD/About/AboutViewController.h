@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface AboutViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@class About;
+@class Detail;
+@interface AboutViewController : UIViewController<UITableViewDataSource,UITableViewDelegate> {
+    About *about;
+    Detail *detail;
+}
 @property(strong,nonatomic) UITableView *table;
 @property(strong,nonatomic) NSArray *array;
 

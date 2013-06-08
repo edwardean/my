@@ -47,11 +47,6 @@ UIViewController
     
     self.viewFrame = (CGRect){CGPointZero, {kKYViewWidth, kKYViewHeight}};
     viewControllerTwo_   = [[UIViewController alloc] init];
-    
-    CGRect childViewFrame = self.viewFrame;
-
-    //[viewControllerTwo_.view   setFrame:childViewFrame];
-    
 
     [viewControllerTwo_.view   setBackgroundColor:[UIColor redColor]];
     

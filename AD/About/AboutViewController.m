@@ -13,6 +13,10 @@
 #import "Harpy.h"
 #import "ASDepthModalViewController.h"
 #import "KGModal.h"
+
+
+#import "About.h"
+#import "Detail.h"
 #define SCREENFRAME [[UIScreen mainScreen] applicationFrame]
 @interface AboutViewController ()
 @property(strong,nonatomic) NSArray *aboutArrayOne;
@@ -44,7 +48,10 @@
     _table.delegate =self;
     _table.dataSource = self;
     [self.view addSubview:self.table];
-	// Do any additional setup after loading the view.
+	About *_about = [[About alloc] initWithNibName:nil bundle:nil];
+    Detail *_detail = [[Detail alloc] initWithNibName:nil  bundle:nil];
+    about = _about;
+    detail = _detail;
 }
 
 - (void)didReceiveMemoryWarning
@@ -110,8 +117,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    DetailViewController *detailView=[[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
-    HelpViewController *helpView = [[HelpViewController alloc] initWithNibName:@"HelpViewController" bundle:nil];
+
     UIView *copyRightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENFRAME.size.width-40, 300)];
     _closeBtn = [self buttonWithFrame:CGRectMake(30, 240, SCREENFRAME.size.width-100, 50) withNormalTitle:@"close" withOtherStateTitle:@"close" action:@selector(dismissView) andPosition:copyRightView];
     copyRightView.backgroundColor = [UIColor whiteColor];
@@ -120,13 +126,15 @@
     
     [copyRightView addSubview:txView];
     UIImage *img = [UIImage imageNamed:@"pattern1.jpg"];
-    
+    UIViewController *one = [[UIViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
+    [one.view setFrame:[[UIScreen mainScreen] applicationFrame]];
+    [one.view setBackgroundColor:[UIColor cyanColor]];
     
     if ([indexPath section] == 0) {
         switch (indexPath.row) {
             case 0:
-//                code
-                [self.navigationController pushViewController:detailView animated:YES];
+                //[self.navigationController pushViewController:about animated:YES];
+                [self.navigationController presentViewController:nil animated:YES completion:NULL];
                 break;
             case 1:
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://10086"]];
@@ -141,11 +149,10 @@
     if ([indexPath section] == 1) {
         switch (indexPath.row) {
             case 0:
-//                code
                 [self showAction:nil];
                 break;
             case 1:
-                [self.navigationController pushViewController:helpView animated:YES];
+                [self.navigationController pushViewController:nil animated:YES];
                 break;
             case 2:
                 
@@ -153,7 +160,7 @@
             [ASDepthModalViewController presentView:copyRightView withBackgroundColor:[UIColor colorWithPatternImage:img] popupAnimationStyle:ASDepthModalAnimationDefault];
                 break;
             case 3:
-                [[UIApplication sharedApplication]openURL:[NSURL   URLWithString:@"mailto://duxinfeng99@gmail.com"]]; 
+                [[UIApplication sharedApplication]openURL:[NSURL   URLWithString:@"mailto://lihangqw@126.com"]]; 
                 break;
                 
             default:
