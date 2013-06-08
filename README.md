@@ -12,7 +12,7 @@ Useage
 	因为用到了SDWebImage并且启用了ARC，所以编译时先编译SDWebImage ARC的target
 
 ### 截图
-(https://github.com/edwardean/my/blob/master/AD/desktop.png?raw=true?raw=true)<br />
+![ ](https://github.com/edwardean/my/blob/master/AD/desktop.png?raw=true?raw=true)<br />
 ### 小标题
 	小标题类似html的\<h3\><br />
 	小标题的格式如下 ### 小标题<br />
