@@ -3,7 +3,7 @@
 	项目来源:课程设计
 	Author:Edward
 	From:China 南阳理工学院/软件学院
-	[我的微博](http://weibo.com/u/2715944641?wvr=5&)<br />
+[我的微博](http://weibo.com/u/2715944641?wvr=5&)<br />
 
 
 
